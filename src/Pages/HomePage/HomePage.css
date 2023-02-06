@@ -1,0 +1,42 @@
+main{
+  display: flex;
+  justify-content: center;
+}
+
+.App{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 0px 20px;
+  font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  letter-spacing: -.01em;
+  max-width: 1250px;
+}
+
+.category-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  padding: 0px 15px 0px 15px;
+  overflow-x: auto;
+  font-weight: 350;
+}
+
+.category-links a{
+  color: black;
+  margin: 0px 10px 0px 10px;
+}
+
+.select-option-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 20px 0px;
+}
+
+.post-card-container{
+  margin: 10px 0px 10px 0px;
+  text-align: left;
+}
