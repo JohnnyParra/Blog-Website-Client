@@ -3,7 +3,6 @@ import { UserContext } from '../../Context/UserContext';
 import { useNavigate } from 'react-router-dom'
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import image from '../../Assets/japan-surfing.jpeg'
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
@@ -11,7 +10,7 @@ import Box from '@mui/material/Box';
 export default function FeaturedPost(props) {
   const { updateData } = useContext(UserContext)
   const {post} = props;
-  const {post_id, post_title, post_description, date_created} = post
+  const {post_id, post_title, post_description, image, date_created} = post
 
   const navigate = useNavigate();
 
@@ -43,7 +42,7 @@ export default function FeaturedPost(props) {
           bottom: 0,
           right: 0,
           left: 0,
-          backgroundColor: 'rgba(0,0,0,.3)',
+          backgroundColor: 'rgba(0,0,0,.6)',
         }}
       />
       <Grid container>

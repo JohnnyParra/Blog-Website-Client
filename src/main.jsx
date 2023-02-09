@@ -8,6 +8,7 @@ import { UserProvider } from './Context/UserContext'
 
 // App component
 import App from './App'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 // Styling
 import './index.css'

@@ -2,9 +2,9 @@ import { API_URL } from '../environment/environment.dev';
 import { get, post, remove } from './HttpService'
 
 
-export const fetchPosts = async (category) => {
+export const fetchPosts = async (category, sort) => {
   try {
-    return get(`${API_URL}/posts/${category}`);
+    return get(`${API_URL}/posts/${category}/${sort}`);
   } catch (err) {
     return { data: [], error: err }
   }
@@ -29,6 +29,14 @@ export const fetchLikes = async (id) => {
 export const fetchUserPosts = async () => {
   try {
     return get(`${API_URL}/user-posts`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
+export const fetchUserLikedPosts = async () => {
+  try {
+    return get(`${API_URL}/user-liked-posts`);
   } catch (err) {
     return { data: [], error: err }
   }

@@ -17,9 +17,6 @@ import { fetchPosts , fetchUser} from '../../ApiServices/TasksService';
 //Components
 import Navbar from '../../Components/Navbar/Navbar'
 
-//Functions
-import { orderPosts } from '../../functions/orderPosts';
-
 // Styling
 import './HomePage.css'
 const options = [
@@ -36,7 +33,7 @@ export default function Home(){
 
   const { data: backendData , isLoading: backendLoading, isError: backendError , refetch} = useQuery(
     'posts', 
-    () => fetchPosts(input.category),
+    () => fetchPosts(input.category, input.sort),
     {
       refetchOnWindowFocus: false,
     }
@@ -56,16 +53,16 @@ export default function Home(){
   if( backendLoading || userLoading) return <p>Loading...</p>
   if(backendError) return <p>An Error occurred</p>
   const backendPosts = backendData.posts;
+  console.log(backendData);
 
-  function handleSelect(value){
-    setInput(prevInput => ({...prevInput, sort: value}))
+  async function handleSelect(value){
+    await setInput(prevInput => ({...prevInput, sort: value}))
+    refetch()
   }
   async function handleCategoryClick(value){
     await setInput(prevInput => ({...prevInput, category: value}))
     refetch()
   }
-
-  const featuredPosts = orderPosts(input.sort, backendPosts);
 
   return (
     <main>
@@ -93,10 +90,10 @@ export default function Home(){
           <SelectOption options={options} selection="Sort" handleSelect={handleSelect}/>
         </div>
         <div className="post-card-container">
-          <PostCard post={featuredPosts[0]} />
+          <PostCard post={backendPosts[0]} />
         </div>
         <div className="post-card-container">
-          <PostCard post={featuredPosts[1]} />
+          <PostCard post={backendPosts[1]} />
         </div>
       </div>
     </main>

@@ -8,14 +8,13 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import image from '../../Assets/japan-surfing.jpeg'
 
 
 export default function PostCard(props) {
   const { updateData } = useContext(UserContext)
   const queryClient = useQueryClient();
   const { post } = props;
-  const {post_id, post_title, post_description, date_created} = post
+  const {post_id, post_title, post_description, date_created, image} = post
 
   const navigate = useNavigate();
 
