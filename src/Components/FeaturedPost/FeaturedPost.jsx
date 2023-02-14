@@ -3,6 +3,7 @@ import { UserContext } from '../../Context/UserContext';
 import { useNavigate } from 'react-router-dom'
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import CardActionArea from '@mui/material/CardActionArea';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
@@ -46,25 +47,27 @@ export default function FeaturedPost(props) {
         }}
       />
       <Grid container>
-        <Grid item md={6}>
-          <Box
-            sx={{
-              position: 'relative',
-              p: { xs: 3, md: 6 },
-              pr: { md: 0 },
-            }}
-          >
-            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {post_title}
-            </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
-              {post_description}
-            </Typography>
-            <Link variant="subtitle1" onClick={handleClick}>
-              Continue reading...
-            </Link>
-          </Box>
-        </Grid>
+        <CardActionArea component="a" onClick={handleClick}>
+          <Grid item md={6}>
+            <Box
+              sx={{
+                position: 'relative',
+                p: { xs: 3, md: 6 },
+                pr: { md: 0 },
+              }}
+            >
+              <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                {post_title}
+              </Typography>
+              <Typography variant="h5" color="inherit" paragraph>
+                {post_description}
+              </Typography>
+              <Typography variant="subtitle1" color={`rgb(255,255,255)`}>
+                Continue reading...
+              </Typography>
+            </Box>
+          </Grid>
+        </CardActionArea>
       </Grid>
     </Paper>
   );

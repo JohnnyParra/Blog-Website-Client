@@ -4,6 +4,8 @@ import { fetchUserPosts } from '../../ApiServices/TasksService';
 import PostCard from '../../Components/PostCard/PostCard';
 import Navbar from '../../Components/Navbar/Navbar';
 
+import './PostsPage.css'
+
 export default function Posts() {
 
   const { data: userData , isLoading: userLoading, isError: userError , refetch} = useQuery(
@@ -14,22 +16,18 @@ export default function Posts() {
     }
   );
 
-  if( userLoading ) return <p>Loading...</p>
+  if( userLoading ) return <main className="posts-page"><div className="App"><Navbar /><p>Loading...</p></div></main>
   if(userError) return <p>An Error occurred</p>
 
-  const postElements = userData.posts.map(post => {
-    return (
-      <div key={post.post_id} className="post-card-container">
-        <PostCard post={post} />
-      </div>
-    )
-  })
+  const postElements = userData.posts.map(post => (<PostCard key={post.post_id} post={post} />))
 
   return(
-    <div>
-      <Navbar />
-      Your Posts
-      {postElements}
-    </div>
+    <main className="posts-page">
+      <div className="App">
+        <Navbar />
+        Your Posts
+        {postElements}
+      </div>
+    </main>
   )
 }

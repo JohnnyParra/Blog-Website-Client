@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid'
 import { useMutation, useQueryClient } from 'react-query'
 import CardMedia from '@mui/material/CardMedia';
 
 import { Editor } from 'react-draft-wysiwyg'
-import { EditorState, convertToRaw } from 'draft-js'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 
 import { addPostRequest } from '../../ApiServices/TasksService'
 
 import SelectOption from '../../Components/SelectOption/SelectOption'
 import Navbar from '../../Components/Navbar/Navbar'
 
-import './CreatePostPage.css'
+import { UserContext } from '../../Context/UserContext';
+import './EditPostPage.css'
 
 const options = [
   {value: 4, title: 'Business'},
@@ -31,10 +32,11 @@ const options = [
 export default function CreatePost() {
   const navigate = useNavigate();
   const queryClient = useQueryClient()
-  const [input, setInput] = useState({post_title: '', post_description: '', image: '', category: 4})
-  const[editorState, setEditorState] = useState(() => EditorState.createEmpty())
+  const {data} = useContext(UserContext)
+  const convertedState = convertFromRaw(data[0].content)
+  const[editorState, setEditorState] = useState(() => EditorState.createWithContent(convertedState))
+  const [input, setInput] = useState({post_title: data[0].post_title, post_description: data[0].post_description, image: data[0].image , category: data[0].category})
   const [contentState, setContentState] = useState();
-  const { mutate: mutateAddPosts } = useMutation((newPost) => addPostRequest(newPost))
 
   useEffect(() => {
     const content = editorState.getCurrentContent();
@@ -52,35 +54,19 @@ export default function CreatePost() {
 
   function submit(event){
     event.preventDefault();
-    if(event.target.name === 'cancel'){
-      navigate(`/HomePage`)
-    }else if(event.target.name === 'save') {
-      navigate('/HomePage')
-    }else if(event.target.name === 'publish'){
-      if(input.post_title === '' || input.post_description === '' || input.image === ''){
-        return alert('Missing Inputs');
-      };
-      mutateAddPosts(
-        {
-          post_title: JSON.stringify(input.post_title),
-          post_description: JSON.stringify(input.post_description),
-          content: JSON.stringify(contentState),
-          category: input.category,
-          post_id: nanoid(), 
-          date_created: new Date().getTime().toString(),
-          image: input.image,
-        }
-      )
-      navigate('/HomePage');
-      queryClient.invalidateQueries(['posts'])
-    }
+    console.log(event.target)
+    if(input.post_title === '' || input.post_description === '' || input.image === ''){
+      return
+    };
+    navigate(`/HomePage/${data[0].post_id}`);
+    queryClient.invalidateQueries(['posts'])
   }
 
   return(
-    <main className="create-post">
+    <main className="edit-page">
       <div className="App">
         <Navbar />
-        <form>
+        <form onSubmit={(event) => submit(event)} action="">
           <div className="top-container">
             <div className="left-container">
               <label htmlFor="post-title">Title</label>
@@ -89,14 +75,14 @@ export default function CreatePost() {
               <input className="description-input" type="text" maxLength="100" name="post_description" id="post-description" value={input.post_description} onChange={(event) => handleChange(event)} />
             </div>
             <div className="right-container">
-              <SelectOption options={options} selection='Category' handleSelect={handleSelect} />
+              <SelectOption start={data[0].category} options={options} selection='Category' handleSelect={handleSelect} />
             </div>
           </div>
           <div className="body-container">
             <Editor name='body' editorState={editorState} onEditorStateChange={setEditorState}/>
           </div>
           <label htmlFor="image">URL of Image</label>
-          <input className="image-input" type='text' name="image" id="image" onChange={(event) => handleChange(event)} />
+          <input className="image-input" type='text' name="image" id="image" value={input.image} onChange={(event) => handleChange(event)} />
           <div className="image-container">
             <CardMedia
               component="img"
@@ -106,9 +92,9 @@ export default function CreatePost() {
             />
           </div>
           <div className="create-post-btns">
-            <button onClick={(event) => submit(event)} name="cancel">Cancel</button>
-            <button onClick={(event) => submit(event)} name="save">Save</button>
-            <button onClick={(event) => submit(event)} name="publish">Publish</button>
+            <button>Cancel</button>
+            <button>Save</button>
+            <button>Publish</button>
           </div>
         </form>
       </div>

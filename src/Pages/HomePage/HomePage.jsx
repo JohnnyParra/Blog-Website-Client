@@ -11,7 +11,6 @@ import PostCard from '../../Components/PostCard/PostCard'
 import SelectOption from '../../Components/SelectOption/SelectOption'
 
 // API Services
-import { clearJwt } from '../../ApiServices/JwtService'
 import { fetchPosts , fetchUser} from '../../ApiServices/TasksService';
 
 //Components
@@ -53,34 +52,34 @@ export default function Home(){
   if( backendLoading || userLoading) return <p>Loading...</p>
   if(backendError) return <p>An Error occurred</p>
   const backendPosts = backendData.posts;
-  console.log(backendData);
 
   async function handleSelect(value){
     await setInput(prevInput => ({...prevInput, sort: value}))
     refetch()
   }
-  async function handleCategoryClick(value){
+  async function handleCategoryClick(event, value){
+    event.preventDefault()
     await setInput(prevInput => ({...prevInput, category: value}))
     refetch()
   }
 
   return (
-    <main>
+    <main className="home-page">
       <div className = "App">
         <Navbar name={userData?.user.name} />
         <div className="category-links">
-          <a onClick={() => handleCategoryClick(0)}href="#">All</a>
-          <a onClick={() => handleCategoryClick(4)} href="#">Business</a>
-          <a onClick={() => handleCategoryClick(5)} href="#">Technology</a>
-          <a onClick={() => handleCategoryClick(6)} href="#">Politics</a>
-          <a onClick={() => handleCategoryClick(7)} href="#">Science</a>
-          <a onClick={() => handleCategoryClick(8)} href="#">Health</a>
-          <a onClick={() => handleCategoryClick(9)} href="#">Travel</a>
-          <a onClick={() => handleCategoryClick(10)} href="#">Sports</a>
-          <a onClick={() => handleCategoryClick(11)} href="#">Gaming</a>
-          <a onClick={() => handleCategoryClick(12)} href="#">Culture</a>
-          <a onClick={() => handleCategoryClick(13)} href="#">Style</a>
-          <a onClick={() => handleCategoryClick(14)} href="#">Other</a>
+          <a onClick={(event) => handleCategoryClick(event, 0)}href="#">All</a>
+          <a onClick={(event) => handleCategoryClick(event, 4)} href="#">Business</a>
+          <a onClick={(event) => handleCategoryClick(event, 5)} href="#">Technology</a>
+          <a onClick={(event) => handleCategoryClick(event, 6)} href="#">Politics</a>
+          <a onClick={(event) => handleCategoryClick(event, 7)} href="#">Science</a>
+          <a onClick={(event) => handleCategoryClick(event, 8)} href="#">Health</a>
+          <a onClick={(event) => handleCategoryClick(event, 9)} href="#">Travel</a>
+          <a onClick={(event) => handleCategoryClick(event, 10)} href="#">Sports</a>
+          <a onClick={(event) => handleCategoryClick(event, 11)} href="#">Gaming</a>
+          <a onClick={(event) => handleCategoryClick(event, 12)} href="#">Culture</a>
+          <a onClick={(event) => handleCategoryClick(event, 13)} href="#">Style</a>
+          <a onClick={(event) => handleCategoryClick(event, 14)} href="#">Other</a>
         </div>
         <FeaturedPost post={backendPosts[0]}/>
         <div className="select-option-container">

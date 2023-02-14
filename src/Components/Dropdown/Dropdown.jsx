@@ -59,7 +59,7 @@ const StyledMenu = styled((props) => (
 
 export default function Dropdown(props) {
   const navigate = useNavigate();
-  const {currentUser} = useContext(UserContext);
+  const {currentUser, logoutUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -71,7 +71,7 @@ export default function Dropdown(props) {
 
     if(target === 'logout'){
       navigate('/Login')
-      clearJwt()
+      logoutUser()
     }else if(target === 'profile'){
       navigate('/HomePage/Profile')
     }else if(target === 'posts'){
@@ -98,7 +98,7 @@ export default function Dropdown(props) {
       >
         <Avatar sx={{ m: 1, bgcolor: '#ff3d00' }}></Avatar>
         <p className="user">{currentUser.user?.name}</p>
-        {open ? <KeyboardArrowDownIcon className="user-icon"/> : <KeyboardArrowUpIcon className="user-icon"/>}
+        {open ? <KeyboardArrowUpIcon className="user-icon"/> : <KeyboardArrowDownIcon className="user-icon"/>}
       </Button>
       <StyledMenu
         id="demo-customized-menu"

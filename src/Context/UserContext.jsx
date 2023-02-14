@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { clearJwt } from '../ApiServices/JwtService'
 
 const UserContext = createContext();
 
@@ -17,8 +18,14 @@ function UserProvider({children}) {
     setData([data])
   }
 
+  function logoutUser(){
+    localStorage.removeItem('blogUser')
+    localStorage.removeItem('blogData')
+    clearJwt()
+  }
+
   return (
-    <UserContext.Provider value={{currentUser, data, loginUser, updateData}}>
+    <UserContext.Provider value={{currentUser, data, loginUser, updateData, logoutUser}}>
       {children}
     </UserContext.Provider>
   )

@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectOption(props){
-  const [sort, setSort] = useState(props.options[0].value);
+  const [sort, setSort] = useState(props.start || props.options[0].value);
 
   const handleChange = (event) => {
     setSort(event.target.value);

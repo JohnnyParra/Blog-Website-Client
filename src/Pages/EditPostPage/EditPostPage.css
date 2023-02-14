@@ -1,36 +1,36 @@
-.create-post .top-container{
+.edit-page .top-container{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.create-post .top-container .left-container{
+.edit-page .top-container .left-container{
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.create-post .title-input{
+.edit-page .title-input{
   width: 100%;
 }
-.create-post .description-input{
+.edit-page .description-input{
   width: 100%;
 }
-.create-post label{
+.edit-page label{
   text-align: left;
   font-size: 13px
 }
 
-.create-post form{
+.edit-page form{
   display: flex;
   flex-direction: column;
 }
 
-.create-post .image-container{
+.edit-page .image-container{
   height: 164px;
 }
 
-.create-post .body-container{
+.edit-page .body-container{
   border: 1px solid black;
   padding: 2px;
   min-height: 400px;

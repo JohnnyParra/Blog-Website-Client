@@ -1,42 +1,47 @@
 main{
   display: flex;
   justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: url('../../Assets/blog-background.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .App{
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0px 20px 0px 20px;
   font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
   letter-spacing: -.01em;
   max-width: 1250px;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom: none;
+  background-color: white;
+  overflow-y: scroll;
 }
 
-.category-links {
+.home-page .category-links {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  min-height: 40px;
   width: 100%;
   padding: 0px 15px 0px 15px;
   overflow-x: auto;
   font-weight: 350;
 }
 
-.category-links a{
+.home-page .category-links a{
   color: black;
   margin: 0px 10px 0px 10px;
 }
 
-.select-option-container{
+.home-page .select-option-container{
   display: flex;
   justify-content: space-between;
   margin: 20px 0px 20px 0px;
-}
-
-.post-card-container{
-  margin: 10px 0px 10px 0px;
-  text-align: left;
 }
