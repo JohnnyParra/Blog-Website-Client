@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Editor } from 'react-draft-wysiwyg'
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 
-import { addPostRequest } from '../../ApiServices/TasksService'
+import { updatePostRequest } from '../../ApiServices/TasksService'
 
 import SelectOption from '../../Components/SelectOption/SelectOption'
 import Navbar from '../../Components/Navbar/Navbar'
@@ -38,6 +38,14 @@ export default function CreatePost() {
   const [input, setInput] = useState({post_title: data[0].post_title, post_description: data[0].post_description, image: data[0].image , category: data[0].category})
   const [contentState, setContentState] = useState();
 
+  const { mutate: mutateUpdatePosts } = useMutation((newPost) => updatePostRequest(newPost),
+  {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['posts'])
+      navigate('/HomePage');
+    }
+  })
+
   useEffect(() => {
     const content = editorState.getCurrentContent();
     setContentState(convertToRaw(content));
@@ -54,19 +62,31 @@ export default function CreatePost() {
 
   function submit(event){
     event.preventDefault();
-    console.log(event.target)
-    if(input.post_title === '' || input.post_description === '' || input.image === ''){
-      return
-    };
-    navigate(`/HomePage/${data[0].post_id}`);
-    queryClient.invalidateQueries(['posts'])
+    if(event.target.name === 'cancel'){
+      navigate(`/HomePage`)
+    }else if(event.target.name === 'save'){
+      if(input.post_title === '' || input.post_description === '' || input.image === ''){
+        return alert('Missing Inputs');
+      };
+      mutateUpdatePosts(
+        {
+          post_title: JSON.stringify(input.post_title),
+          post_description: JSON.stringify(input.post_description),
+          content: JSON.stringify(contentState),
+          category: input.category,
+          post_id: data[0].post_id, 
+          date_edited: new Date().getTime().toString(),
+          image: input.image,
+        }
+      )
+    }
   }
 
   return(
     <main className="edit-page">
       <div className="App">
         <Navbar />
-        <form onSubmit={(event) => submit(event)} action="">
+        <form>
           <div className="top-container">
             <div className="left-container">
               <label htmlFor="post-title">Title</label>
@@ -75,7 +95,7 @@ export default function CreatePost() {
               <input className="description-input" type="text" maxLength="100" name="post_description" id="post-description" value={input.post_description} onChange={(event) => handleChange(event)} />
             </div>
             <div className="right-container">
-              <SelectOption start={data[0].category} options={options} selection='Category' handleSelect={handleSelect} />
+              <SelectOption options={options} selection='Category' handleSelect={handleSelect} />
             </div>
           </div>
           <div className="body-container">
@@ -92,9 +112,8 @@ export default function CreatePost() {
             />
           </div>
           <div className="create-post-btns">
-            <button>Cancel</button>
-            <button>Save</button>
-            <button>Publish</button>
+            <button onClick={(event) => submit(event)} name="cancel">Cancel</button>
+            <button onClick={(event) => submit(event)} name="save">Save Changes</button>
           </div>
         </form>
       </div>

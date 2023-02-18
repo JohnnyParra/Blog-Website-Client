@@ -35,16 +35,21 @@ export const post = async (url, body, headers) => {
   }
 }
 
-export const put = async (url, headers) => {
+export const put = async (url, body, headers) => {
   try {
     const res = await fetch(url, {
-      method: 'GET',
-      headers: { ...headers }
+      method: 'PUT',
+      headers: { 
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getJwt()}`,
+        ...headers 
+      },
+      body: JSON.stringify(body),
     });
 
     return res.json();
   } catch (err) {
-    
+    return ({err})
   }
 }
 
@@ -60,6 +65,6 @@ export const remove = async (url, headers) => {
 
     return res.json();
   } catch (err) {
-    
+    return err
   }
 }

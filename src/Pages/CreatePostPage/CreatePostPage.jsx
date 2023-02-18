@@ -34,7 +34,13 @@ export default function CreatePost() {
   const [input, setInput] = useState({post_title: '', post_description: '', image: '', category: 4})
   const[editorState, setEditorState] = useState(() => EditorState.createEmpty())
   const [contentState, setContentState] = useState();
-  const { mutate: mutateAddPosts } = useMutation((newPost) => addPostRequest(newPost))
+  const { mutate: mutateAddPosts } = useMutation((newPost) => addPostRequest(newPost),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['posts'])
+        navigate('/HomePage');
+      }
+    })
 
   useEffect(() => {
     const content = editorState.getCurrentContent();
@@ -71,10 +77,9 @@ export default function CreatePost() {
           image: input.image,
         }
       )
-      navigate('/HomePage');
-      queryClient.invalidateQueries(['posts'])
     }
   }
+
 
   return(
     <main className="create-post">

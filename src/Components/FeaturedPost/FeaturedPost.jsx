@@ -43,7 +43,7 @@ export default function FeaturedPost(props) {
           bottom: 0,
           right: 0,
           left: 0,
-          backgroundColor: 'rgba(0,0,0,.6)',
+          backgroundColor: 'rgba(0,0,0,.8)',
         }}
       />
       <Grid container>
