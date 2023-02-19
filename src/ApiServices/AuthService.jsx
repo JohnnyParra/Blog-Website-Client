@@ -4,7 +4,7 @@ import { get, post } from './HttpService';
 
 export const registerUser = async (user)=> {
   try {
-    return post(`${API_URL}/register`, user);
+    return post(`${API_URL}/authenticate/register`, user);
   } catch (err) {
     return { data: [], error: err }
   }
@@ -12,7 +12,7 @@ export const registerUser = async (user)=> {
 
 export const authenticateUser =  async (user)=> {
   try {
-    return post(`${API_URL}/authenticate`, user);
+    return post(`${API_URL}/authenticate/login`, user);
   } catch (err) {
     return { data: [], error: err }
   }

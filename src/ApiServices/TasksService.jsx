@@ -28,7 +28,7 @@ export const fetchLikes = async (id) => {
 
 export const fetchUserPosts = async (published) => {
   try {
-    return get(`${API_URL}/user-posts/${published}`);
+    return get(`${API_URL}/user/posts/${published}`);
   } catch (err) {
     return { data: [], error: err }
   }
@@ -36,7 +36,7 @@ export const fetchUserPosts = async (published) => {
 
 export const fetchUserLikedPosts = async () => {
   try {
-    return get(`${API_URL}/user-liked-posts`);
+    return get(`${API_URL}/user/posts/liked`);
   } catch (err) {
     return { data: [], error: err }
   }
