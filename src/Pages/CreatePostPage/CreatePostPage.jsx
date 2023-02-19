@@ -61,13 +61,25 @@ export default function CreatePost() {
     if(event.target.name === 'cancel'){
       navigate(`/HomePage`)
     }else if(event.target.name === 'save') {
-      navigate('/HomePage')
+      mutateAddPosts(
+        {
+          type: 'save',
+          post_title: JSON.stringify(input.post_title),
+          post_description: JSON.stringify(input.post_description),
+          content: JSON.stringify(contentState),
+          category: input.category,
+          post_id: nanoid(), 
+          date_created: new Date().getTime().toString(),
+          image: input.image,
+        }
+      )
     }else if(event.target.name === 'publish'){
       if(input.post_title === '' || input.post_description === '' || input.image === ''){
         return alert('Missing Inputs');
       };
       mutateAddPosts(
         {
+          type: 'publish',
           post_title: JSON.stringify(input.post_title),
           post_description: JSON.stringify(input.post_description),
           content: JSON.stringify(contentState),

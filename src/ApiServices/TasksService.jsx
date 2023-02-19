@@ -26,9 +26,9 @@ export const fetchLikes = async (id) => {
   }
 }
 
-export const fetchUserPosts = async () => {
+export const fetchUserPosts = async (published) => {
   try {
-    return get(`${API_URL}/user-posts`);
+    return get(`${API_URL}/user-posts/${published}`);
   } catch (err) {
     return { data: [], error: err }
   }

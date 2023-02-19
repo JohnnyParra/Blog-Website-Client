@@ -3,6 +3,11 @@
   font-size: 14px;
 }
 
+.post-page .edited-date{
+  font-weight: 300;
+  font-size: 11px;
+}
+
 .post-page .created-by{
   font-weight: 300;
   font-size: 14px;

@@ -23,6 +23,7 @@ export default function Post() {
         <h1>{data[0].post_title}</h1>
         <h3><i>{data[0].post_description}</i></h3>
         <p className="created-date">Created: {new Date(Number(data[0].date_created)).toLocaleString()}</p>
+        {data[0].date_edited && <p className="edited-date">Last Edited: {new Date(Number(data[0].date_edited)).toLocaleString()}</p>}
         <p className="created-by">By: {data[0].Author}</p>
         {data[0].user_id === currentUser.user.userId && <Link to="/HomePage/Posts/EditPost">edit</Link>}
         <LikeButton id={data[0].post_id} />

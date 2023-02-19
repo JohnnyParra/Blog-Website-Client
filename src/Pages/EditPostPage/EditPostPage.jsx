@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { nanoid } from 'nanoid'
 import { useMutation, useQueryClient } from 'react-query'
 import CardMedia from '@mui/material/CardMedia';
 
