@@ -71,13 +71,27 @@ export default function CreatePost() {
       };
       let formData = new FormData();
       if(input.image != '') formData.append('image', input.image);
-      formData.append('type', 'publish');
+      data[0].published == 1 ? formData.append('type', 'publish') : formData.append('type', 'save');
       formData.append('post_title', JSON.stringify(input.post_title));
       formData.append('post_description', JSON.stringify(input.post_description));
       formData.append('content', JSON.stringify(contentState));
       formData.append('category', input.category);
       formData.append('post_id', data[0].post_id);
       formData.append('date_edited', new Date().getTime().toString());
+      mutateUpdatePosts(formData);
+    } else if(event.target.name === 'publish'){
+      if(input.post_title === '' || input.post_description === ''){
+        return alert('Missing Inputs');
+      };
+      let formData = new FormData();
+      if(input.image != '')formData.append('image', input.image);
+      formData.append('type', 'publish');
+      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('post_description', JSON.stringify(input.post_description));
+      formData.append('content', JSON.stringify(contentState));
+      formData.append('category', input.category);
+      formData.append('post_id', data[0].post_id);
+      formData.append('date_created', new Date().getTime().toString());
       mutateUpdatePosts(formData);
     }
   }
@@ -121,6 +135,7 @@ export default function CreatePost() {
           <div className="create-post-btns">
             <button onClick={(event) => submit(event)} name="cancel">Cancel</button>
             <button onClick={(event) => submit(event)} name="save">Save Changes</button>
+            {data[0].published != 1 && <button onClick={(event) => submit(event)} name="publish">Publish</button>}
           </div>
         </form>
       </div>
