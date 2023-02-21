@@ -52,7 +52,7 @@ export default function Home(){
   if( backendLoading || userLoading) return <p>Loading...</p>
   if(backendError) return <p>An Error occurred</p>
   const backendPosts = backendData.posts;
-
+  console.log(backendData);
   async function handleSelect(value){
     await setInput(prevInput => ({...prevInput, sort: value}))
     refetch()

@@ -45,6 +45,7 @@ export default function CreatePost() {
     }
   })
 
+  console.log(data)
   useEffect(() => {
     const content = editorState.getCurrentContent();
     setContentState(convertToRaw(content));

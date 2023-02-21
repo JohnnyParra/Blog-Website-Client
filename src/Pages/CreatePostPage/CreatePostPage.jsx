@@ -34,6 +34,7 @@ export default function CreatePost() {
   const [input, setInput] = useState({post_title: '', post_description: '', image: '', category: 4})
   const[editorState, setEditorState] = useState(() => EditorState.createEmpty())
   const [contentState, setContentState] = useState();
+  const [previewImage, setPreviewImage] = useState('')
   const { mutate: mutateAddPosts } = useMutation((newPost) => addPostRequest(newPost),
     {
       onSuccess: () => {
@@ -77,21 +78,36 @@ export default function CreatePost() {
       if(input.post_title === '' || input.post_description === '' || input.image === ''){
         return alert('Missing Inputs');
       };
-      mutateAddPosts(
-        {
-          type: 'publish',
-          post_title: JSON.stringify(input.post_title),
-          post_description: JSON.stringify(input.post_description),
-          content: JSON.stringify(contentState),
-          category: input.category,
-          post_id: nanoid(), 
-          date_created: new Date().getTime().toString(),
-          image: input.image,
-        }
+      let data = new FormData();
+      data.append('image', input.image);
+      data.append('type', 'publish');
+      data.append('post_title', JSON.stringify(input.post_title));
+      data.append('post_description', JSON.stringify(input.post_description));
+      data.append('content', JSON.stringify(contentState));
+      data.append('category', input.category);
+      data.append('post_id', nanoid());
+      data.append('date_created', new Date().getTime().toString());
+      mutateAddPosts(data
+        // {
+        //   type: 'publish',
+        //   post_title: JSON.stringify(input.post_title),
+        //   post_description: JSON.stringify(input.post_description),
+        //   content: JSON.stringify(contentState),
+        //   category: input.category,
+        //   post_id: nanoid(), 
+        //   date_created: new Date().getTime().toString(),
+        //   image: input.image,
+        // }
       )
     }
   }
 
+  async function fileSubmit(event){
+    let imageData = new FormData();
+    imageData.append('image', event.target.files[0]);
+    setInput(prevInput => ({...prevInput, [event.target.name]:  event.target.files[0]}))
+    setPreviewImage(URL.createObjectURL(event.target.files[0]));
+  }
 
   return(
     <main className="create-post">
@@ -112,15 +128,17 @@ export default function CreatePost() {
           <div className="body-container">
             <Editor name='body' editorState={editorState} onEditorStateChange={setEditorState}/>
           </div>
-          <label htmlFor="image">URL of Image</label>
-          <input className="image-input" type='text' name="image" id="image" onChange={(event) => handleChange(event)} />
+          <label htmlFor="image">Chose an Image</label>
+          <input type='file' name="image" accept="image/*" onChange={(event) => fileSubmit(event)}></input>
           <div className="image-container">
+            {input.image !== '' && 
             <CardMedia
               component="img"
               sx={{ width: 160, height:'100%', display: { xs: 'none', sm: 'block' } }}
-              image={input.image}
+              image={previewImage}
               alt='Preview of Image'
             />
+            }
           </div>
           <div className="create-post-btns">
             <button onClick={(event) => submit(event)} name="cancel">Cancel</button>

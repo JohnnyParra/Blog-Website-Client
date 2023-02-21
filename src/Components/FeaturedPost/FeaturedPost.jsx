@@ -12,6 +12,7 @@ export default function FeaturedPost(props) {
   const { updateData } = useContext(UserContext)
   const {post} = props;
   const {post_id, post_title, post_description, image, date_created} = post
+  console.log(image);
 
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ export default function FeaturedPost(props) {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url("${image}")`,
       }}
     >
       {/* Increase the priority of the hero background image */}
@@ -43,7 +44,7 @@ export default function FeaturedPost(props) {
           bottom: 0,
           right: 0,
           left: 0,
-          backgroundColor: 'rgba(0,0,0,.8)',
+          backgroundColor: 'rgba(0,0,0,.7)',
         }}
       />
       <Grid container>
