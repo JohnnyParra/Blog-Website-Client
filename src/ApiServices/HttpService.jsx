@@ -71,6 +71,23 @@ export const put = async (url, body, headers) => {
   }
 }
 
+export const formPut = async (url, body, headers) => {
+  try {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: { 
+        Authorization: `Bearer ${getJwt()}`,
+        ...headers 
+      },
+      body: body,
+    });
+
+    return res.json();
+  } catch (err) {
+    return ({err})
+  }
+}
+
 export const remove = async (url, headers) => {
   try {
     const res = await fetch(url, {

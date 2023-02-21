@@ -1,5 +1,5 @@
 import { API_URL } from '../environment/environment.dev';
-import { get, post, formPost, put, remove } from './HttpService'
+import { get, post, formPost, put, formPut, remove } from './HttpService'
 
 
 export const fetchPosts = async (category, sort) => {
@@ -52,7 +52,7 @@ export const addPostRequest = async (newPost) => {
 
 export const updatePostRequest = async (newPost) => {
   try{
-    return put(`${API_URL}/post`, newPost);
+    return formPut(`${API_URL}/post`, newPost);
   } catch(err){
     return { data: [], error: err }
   }

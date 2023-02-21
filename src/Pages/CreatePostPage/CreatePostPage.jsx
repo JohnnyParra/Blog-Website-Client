@@ -61,44 +61,32 @@ export default function CreatePost() {
     event.preventDefault();
     if(event.target.name === 'cancel'){
       navigate(`/HomePage`)
+      return;
     }else if(event.target.name === 'save') {
-      mutateAddPosts(
-        {
-          type: 'save',
-          post_title: JSON.stringify(input.post_title),
-          post_description: JSON.stringify(input.post_description),
-          content: JSON.stringify(contentState),
-          category: input.category,
-          post_id: nanoid(), 
-          date_created: new Date().getTime().toString(),
-          image: input.image,
-        }
-      )
+      let formData = new FormData();
+      if(input.image != '') formData.append('image', input.image);
+      formData.append('type', 'save');
+      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('post_description', JSON.stringify(input.post_description));
+      formData.append('content', JSON.stringify(contentState));
+      formData.append('category', input.category);
+      formData.append('post_id', nanoid());
+      formData.append('date_created', new Date().getTime().toString());
+      mutateAddPosts(formData);
     }else if(event.target.name === 'publish'){
       if(input.post_title === '' || input.post_description === '' || input.image === ''){
         return alert('Missing Inputs');
       };
-      let data = new FormData();
-      data.append('image', input.image);
-      data.append('type', 'publish');
-      data.append('post_title', JSON.stringify(input.post_title));
-      data.append('post_description', JSON.stringify(input.post_description));
-      data.append('content', JSON.stringify(contentState));
-      data.append('category', input.category);
-      data.append('post_id', nanoid());
-      data.append('date_created', new Date().getTime().toString());
-      mutateAddPosts(data
-        // {
-        //   type: 'publish',
-        //   post_title: JSON.stringify(input.post_title),
-        //   post_description: JSON.stringify(input.post_description),
-        //   content: JSON.stringify(contentState),
-        //   category: input.category,
-        //   post_id: nanoid(), 
-        //   date_created: new Date().getTime().toString(),
-        //   image: input.image,
-        // }
-      )
+      let formData = new FormData();
+      formData.append('image', input.image);
+      formData.append('type', 'publish');
+      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('post_description', JSON.stringify(input.post_description));
+      formData.append('content', JSON.stringify(contentState));
+      formData.append('category', input.category);
+      formData.append('post_id', nanoid());
+      formData.append('date_created', new Date().getTime().toString());
+      mutateAddPosts(formData);
     }
   }
 

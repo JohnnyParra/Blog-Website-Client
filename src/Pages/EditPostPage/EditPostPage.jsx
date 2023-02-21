@@ -34,8 +34,9 @@ export default function CreatePost() {
   const {data} = useContext(UserContext)
   const convertedState = convertFromRaw(data[0].content)
   const[editorState, setEditorState] = useState(() => EditorState.createWithContent(convertedState))
-  const [input, setInput] = useState({post_title: data[0].post_title, post_description: data[0].post_description, image: data[0].image , category: data[0].category})
+  const [input, setInput] = useState({post_title: data[0].post_title, post_description: data[0].post_description, image: '' , category: data[0].category})
   const [contentState, setContentState] = useState();
+  const [previewImage, setPreviewImage] = useState(data[0].image)
 
   const { mutate: mutateUpdatePosts } = useMutation((newPost) => updatePostRequest(newPost),
   {
@@ -45,7 +46,6 @@ export default function CreatePost() {
     }
   })
 
-  console.log(data)
   useEffect(() => {
     const content = editorState.getCurrentContent();
     setContentState(convertToRaw(content));
@@ -64,22 +64,29 @@ export default function CreatePost() {
     event.preventDefault();
     if(event.target.name === 'cancel'){
       navigate(`/HomePage`)
+      return
     }else if(event.target.name === 'save'){
-      if(input.post_title === '' || input.post_description === '' || input.image === ''){
+      if(input.post_title === '' || input.post_description === ''){
         return alert('Missing Inputs');
       };
-      mutateUpdatePosts(
-        {
-          post_title: JSON.stringify(input.post_title),
-          post_description: JSON.stringify(input.post_description),
-          content: JSON.stringify(contentState),
-          category: input.category,
-          post_id: data[0].post_id, 
-          date_edited: new Date().getTime().toString(),
-          image: input.image,
-        }
-      )
+      let formData = new FormData();
+      if(input.image != '') formData.append('image', input.image);
+      formData.append('type', 'publish');
+      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('post_description', JSON.stringify(input.post_description));
+      formData.append('content', JSON.stringify(contentState));
+      formData.append('category', input.category);
+      formData.append('post_id', data[0].post_id);
+      formData.append('date_edited', new Date().getTime().toString());
+      mutateUpdatePosts(formData);
     }
+  }
+
+  async function fileSubmit(event){
+    let imageData = new FormData();
+    imageData.append('image', event.target.files[0]);
+    setInput(prevInput => ({...prevInput, [event.target.name]:  event.target.files[0]}))
+    setPreviewImage(URL.createObjectURL(event.target.files[0]));
   }
 
   return(
@@ -102,12 +109,12 @@ export default function CreatePost() {
             <Editor name='body' editorState={editorState} onEditorStateChange={setEditorState}/>
           </div>
           <label htmlFor="image">URL of Image</label>
-          <input className="image-input" type='text' name="image" id="image" value={input.image} onChange={(event) => handleChange(event)} />
+          <input type='file' name="image" accept="image/*" onChange={(event) => fileSubmit(event)}></input>
           <div className="image-container">
             <CardMedia
               component="img"
               sx={{ width: 160, height:'100%', display: { xs: 'none', sm: 'block' } }}
-              image={input.image}
+              image={previewImage}
               alt='Preview of Image'
             />
           </div>
