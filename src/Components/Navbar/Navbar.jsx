@@ -12,7 +12,7 @@ export default function Navbar(props) {
         <h1>Blog</h1>
         <div className="right">
           <SearchBar />
-          <Dropdown name={props.name} />
+          <Dropdown />
         </div>
       </nav>
     </div>

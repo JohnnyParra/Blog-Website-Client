@@ -12,7 +12,6 @@ export default function FeaturedPost(props) {
   const { updateData } = useContext(UserContext)
   const {post} = props;
   const {post_id, post_title, post_description, image, date_created} = post
-  console.log(image);
 
   const navigate = useNavigate();
 

@@ -15,6 +15,7 @@ export default function Post() {
   const { data, currentUser } = useContext(UserContext);
   const convertedState = convertFromRaw(data[0].content)
   const[editorState, setEditorState] = useState(() => EditorState.createWithContent(convertedState))
+  console.log(data)
 
   return(
     <main className="post-page">

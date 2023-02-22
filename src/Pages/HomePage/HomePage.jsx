@@ -66,7 +66,7 @@ export default function Home(){
   return (
     <main className="home-page">
       <div className = "App">
-        <Navbar name={userData?.user.name} />
+        <Navbar />
         <div className="category-links">
           <a onClick={(event) => handleCategoryClick(event, 0)}href="#">All</a>
           <a onClick={(event) => handleCategoryClick(event, 4)} href="#">Business</a>

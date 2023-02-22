@@ -57,7 +57,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Dropdown(props) {
+export default function Dropdown() {
   const navigate = useNavigate();
   const {currentUser, logoutUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -83,8 +83,6 @@ export default function Dropdown(props) {
     }
   };
 
-  
-
   return (
     <div>
       <Button
@@ -96,8 +94,8 @@ export default function Dropdown(props) {
         disableElevation
         onClick={handleClick}
       >
-        <Avatar sx={{ m: 1, bgcolor: '#ff3d00' }}></Avatar>
-        <p className="user">{currentUser.user?.name}</p>
+        <Avatar sx={{ m: 1, bgcolor: '#ff3d00' }}>{currentUser?.userInfo[0].name[0]}</Avatar>
+        <p className="user">{currentUser.userInfo[0]?.name}</p>
         {open ? <KeyboardArrowUpIcon className="user-icon"/> : <KeyboardArrowDownIcon className="user-icon"/>}
       </Button>
       <StyledMenu
