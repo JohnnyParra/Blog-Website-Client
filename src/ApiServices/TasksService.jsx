@@ -81,3 +81,11 @@ export const deleteLikeRequest = async (id) => {
     return { data: [], error: err } 
   }
 }
+
+export const updateAvatarRequest = async (newAvatar) => {
+  try{
+    return formPut(`${API_URL}/profile`, newAvatar);
+  } catch(err){
+    return { data: [], error: err }
+  }
+}

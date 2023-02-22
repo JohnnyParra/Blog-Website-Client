@@ -82,6 +82,7 @@ export default function Dropdown() {
       navigate('/Homepage')
     }
   };
+  console.log(currentUser)
 
   return (
     <div>
@@ -94,7 +95,7 @@ export default function Dropdown() {
         disableElevation
         onClick={handleClick}
       >
-        <Avatar sx={{ m: 1, bgcolor: '#ff3d00' }}>{currentUser?.userInfo[0].name[0]}</Avatar>
+        <Avatar src={currentUser?.userInfo[0].avatar} sx={{ m: 1, bgcolor: '#ff3d00' }}>{currentUser?.userInfo[0].name[0]}</Avatar>
         <p className="user">{currentUser.userInfo[0]?.name}</p>
         {open ? <KeyboardArrowUpIcon className="user-icon"/> : <KeyboardArrowDownIcon className="user-icon"/>}
       </Button>
