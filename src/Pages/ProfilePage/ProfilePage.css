@@ -47,3 +47,46 @@
   height: 40px;
   padding: 0 20px 0 20px;
 }
+
+.profile-page .password{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.profile-page .password p{
+  min-width: 100px;
+}
+.profile-page .password input{
+  width: 100%;
+  border-radius: 8px 0px 0px 8px;
+  border: 1px solid black;
+  height: 40px;
+  padding: 0 20px 0 20px;
+  margin-right: 2px;
+}
+
+.profile-page .password button{
+  width: 50px;
+  height: 40px;
+  border-radius: 0px 8px 8px 0px;
+  background-image: url('../assets/eye.svg');
+  background-repeat: no-repeat;
+  background-position: 4px 5px;
+  background-color: #7f7f80;
+}
+
+.profile-page .password button:hover{
+  background-color:#5d5d5d;
+  cursor: pointer;
+}
+
+.profile-page .profile-message{
+  background-color: rgb(214, 178, 1);
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}

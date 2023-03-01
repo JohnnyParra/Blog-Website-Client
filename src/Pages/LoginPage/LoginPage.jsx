@@ -106,7 +106,7 @@ export default function Login(){
               type={types} 
               placeholder="Enter Password" 
             />
-            <button style={styles} onClick={() => password(event)}></button>
+            <button style={styles} onClick={(event) => password(event)}></button>
           </div>
 
           <button onClick={() => handleLoginClick()}>{isRefetching ? 'Loading...' : 'Log in'}</button>

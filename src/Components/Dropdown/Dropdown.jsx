@@ -82,7 +82,6 @@ export default function Dropdown() {
       navigate('/Homepage')
     }
   };
-  console.log(currentUser)
 
   return (
     <div>
