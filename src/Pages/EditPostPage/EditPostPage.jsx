@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Editor } from 'react-draft-wysiwyg'
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 
-import { updatePostRequest } from '../../ApiServices/TasksService'
+import { updatePostRequest, deletePostRequest } from '../../ApiServices/TasksService'
 
 import SelectOption from '../../Components/SelectOption/SelectOption'
 import Navbar from '../../Components/Navbar/Navbar'
@@ -46,6 +46,14 @@ export default function CreatePost() {
     }
   })
 
+  const { mutate: mutateDeletePosts } = useMutation((id) => deletePostRequest(id),
+  {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['posts'])
+      navigate('/HomePage');
+    }
+  })
+
   useEffect(() => {
     const content = editorState.getCurrentContent();
     setContentState(convertToRaw(content));
@@ -65,6 +73,8 @@ export default function CreatePost() {
     if(event.target.name === 'cancel'){
       navigate(`/HomePage`)
       return
+    }else if(event.target.name === 'delete'){
+      mutateDeletePosts(data[0].post_id)
     }else if(event.target.name === 'save'){
       if(input.post_title === '' || input.post_description === ''){
         return alert('Missing Inputs');
@@ -133,6 +143,7 @@ export default function CreatePost() {
             />
           </div>
           <div className="create-post-btns">
+            <button onClick={(event) => submit(event)} name="delete">Delete</button>
             <button onClick={(event) => submit(event)} name="cancel">Cancel</button>
             <button onClick={(event) => submit(event)} name="save">Save Changes</button>
             {data[0].published != 1 && <button onClick={(event) => submit(event)} name="publish">Publish</button>}

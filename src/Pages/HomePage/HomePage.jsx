@@ -20,7 +20,6 @@ import Navbar from '../../Components/Navbar/Navbar'
 import './HomePage.css'
 const options = [
   {value: 1, title: 'Recent'},
-  {value: 2, title: 'Trending'},
   {value: 3, title: 'Most Liked'}
 ]
 
