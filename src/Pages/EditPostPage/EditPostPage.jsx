@@ -2,6 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query'
 import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import ClearIcon from '@mui/icons-material/Clear';
+import SaveIcon from '@mui/icons-material/Save';
+import PublishIcon from '@mui/icons-material/Publish';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Editor } from 'react-draft-wysiwyg'
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
@@ -137,16 +142,16 @@ export default function CreatePost() {
           <div className="image-container">
             <CardMedia
               component="img"
-              sx={{ width: 160, height:'100%', display: { xs: 'none', sm: 'block' } }}
+              sx={{ width: 160, height:'100%', display: { sm: 'block' } }}
               image={previewImage}
               alt='Preview of Image'
             />
           </div>
           <div className="create-post-btns">
-            <button onClick={(event) => submit(event)} name="delete">Delete</button>
-            <button onClick={(event) => submit(event)} name="cancel">Cancel</button>
-            <button onClick={(event) => submit(event)} name="save">Save Changes</button>
-            {data[0].published != 1 && <button onClick={(event) => submit(event)} name="publish">Publish</button>}
+            <Button className="btn" onClick={(event) => submit(event)} name="cancel" size='small' variant="contained" color="warning" startIcon={<ClearIcon/>}>Cancel</Button>
+            <Button className="btn" onClick={(event) => submit(event)} name="delete" size='small' variant="contained" color="warning" endIcon={<DeleteIcon/>}>Delete</Button>
+            <Button className="btn" onClick={(event) => submit(event)} name="save" size='small' variant="contained" color="warning" endIcon={<SaveIcon/>}>Save</Button>
+            {data[0].published != 1 && <Button className="btn" onClick={(event) => submit(event)} name="publish" size='small' variant="contained" color="warning" endIcon={<PublishIcon/>}>Publish</Button>}
           </div>
         </form>
       </div>

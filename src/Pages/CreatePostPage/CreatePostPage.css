@@ -2,16 +2,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 105px;
 }
 
 .create-post .top-container .left-container{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
   flex-grow: 1;
+  height: 100%;
+}
+
+.create-post .top-container .right-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  margin-bottom: 27px;
 }
 
 .create-post .title-input{
-  width: 100%;
+  width: 300px;
 }
 .create-post .description-input{
   width: 100%;
@@ -24,6 +36,7 @@
 .create-post form{
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .create-post .image-container{
@@ -34,4 +47,12 @@
   border: 1px solid black;
   padding: 2px;
   min-height: 400px;
+  max-height: 558px;
+  flex-grow: 1;
+  margin-bottom: 5px;
+  overflow: scroll;
+}
+
+.create-post .create-post-btns .btn{
+  margin: 5px;
 }
