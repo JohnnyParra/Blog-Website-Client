@@ -4,6 +4,9 @@
   align-items: center;
   justify-content: center;
 }
+.header h1{
+  color: rgb(255, 106, 0);
+}
 
 .header nav{
   display: flex;

@@ -11,7 +11,7 @@
 }
 .sign-up .left .logo{
   margin: 20px 10px;
-  color: orange;
+  color: rgb(255, 106, 0);
 }
 
 .sign-up .right{
@@ -22,7 +22,7 @@
 }
 .sign-up .right .logo{
   display: none;
-  color: orange;
+  color: rgb(255, 106, 0);
 }
 
 .sign-up .log-in{

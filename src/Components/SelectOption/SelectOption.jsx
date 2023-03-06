@@ -14,11 +14,11 @@ export default function SelectOption(props){
   };
 
   const optionElements = props.options.map(option => 
-    (<MenuItem key={option.value} value={option.value}>{option.title}</MenuItem>)
+    (<MenuItem sx={{color: "#1976d2"}}key={option.value} value={option.value}>{option.title}</MenuItem>)
   );
 
   return(
-    <Box sx={{ maxWidth: 160 }}>
+    <Box sx={{ maxWidth: 160}}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{props.selection}</InputLabel>
         <Select
@@ -27,6 +27,7 @@ export default function SelectOption(props){
           value={sort}
           label="Sort"
           onChange={handleChange}
+          sx={{color: "#1976d2"}}
         >
           {optionElements}
         </Select>

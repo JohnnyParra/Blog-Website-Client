@@ -82,7 +82,7 @@ export default function Home(){
         </div>
         <FeaturedPost post={backendPosts[0]}/>
         <div className="select-option-container">
-          <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant="contained" color="success" startIcon={<CreateIcon />}>
+          <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant="contained" color="warning" startIcon={<CreateIcon />}>
             Create A Post
           </Button>
           <SelectOption options={options} selection="Sort" handleSelect={handleSelect}/>
