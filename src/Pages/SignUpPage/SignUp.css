@@ -1,23 +1,35 @@
 .sign-up{
   display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
 }
 
-.sign-up header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-  margin: 0px 34px 0px 34px;
+.sign-up .left{
+  flex-grow: 1;
+  background-image: url("../../Assets/table-background.jpg");
+  background-size: cover;
+}
+.sign-up .left .logo{
+  margin: 20px 10px;
+  color: orange;
 }
 
-.sign-up header .log-in{
+.sign-up .right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  Padding: 20px 20px;
+}
+.sign-up .right .logo{
+  display: none;
+  color: orange;
+}
+
+.sign-up .log-in{
   display: flex;
   align-items: center;
 }
-.sign-up header .log-in button{
+.sign-up .log-in button{
   width: 90px;
   height: 40px;
   margin-left: 20px;
@@ -28,7 +40,7 @@
   color: white;
   font-size: 15px;
 }
-.sign-up header .log-in button:hover{
+.sign-up .log-in button:hover{
   background-color:#5d5d5d;
   cursor: pointer;
 }
@@ -139,4 +151,19 @@
 
 .sign-up .Link{
   color: grey;
+}
+
+@media screen and (max-width: 514px){
+  .sign-up .right .logo{
+    display: flex;
+  }
+
+  .sign-up .left{
+    display: none;
+  }
+
+  .sign-up .right{
+    width: 100%;
+    padding-top: 0px;
+  }
 }

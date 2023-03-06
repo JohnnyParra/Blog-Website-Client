@@ -72,46 +72,49 @@ export default function Login(){
 
   return (
     <div className="login">
-      <header>
+      <div className="left">
         <h1 className="logo">Blog</h1>
+      </div>
+      <div className="right">
+        <h1 className="logo" >Blog</h1>
         <div className="sign-up-section">
           <p>Don't have an account?</p>
           <Link to="/"><button>Sign up</button></Link>
         </div>
-      </header>
-      <div className="input-field-container">
-        <div className="input-field">
-          <h1>Login</h1>
-          {
-            responseMessage.state && 
-              <div className="login-response-message">
-                <p>{responseMessage.msg}</p>
-              </div>
-          }
-          <label htmlFor="email">Email</label>
-          <input 
-            onChange={(event) => handleFormChange(event)} 
-            id={(responseMessage.error === 'missing' && loginForm.email === '') ? 'error' : 'email'} 
-            name="email" 
-            type="email" 
-            placeholder="Enter your email" 
-          />
-
-          <label htmlFor="password">Password</label>
-          <div className="password-input">
+        <div className="input-field-container">
+          <div className="input-field">
+            <h1>Login</h1>
+            {
+              responseMessage.state && 
+                <div className="login-response-message">
+                  <p>{responseMessage.msg}</p>
+                </div>
+            }
+            <label htmlFor="email">Email</label>
             <input 
               onChange={(event) => handleFormChange(event)} 
-              id={(responseMessage.error === 'missing' && loginForm.password === '') ? 'error' : 'password'}
-              name="password" 
-              type={types} 
-              placeholder="Enter Password" 
+              id={(responseMessage.error === 'missing' && loginForm.email === '') ? 'error' : 'email'} 
+              name="email" 
+              type="email" 
+              placeholder="Enter your email" 
             />
-            <button style={styles} onClick={(event) => password(event)}></button>
-          </div>
 
-          <button onClick={() => handleLoginClick()}>{isRefetching ? 'Loading...' : 'Log in'}</button>
-        </div>
+            <label htmlFor="password">Password</label>
+            <div className="password-input">
+              <input 
+                onChange={(event) => handleFormChange(event)} 
+                id={(responseMessage.error === 'missing' && loginForm.password === '') ? 'error' : 'password'}
+                name="password" 
+                type={types} 
+                placeholder="Enter Password" 
+              />
+              <button style={styles} onClick={(event) => password(event)}></button>
+            </div>
+
+            <button onClick={() => handleLoginClick()}>{isRefetching ? 'Loading...' : 'Log in'}</button>
+          </div>
         <p className="link">Don't have an account? <Link className="Link" to="/">Sign up</Link></p>
+      </div>
       </div>
     </div>
   )

@@ -79,56 +79,59 @@ export default function Login(){
   
   return (
     <div className="sign-up">
-      <header>
+      <div className="left">
         <h1 className="logo">Blog</h1>
+      </div>
+      <div className="right">
+        <h1 className="logo" >Blog</h1>
         <div className="log-in">
           <p>Already have an account?</p>
           <Link to="/Login"><button>Log in</button></Link>
         </div>
-      </header>
-      <div className="input-field-container">
-        <div className="input-field">
-          <h1>Sign Up</h1>
-          {
-            responseMessage.state && 
-              <div className="register-response-message">
-                <p>{responseMessage.msg}</p>
-              </div>
-          }
-          <label htmlFor="name">Name</label>
-          <input 
-            onChange={(event) => handleFormChange(event)} 
-            id={(responseMessage.error === 'missing' && name === '') ? 'error' : 'name'} 
-            name="name" 
-            type="text" 
-            placeholder="Enter your name" 
-          />
-
-          <label htmlFor="email">Email</label>
-          <input 
-            onChange={(event) => handleFormChange(event)} 
-            id={(responseMessage.error === 'error' || responseMessage.error === 'invalid') ? 'error' : (responseMessage.error === 'missing' && email === '') ? 'error' : 'email'} 
-            name="email" 
-            type="email" 
-            placeholder="Enter your email" 
-          />
-
-          <label htmlFor="password">password</label>
-          <div className="password-input">
+        <div className="input-field-container">
+          <div className="input-field">
+            <h1>Sign Up</h1>
+            {
+              responseMessage.state && 
+                <div className="register-response-message">
+                  <p>{responseMessage.msg}</p>
+                </div>
+            }
+            <label htmlFor="name">Name</label>
             <input 
               onChange={(event) => handleFormChange(event)} 
-              id={(responseMessage.error === 'missing' && password === '') ? 'error' : 'password'}
-              name="password" 
-              type={types} 
-              placeholder="Enter Password" 
+              id={(responseMessage.error === 'missing' && name === '') ? 'error' : 'name'} 
+              name="name" 
+              type="text" 
+              placeholder="Enter your name" 
             />
-            <button style={styles} onClick={(event) => showPasswordBtn(event)}></button>
-          </div>
 
-          <button onClick={() => handleRegisterClick()}>{isRefetching ? 'Loading...' : 'Register'}</button>
-          {/* <p className='password-error-text'>{passwordMatchMsg}</p> */}
+            <label htmlFor="email">Email</label>
+            <input 
+              onChange={(event) => handleFormChange(event)} 
+              id={(responseMessage.error === 'error' || responseMessage.error === 'invalid') ? 'error' : (responseMessage.error === 'missing' && email === '') ? 'error' : 'email'} 
+              name="email" 
+              type="email" 
+              placeholder="Enter your email" 
+            />
+
+            <label htmlFor="password">password</label>
+            <div className="password-input">
+              <input 
+                onChange={(event) => handleFormChange(event)} 
+                id={(responseMessage.error === 'missing' && password === '') ? 'error' : 'password'}
+                name="password" 
+                type={types} 
+                placeholder="Enter Password" 
+              />
+              <button style={styles} onClick={(event) => showPasswordBtn(event)}></button>
+            </div>
+
+            <button onClick={() => handleRegisterClick()}>{isRefetching ? 'Loading...' : 'Register'}</button>
+            {/* <p className='password-error-text'>{passwordMatchMsg}</p> */}
+          </div>
+          <p className="link">Already have an account? <Link className="Link" to="/Login">Log in</Link></p>
         </div>
-        <p className="link">Already have an account? <Link className="Link" to="/Login">Log in</Link></p>
       </div>
     </div>
   )
