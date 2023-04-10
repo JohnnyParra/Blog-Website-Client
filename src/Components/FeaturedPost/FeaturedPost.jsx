@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
-export default function FeaturedPost(props) {
+export default React.memo(function FeaturedPost(props) {
   const { updateData } = useContext(UserContext)
   const {post} = props;
   const {post_id, post_title, post_description, image, date_created} = post
@@ -71,4 +71,4 @@ export default function FeaturedPost(props) {
       </Grid>
     </Paper>
   );
-}
+});

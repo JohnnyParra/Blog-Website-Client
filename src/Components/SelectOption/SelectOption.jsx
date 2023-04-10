@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function SelectOption(props){
+export default React.memo(function SelectOption(props){
   const [sort, setSort] = useState(props.start || props.options[0].value);
 
   const handleChange = (event) => {
@@ -34,4 +34,4 @@ export default function SelectOption(props){
       </FormControl>
     </Box>
   )
-}
+});

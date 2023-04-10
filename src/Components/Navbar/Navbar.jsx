@@ -5,7 +5,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 import './Navbar.css'
 
-export default function Navbar(props) {
+export default React.memo(function Navbar(props) {
   return(
     <div className="header">
       <nav>
@@ -17,4 +17,4 @@ export default function Navbar(props) {
       </nav>
     </div>
   )
-}
+});

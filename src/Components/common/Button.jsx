@@ -1,7 +1,6 @@
 import React from 'react'
 
-export default function Button(props){
-
+export default React.memo(function Button(props){
   const className = props.isSelected === props.name ? 'selected' : ''
 
   return (
@@ -11,4 +10,4 @@ export default function Button(props){
     name={props.name}
     >{props.text}</button>
   )
-}
+});

@@ -12,7 +12,7 @@ import CardMedia from '@mui/material/CardMedia';
 import './PostCard.css'
 
 
-export default function PostCard(props) {
+export default React.memo(function PostCard(props) {
   const { updateData } = useContext(UserContext)
   const queryClient = useQueryClient();
   const { post } = props;
@@ -55,4 +55,4 @@ export default function PostCard(props) {
       </Grid>
     </div>
   );
-}
+});
