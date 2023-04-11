@@ -1,4 +1,4 @@
-import { API_URL } from '../environment/environment.dev';
+import { API_URL } from '../Environment/environment.dev';
 import { get, post, formPost, put, formPut, remove } from './HttpService'
 
 
@@ -67,9 +67,9 @@ export const addLikeRequest = async (post_id) => {
 }
 
 export const deletePostRequest = async (id) => {
-  try{
+  try {
     return remove(`${API_URL}/post/${id}`);
-  } catch(err){
+  } catch (err) {
     return { data: [], error: err } 
   }
 }
@@ -77,7 +77,7 @@ export const deletePostRequest = async (id) => {
 export const deleteLikeRequest = async (id) => {
   try{
     return remove(`${API_URL}/likes/${id}`);
-  } catch(err){
+  } catch (err) {
     return { data: [], error: err } 
   }
 }
@@ -85,7 +85,7 @@ export const deleteLikeRequest = async (id) => {
 export const updateAvatarRequest = async (newAvatar) => {
   try{
     return formPut(`${API_URL}/profile`, newAvatar);
-  } catch(err){
+  } catch (err) {
     return { data: [], error: err }
   }
 }

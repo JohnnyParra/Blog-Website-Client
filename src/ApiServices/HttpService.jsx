@@ -4,102 +4,102 @@ export const get = async (url, headers) => {
   try {
     const res = await fetch(url, {
       method: 'GET',
-      headers: { 
+      headers: {
         Authorization: `Bearer ${getJwt()}`,
-        ...headers 
+        ...headers,
       },
     });
 
     return res.json();
   } catch (err) {
-    return({auth: false})
+    return { auth: false };
   }
-}
+};
 
 export const post = async (url, body, headers) => {
   try {
     const res = await fetch(url, {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${getJwt()}`,
-        ...headers 
+        ...headers,
       },
       // credentials: 'include',
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     return res.json();
   } catch (err) {
-    return ({auth: false})
+    return { auth: false };
   }
-}
+};
 
 export const formPost = async (url, body, headers) => {
   try {
     const res = await fetch(url, {
       method: 'POST',
-      headers: { 
+      headers: {
         Authorization: `Bearer ${getJwt()}`,
-        ...headers 
+        ...headers,
       },
       // credentials: 'include',
-      body: body
+      body: body,
     });
 
     return res.json();
   } catch (err) {
-    return ({auth: false})
+    return { auth: false };
   }
-}
+};
 
 export const put = async (url, body, headers) => {
   try {
     const res = await fetch(url, {
       method: 'PUT',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${getJwt()}`,
-        ...headers 
+        ...headers,
       },
       body: JSON.stringify(body),
     });
 
     return res.json();
   } catch (err) {
-    return ({err})
+    return { err };
   }
-}
+};
 
 export const formPut = async (url, body, headers) => {
   try {
     const res = await fetch(url, {
       method: 'PUT',
-      headers: { 
+      headers: {
         Authorization: `Bearer ${getJwt()}`,
-        ...headers 
+        ...headers,
       },
       body: body,
     });
 
     return res.json();
   } catch (err) {
-    return ({err})
+    return { err };
   }
-}
+};
 
 export const remove = async (url, headers) => {
   try {
     const res = await fetch(url, {
       method: 'DELETE',
-      headers: { 
+      headers: {
         Authorization: `Bearer ${getJwt()}`,
-        ...headers 
+        ...headers,
       },
     });
 
     return res.json();
   } catch (err) {
-    return err
+    return err;
   }
-}
+};

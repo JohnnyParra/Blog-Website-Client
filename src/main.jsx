@@ -1,26 +1,25 @@
 // Libraries
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { QueryClientProvider, QueryClient } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { UserProvider } from './Context/UserContext'
+import { UserProvider } from './Context/UserContext';
 
 // App component
-import App from './App'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import App from './App';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 // Styling
-import './index.css'
+import './index.css';
 
 const queryClient = new QueryClient();
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <QueryClientProvider client = {queryClient}>
+  <QueryClientProvider client={queryClient}>
     <UserProvider>
-        <App />
+      <App />
     </UserProvider>
-    <ReactQueryDevtools initialIsOpen={false}/>
+    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
-)
+);

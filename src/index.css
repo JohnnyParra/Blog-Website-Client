@@ -1,13 +1,14 @@
 html, body {
+  background-color: rgb(242, 246, 248);
   margin: 0;
   padding: 0;
-  background-color: rgb(242, 246, 248);
-}
-*{
-  box-sizing: border-box;
-  font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
 }
 
-#root{
+* {
+  box-sizing: border-box;
+  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+}
+
+#root {
   text-align: center;
 }

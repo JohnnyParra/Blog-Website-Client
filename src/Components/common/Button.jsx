@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-export default React.memo(function Button(props){
-  const className = props.isSelected === props.name ? 'selected' : ''
+export default React.memo(function Button(props) {
+  const className = props.isSelected === props.name ? 'selected' : '';
 
   return (
     <button
@@ -9,5 +9,5 @@ export default React.memo(function Button(props){
     onClick={(event) => props.handleClick(event)} 
     name={props.name}
     >{props.text}</button>
-  )
+  );
 });

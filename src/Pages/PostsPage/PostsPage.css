@@ -1,29 +1,29 @@
-.posts-page .btn-container{
-  margin: 20px;
+.posts-page .btn-container {
   display: flex;
+  margin: 20px;
 }
 
-.posts-page .btn-container button{
-  height: 40px;
-  width: 200px;
-  margin-right: 20px;
+.posts-page .btn-container button {
   background-color: rgba(0, 0, 0, 0.7);
-  color: white;
   border: none;
   border-radius: 3px;
+  color: white;
+  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
   font-size: 13px;
-  font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
+  height: 40px;
+  margin-right: 20px;
+  width: 200px;
 }
-.posts-page .btn-container button:hover{
-  height: 40px;
-  width: 200px;
-  margin-right: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+
+.posts-page .btn-container button:hover {
+  background-color: rgb(36, 102, 39);
   border: none;
   border-radius: 3px;
+  color: white;
   font-size: 13px;
-  background-color: rgb(36, 102, 39);
+  height: 40px;
+  margin-right: 20px;
+  width: 200px;
 }
 
 .posts-page .btn-container .selected {

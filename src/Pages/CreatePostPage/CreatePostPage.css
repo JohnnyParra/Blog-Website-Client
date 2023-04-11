@@ -1,20 +1,20 @@
-.create-post .top-container{
-  display: flex;
+.create-post .top-container {
   align-items: center;
-  justify-content: space-between;
+  display: flex;
   height: 105px;
+  justify-content: space-between;
 }
 
-.create-post .top-container .left-container{
+.create-post .top-container .left-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-right: 10px;
   flex-grow: 1;
   height: 100%;
+  justify-content: center;
+  margin-right: 10px;
 }
 
-.create-post .top-container .right-container{
+.create-post .top-container .right-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -22,37 +22,39 @@
   margin-bottom: 27px;
 }
 
-.create-post .title-input{
+.create-post .title-input {
   width: 300px;
 }
-.create-post .description-input{
+
+.create-post .description-input {
   width: 100%;
 }
-.create-post label{
+
+.create-post label {
+  font-size: 13px;
   text-align: left;
-  font-size: 13px
 }
 
-.create-post form{
+.create-post form {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.create-post .image-container{
+.create-post .image-container {
   height: 164px;
 }
 
-.create-post .body-container{
+.create-post .body-container {
   border: 1px solid black;
-  padding: 2px;
-  min-height: 400px;
-  max-height: 558px;
   flex-grow: 1;
   margin-bottom: 5px;
+  max-height: 558px;
+  min-height: 400px;
   overflow: scroll;
+  padding: 2px;
 }
 
-.create-post .create-post-btns .btn{
+.create-post .create-post-btns .btn {
   margin: 5px;
 }

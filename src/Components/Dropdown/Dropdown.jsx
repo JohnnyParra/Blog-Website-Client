@@ -1,8 +1,7 @@
-import React, { useContext }  from 'react';
-import { useNavigate } from 'react-router-dom'
-import { clearJwt } from '../../ApiServices/JwtService'
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
-import { UserContext } from '../../Context/UserContext'
+import { UserContext } from '../../Context/UserContext';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -35,7 +34,9 @@ const StyledMenu = styled((props) => (
     marginTop: theme.spacing(1),
     minWidth: 180,
     color:
-      theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+      theme.palette.mode === 'light'
+        ? 'rgb(55, 65, 81)'
+        : theme.palette.grey[300],
     boxShadow:
       'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
     '& .MuiMenu-list': {
@@ -50,7 +51,7 @@ const StyledMenu = styled((props) => (
       '&:active': {
         backgroundColor: alpha(
           theme.palette.primary.main,
-          theme.palette.action.selectedOpacity,
+          theme.palette.action.selectedOpacity
         ),
       },
     },
@@ -59,7 +60,7 @@ const StyledMenu = styled((props) => (
 
 export default function Dropdown() {
   const navigate = useNavigate();
-  const {currentUser, logoutUser } = useContext(UserContext);
+  const { currentUser, logoutUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -67,39 +68,48 @@ export default function Dropdown() {
   };
   const handleClose = (event) => {
     setAnchorEl(null);
-    const target = event.target.getAttribute("name");
+    const target = event.target.getAttribute('name');
 
-    if(target === 'logout'){
-      navigate('/Login')
-      logoutUser()
-    }else if(target === 'profile'){
-      navigate('/HomePage/Profile')
-    }else if(target === 'posts'){
-      navigate('/HomePage/Posts')
-    } else if(target === 'likes'){
-      navigate('/HomePage/Likes')
-    } else if(target === 'home'){
-      navigate('/Homepage')
+    if (target === 'logout') {
+      navigate('/Login');
+      logoutUser();
+    } else if (target === 'profile') {
+      navigate('/HomePage/Profile');
+    } else if (target === 'posts') {
+      navigate('/HomePage/Posts');
+    } else if (target === 'likes') {
+      navigate('/HomePage/Likes');
+    } else if (target === 'home') {
+      navigate('/Homepage');
     }
   };
 
   return (
     <div>
       <Button
-        id="demo-customized-button"
+        id='demo-customized-button'
         aria-controls={open ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
-        variant="contained"
+        variant='contained'
         disableElevation
         onClick={handleClick}
       >
-        <Avatar src={currentUser?.userInfo[0].avatar} sx={{ m: 1, bgcolor: '#ff3d00' }}>{currentUser?.userInfo[0].name[0]}</Avatar>
-        <p className="user">{currentUser.userInfo[0]?.name}</p>
-        {open ? <KeyboardArrowUpIcon className="user-icon"/> : <KeyboardArrowDownIcon className="user-icon"/>}
+        <Avatar
+          src={currentUser?.userInfo[0].avatar}
+          sx={{ m: 1, bgcolor: '#ff3d00' }}
+        >
+          {currentUser?.userInfo[0].name[0]}
+        </Avatar>
+        <p className='user'>{currentUser.userInfo[0]?.name}</p>
+        {open ? (
+          <KeyboardArrowUpIcon className='user-icon' />
+        ) : (
+          <KeyboardArrowDownIcon className='user-icon' />
+        )}
       </Button>
       <StyledMenu
-        id="demo-customized-menu"
+        id='demo-customized-menu'
         MenuListProps={{
           'aria-labelledby': 'demo-customized-button',
         }}
@@ -107,28 +117,53 @@ export default function Dropdown() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem className="menuItem" name="home" onClick={(event) => handleClose(event)} disableRipple>
+        <MenuItem
+          className='menuItem'
+          name='home'
+          onClick={(event) => handleClose(event)}
+          disableRipple
+        >
           <HomeIcon />
           Home
         </MenuItem>
-        <MenuItem className="menuItem" name="profile" onClick={(event) => handleClose(event)} disableRipple>
+        <MenuItem
+          className='menuItem'
+          name='profile'
+          onClick={(event) => handleClose(event)}
+          disableRipple
+        >
           <AccountBoxIcon />
           Profile
         </MenuItem>
-        <MenuItem className="menuItem" name="posts" onClick={(event) => handleClose(event)} disableRipple>
+        <MenuItem
+          className='menuItem'
+          name='posts'
+          onClick={(event) => handleClose(event)}
+          disableRipple
+        >
           <FileCopyIcon />
           Your Posts
         </MenuItem>
-        <MenuItem className="menuItem" name="likes" onClick={(event) => handleClose(event)} disableRipple>
+        <MenuItem
+          className='menuItem'
+          name='likes'
+          onClick={(event) => handleClose(event)}
+          disableRipple
+        >
           <FavoriteIcon />
           Your Likes
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem className="menuItem" name="logout" onClick={(event) => handleClose(event)} disableRipple>
+        <MenuItem
+          className='menuItem'
+          name='logout'
+          onClick={(event) => handleClose(event)}
+          disableRipple
+        >
           <LogoutIcon />
           Log Out
         </MenuItem>
       </StyledMenu>
     </div>
   );
-}
+};

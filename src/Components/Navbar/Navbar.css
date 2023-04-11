@@ -1,58 +1,60 @@
-.header{
+.header {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
-.header h1{
+
+.header h1 {
   color: rgb(255, 106, 0);
 }
 
-.header nav{
+.header nav {
+  align-items: center;
+  border-bottom: 1px solid rgb(200, 200, 200);
   display: flex;
   height: 60px;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  border-bottom: 1px solid rgb(200, 200, 200);
   padding: 0px 10px 0px 10px;
+  width: 100%;
 }
 
-.header .right{
+.header .right {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.css-zddlty-MuiButtonBase-root-MuiButton-root{
+.css-zddlty-MuiButtonBase-root-MuiButton-root {
   background-color: transparent !important;
   color: black !important;
+  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue',
+    'Helvetica', 'Arial', sans-serif !important;
   padding: 0 !important;
-  font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
 }
 
-#demo-customized-button{
-  display: flex;
+#demo-customized-button {
   align-items: center;
-  justify-content: center;
+  display: flex;
   height: 44px;
+  justify-content: center;
   max-width: 190px;
 }
 
 #demo-customized-button .user {
-  white-space: nowrap;
-  overflow-x: hidden;
-  max-width: 130px;
-  text-overflow: ellipsis;
   margin-left: 5px;
+  max-width: 130px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .menuItem {
-  font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
+  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue',
+    'Helvetica', 'Arial', sans-serif !important;
 }
 
-
-@media screen and (max-width: 550px){
+@media screen and (max-width: 550px) {
   #demo-customized-button .user {
     display: none;
   }

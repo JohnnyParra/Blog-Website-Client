@@ -47,15 +47,16 @@ export default function Home(){
     }
   );
 
-  if(!(options.some(el => el.value == searchParams.get('sort')))) console.log('invalid param');
-  if( backendLoading || userLoading) return <p>Loading...</p>;
-  if(backendError) return <p>An Error occurred</p>;
+  if(!(options.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
+  if( backendLoading || userLoading) {return <p>Loading...</p>};
+  if(backendError) {return <p>An Error occurred</p>};
   const backendPosts = backendData.posts;
 
   async function handleSelect(value){
     searchParams.set('sort', value);
     setSearchParams(searchParams);
   };
+  
   async function handleCategoryClick(event, value){
     event.preventDefault();
     searchParams.set("category", value);

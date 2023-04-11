@@ -1,20 +1,20 @@
-.edit-page .top-container{
-  display: flex;
+.edit-page .top-container {
   align-items: center;
-  justify-content: space-between;
+  display: flex;
   height: 105px;
+  justify-content: space-between;
 }
 
-.edit-page .top-container .left-container{
+.edit-page .top-container .left-container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 100%;
   justify-content: center;
   margin-right: 10px;
-  height: 100%;
 }
 
-.edit-page .top-container .right-container{
+.edit-page .top-container .right-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -22,37 +22,39 @@
   margin-bottom: 27px;
 }
 
-.edit-page .title-input{
+.edit-page .title-input {
   width: 300px;
 }
-.edit-page .description-input{
+
+.edit-page .description-input {
   width: 100%;
 }
-.edit-page label{
+
+.edit-page label {
+  font-size: 13px;
   text-align: left;
-  font-size: 13px
 }
 
-.edit-page form{
+.edit-page form {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.edit-page .image-container{
+.edit-page .image-container {
   height: 164px;
 }
 
-.edit-page .body-container{
+.edit-page .body-container {
   border: 1px solid black;
-  padding: 2px;
-  min-height: 400px;
-  max-height: 558px;
   flex-grow: 1;
   margin-bottom: 5px;
+  max-height: 558px;
+  min-height: 400px;
   overflow: scroll;
+  padding: 2px;
 }
 
-.edit-page .create-post-btns .btn{
+.edit-page .create-post-btns .btn {
   margin: 5px;
 }
