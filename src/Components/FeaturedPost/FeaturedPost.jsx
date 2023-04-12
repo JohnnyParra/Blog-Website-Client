@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../Context/UserContext';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -8,14 +7,12 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 
 export default React.memo(function FeaturedPost(props) {
-  const { updateData } = useContext(UserContext);
   const { post } = props;
   const { post_id, post_title, post_description, image, date_created } = post;
 
   const navigate = useNavigate();
 
   function handleClick() {
-    updateData(post);
     navigate(`/HomePage/${post_id}`);
   }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -23,7 +23,9 @@ import './EditPostPage.css';
 export default function CreatePost() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { id } = useParams();
   const { data } = useContext(UserContext);
+  if (data[0].post_id !== id) navigate(-1);
   const convertedState = convertFromRaw(data[0].content);
   const [editorState, setEditorState] = useState(() =>
     EditorState.createWithContent(convertedState)

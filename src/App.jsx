@@ -29,7 +29,7 @@ export default function App() {
           <Route path='HomePage/Profile' element={<Profile />} />
           <Route path='HomePage/Posts' element={<Posts />} />
           <Route path='HomePage/Posts/CreatePost' element={<CreatePost />} />
-          <Route path='HomePage/Posts/EditPost' element={<EditPost />} />
+          <Route path='HomePage/Posts/EditPost/:id' element={<EditPost />} />
           <Route path='HomePage/Likes' element={<Likes />} />
         </Route>
       </Routes>

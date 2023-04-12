@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { Link, useParams } from 'react-router-dom';
 
 import { UserContext } from '../../Context/UserContext';
+import { fetchPost } from '../../ApiServices/TasksService';
 
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from 'draft-js';
@@ -12,11 +14,26 @@ import LikeButton from '../../Components/LikeButton/LikeButton';
 import './PostPage.css';
 
 export default function Post() {
-  const { data, currentUser } = useContext(UserContext);
-  const convertedState = convertFromRaw(data[0].content);
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createWithContent(convertedState)
+  const { updateData, currentUser } = useContext(UserContext);
+  const { id } = useParams();
+  const [editorState, setEditorState] = useState();
+
+  const { data: postData , isLoading, isError } = useQuery(
+    'posts', 
+    () => fetchPost(id),
+    {
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        const convertedState = convertFromRaw(data.post[0].content);
+        setEditorState(() => EditorState.createWithContent(convertedState));
+        updateData(data.post[0])
+      }
+    }
   );
+
+  if (isLoading) {return <p>Loading...</p>};
+  if (isError) {return <p>An Error occurred</p>};
+  const data = postData.post;
 
   return (
     <main className='post-page'>
@@ -37,7 +54,7 @@ export default function Post() {
         )}
         <p className='created-by'>By: {data[0].Author}</p>
         {data[0].user_id === currentUser.user.userId && (
-          <Link to='/HomePage/Posts/EditPost'>edit</Link>
+          <Link to={`/HomePage/Posts/EditPost/${data[0].post_id}`}>edit</Link>
         )}
         <LikeButton id={data[0].post_id} />
         <div className='editor-container'>

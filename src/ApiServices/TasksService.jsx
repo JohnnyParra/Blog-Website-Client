@@ -1,6 +1,13 @@
 import { API_URL } from '../Environment/environment.dev';
 import { get, post, formPost, put, formPut, remove } from './HttpService'
 
+export const fetchPost = async (id) => {
+  try {
+    return get(`${API_URL}/post/${id}`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
 
 export const fetchPosts = async (category, sort) => {
   try {

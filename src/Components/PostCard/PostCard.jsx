@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../Context/UserContext';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -11,14 +10,12 @@ import CardMedia from '@mui/material/CardMedia';
 import './PostCard.css';
 
 export default React.memo(function PostCard(props) {
-  const { updateData } = useContext(UserContext);
   const { post } = props;
   const { post_id, post_title, post_description, date_created, image } = post;
 
   const navigate = useNavigate();
 
   function handleClick() {
-    updateData(post);
     navigate(`/HomePage/${post_id}`);
   };
 
