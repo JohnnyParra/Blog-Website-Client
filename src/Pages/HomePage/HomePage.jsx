@@ -5,12 +5,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
-import FeaturedPost from '../../Components/FeaturedPost/FeaturedPost';
-import PostCard from '../../Components/PostCard/PostCard';
+import ContentHolder from '../../Components/ContentHolder/ContentHolder';
+import FeaturedContentHolder from '../../Components/FeaturedContentHolder/FeaturedContentHolder';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 
 // API Services
-import { fetchPosts , fetchUser, fetchFeaturedPost} from '../../ApiServices/TasksService';
+import { fetchUser } from '../../ApiServices/TasksService';
 
 //Components
 import Navbar from '../../Components/Navbar/Navbar';
@@ -28,22 +28,6 @@ export default function Home(){
   const [searchParams, setSearchParams] = useSearchParams({ sort: 1, category: 0 });
   const { loginUser } = useContext(UserContext);
 
-  const { data: backendData , isLoading: backendLoading, isError: backendError } = useQuery(
-    ['posts', searchParams.get('category'), searchParams.get('sort')], 
-    () => fetchPosts(searchParams.get('category'), searchParams.get('sort')),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  const { data: featuredData , isLoading: featuredLoading, isError: featuredError } = useQuery(
-    ['posts', searchParams.get('category')], 
-    () => fetchFeaturedPost(searchParams.get('category')),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-
   const { isLoading: userLoading } = useQuery(
     'user', 
     fetchUser,
@@ -56,10 +40,7 @@ export default function Home(){
   );
 
   if(!(options.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
-  if( backendLoading || userLoading || featuredLoading) {return <p>Loading...</p>};
-  if(backendError || featuredError) {return <p>An Error occurred</p>};
-  const backendPosts = backendData.posts;
-  const featuredPost = featuredData.post;
+  if(userLoading) {return <p>Loading...</p>};
 
   async function handleSelect(value){
     searchParams.set('sort', value);
@@ -90,7 +71,7 @@ export default function Home(){
           <a onClick={(event) => handleCategoryClick(event, 13)} href='#'>Style</a>
           <a onClick={(event) => handleCategoryClick(event, 14)} href='#'>Other</a>
         </div>
-        <FeaturedPost post={featuredPost[0]}/>
+        <FeaturedContentHolder category={searchParams.get('category')} />
         <div className='select-option-container'>
           <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant='contained' color='warning' startIcon={<CreateIcon />}>
             Create A Post
@@ -98,10 +79,7 @@ export default function Home(){
           <SelectOption start={searchParams.get('sort')} options={options} selection='Sort' handleSelect={handleSelect}/>
         </div>
         <div className='post-card-container'>
-          <PostCard post={backendPosts[0]} />
-        </div>
-        <div className='post-card-container'>
-          <PostCard post={backendPosts[1]} />
+          <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} />
         </div>
       </div>
     </main>
