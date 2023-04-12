@@ -15,22 +15,9 @@ import { addPostRequest } from '../../ApiServices/TasksService';
 
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Navbar from '../../Components/Navbar/Navbar';
+import { categoryOptions } from '../../Utils/CategoryOptions';
 
 import './CreatePostPage.css';
-
-const options = [
-  { value: 4, title: 'Business' },
-  { value: 5, title: 'Technology' },
-  { value: 6, title: 'Politics' },
-  { value: 7, title: 'Science' },
-  { value: 8, title: 'Health' },
-  { value: 9, title: 'Travel' },
-  { value: 10, title: 'Sports' },
-  { value: 11, title: 'Gaming' },
-  { value: 12, title: 'Culture' },
-  { value: 13, title: 'Style' },
-  { value: 14, title: 'Other' },
-];
 
 export default function CreatePost() {
   const navigate = useNavigate();
@@ -154,7 +141,7 @@ export default function CreatePost() {
             </div>
             <div className='right-container'>
               <SelectOption
-                options={options}
+                options={categoryOptions}
                 selection='Category'
                 handleSelect={handleSelect}
               />

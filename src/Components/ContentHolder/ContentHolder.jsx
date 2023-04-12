@@ -18,8 +18,8 @@ export default React.memo(function ContentHolder(props) {
   if (backendError) {return <p>An Error occurred</p>};
   const backendPosts = backendData.posts;
 
-  const postElements = backendPosts.map(post => {
-    return <PostCard post={post} />
+  const postElements = backendPosts.map((post, index) => {
+    return <PostCard key={index} post={post} />
   });
 
   return (

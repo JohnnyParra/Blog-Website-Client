@@ -3,25 +3,24 @@ import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
-import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
-import ContentHolder from '../../Components/ContentHolder/ContentHolder';
-import FeaturedContentHolder from '../../Components/FeaturedContentHolder/FeaturedContentHolder';
-import SelectOption from '../../Components/SelectOption/SelectOption';
+import Button from '@mui/material/Button';
 
 // API Services
 import { fetchUser } from '../../ApiServices/TasksService';
 
 //Components
 import Navbar from '../../Components/Navbar/Navbar';
+import ContentHolder from '../../Components/ContentHolder/ContentHolder';
+import FeaturedContentHolder from '../../Components/FeaturedContentHolder/FeaturedContentHolder';
+import SelectOption from '../../Components/SelectOption/SelectOption';
+
+//Utilities
+import { sortOptions } from '../../Utils/SortOptions';
+import { categoryOptions } from '../../Utils/CategoryOptions';
 
 // Styling
 import './HomePage.css';
-const options = [
-  {value: 1, title: 'Recent'},
-  {value: 3, title: 'Most Liked'}
-];
-
 
 export default function Home(){
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ export default function Home(){
     }
   );
 
-  if(!(options.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
+  if(!(sortOptions.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
   if(userLoading) {return <p>Loading...</p>};
 
   async function handleSelect(value){
@@ -53,30 +52,24 @@ export default function Home(){
     setSearchParams(searchParams);
   };
 
+  const linkElements = categoryOptions.map((category, index) => {
+    return <a key={index} style={{color: searchParams.get('category') == category.value ? 'rgb(255, 106, 0)' : 'black'}} onClick={(event) => handleCategoryClick(event, category.value)}href='#'>{category.title}</a>
+  })
+
   return (
     <main className='home-page'>
       <div className = 'App'>
         <Navbar />
         <div className='category-links'>
-          <a onClick={(event) => handleCategoryClick(event, 0)}href='#'>All</a>
-          <a onClick={(event) => handleCategoryClick(event, 4)} href='#'>Business</a>
-          <a onClick={(event) => handleCategoryClick(event, 5)} href='#'>Technology</a>
-          <a onClick={(event) => handleCategoryClick(event, 6)} href='#'>Politics</a>
-          <a onClick={(event) => handleCategoryClick(event, 7)} href='#'>Science</a>
-          <a onClick={(event) => handleCategoryClick(event, 8)} href='#'>Health</a>
-          <a onClick={(event) => handleCategoryClick(event, 9)} href='#'>Travel</a>
-          <a onClick={(event) => handleCategoryClick(event, 10)} href='#'>Sports</a>
-          <a onClick={(event) => handleCategoryClick(event, 11)} href='#'>Gaming</a>
-          <a onClick={(event) => handleCategoryClick(event, 12)} href='#'>Culture</a>
-          <a onClick={(event) => handleCategoryClick(event, 13)} href='#'>Style</a>
-          <a onClick={(event) => handleCategoryClick(event, 14)} href='#'>Other</a>
+          <a style={{color: searchParams.get('category') == 0 ? 'rgb(255, 106, 0)' : 'black'}} onClick={(event) => handleCategoryClick(event, 0)}href='#'>All</a>
+          {linkElements}
         </div>
         <FeaturedContentHolder category={searchParams.get('category')} />
         <div className='select-option-container'>
           <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant='contained' color='warning' startIcon={<CreateIcon />}>
             Create A Post
           </Button>
-          <SelectOption start={searchParams.get('sort')} options={options} selection='Sort' handleSelect={handleSelect}/>
+          <SelectOption start={searchParams.get('sort')} options={sortOptions} selection='Sort' handleSelect={handleSelect}/>
         </div>
         <div className='post-card-container'>
           <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} />
