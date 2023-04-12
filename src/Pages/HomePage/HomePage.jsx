@@ -10,7 +10,7 @@ import PostCard from '../../Components/PostCard/PostCard';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 
 // API Services
-import { fetchPosts , fetchUser} from '../../ApiServices/TasksService';
+import { fetchPosts , fetchUser, fetchFeaturedPost} from '../../ApiServices/TasksService';
 
 //Components
 import Navbar from '../../Components/Navbar/Navbar';
@@ -36,6 +36,14 @@ export default function Home(){
     }
   );
 
+  const { data: featuredData , isLoading: featuredLoading, isError: featuredError } = useQuery(
+    ['posts', searchParams.get('category')], 
+    () => fetchFeaturedPost(searchParams.get('category')),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
   const { isLoading: userLoading } = useQuery(
     'user', 
     fetchUser,
@@ -48,9 +56,10 @@ export default function Home(){
   );
 
   if(!(options.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
-  if( backendLoading || userLoading) {return <p>Loading...</p>};
-  if(backendError) {return <p>An Error occurred</p>};
+  if( backendLoading || userLoading || featuredLoading) {return <p>Loading...</p>};
+  if(backendError || featuredError) {return <p>An Error occurred</p>};
   const backendPosts = backendData.posts;
+  const featuredPost = featuredData.post;
 
   async function handleSelect(value){
     searchParams.set('sort', value);
@@ -81,7 +90,7 @@ export default function Home(){
           <a onClick={(event) => handleCategoryClick(event, 13)} href='#'>Style</a>
           <a onClick={(event) => handleCategoryClick(event, 14)} href='#'>Other</a>
         </div>
-        <FeaturedPost post={backendPosts[0]}/>
+        <FeaturedPost post={featuredPost[0]}/>
         <div className='select-option-container'>
           <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant='contained' color='warning' startIcon={<CreateIcon />}>
             Create A Post

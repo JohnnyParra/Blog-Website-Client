@@ -10,6 +10,14 @@ export const fetchPosts = async (category, sort) => {
   }
 }
 
+export const fetchFeaturedPost = async (category) => {
+  try {
+    return get(`${API_URL}/posts/featured/${category}`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
 export const fetchUser = async () => {
   try {
     return get(`${API_URL}/user`);
