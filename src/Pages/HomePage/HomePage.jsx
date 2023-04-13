@@ -24,7 +24,7 @@ import './HomePage.css';
 
 export default function Home(){
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams({ sort: 1, category: 0 });
+  const [searchParams, setSearchParams] = useSearchParams({ sort: 1, category: 0, page: 1 });
   const { loginUser } = useContext(UserContext);
 
   const { isLoading: userLoading } = useQuery(
@@ -43,12 +43,14 @@ export default function Home(){
 
   async function handleSelect(value){
     searchParams.set('sort', value);
+    searchParams.set('page', 1)
     setSearchParams(searchParams);
   };
   
   async function handleCategoryClick(event, value){
     event.preventDefault();
     searchParams.set("category", value);
+    searchParams.set('page', 1)
     setSearchParams(searchParams);
   };
 
@@ -72,7 +74,7 @@ export default function Home(){
           <SelectOption start={searchParams.get('sort')} options={sortOptions} selection='Sort' handleSelect={handleSelect}/>
         </div>
         <div className='post-card-container'>
-          <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} />
+          <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} page={searchParams.get('page')} />
         </div>
       </div>
     </main>

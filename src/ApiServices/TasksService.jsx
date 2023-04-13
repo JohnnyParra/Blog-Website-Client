@@ -9,9 +9,9 @@ export const fetchPost = async (id) => {
   }
 }
 
-export const fetchPosts = async (category, sort) => {
+export const fetchPosts = async (category, sort, page) => {
   try {
-    return get(`${API_URL}/posts/${category}/${sort}`);
+    return get(`${API_URL}/posts/${category}/${sort}/${page}`);
   } catch (err) {
     return { data: [], error: err }
   }

@@ -1,0 +1,24 @@
+.page-select-container {
+  background-color: white;
+  display: flex;
+  width: 100%;
+}
+
+.page-button {
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  margin-right: 5px;
+  min-width: 25px;
+  padding: 3px;
+}
+
+.page-button:hover {
+  background-color: rgb(255, 106, 0) !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.page-button:active {
+  background-color: rgb(199, 83, 1) !important;
+}

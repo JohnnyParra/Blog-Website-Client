@@ -3,12 +3,13 @@ import { useQuery } from 'react-query';
 
 import { fetchPosts } from '../../ApiServices/TasksService';
 import PostCard from '../PostCard/PostCard';
+import PageSelect from '../PageSelect/PageSelect'
 
 export default React.memo(function ContentHolder(props) {
 
   const { data: backendData , isLoading: backendLoading, isError: backendError } = useQuery(
-    ['posts', props.category, props.sort], 
-    () => fetchPosts(props.category, props.sort),
+    ['posts', props.category, props.sort, props.page], 
+    () => fetchPosts(props.category, props.sort, props.page),
     {
       refetchOnWindowFocus: false,
     }
@@ -17,6 +18,7 @@ export default React.memo(function ContentHolder(props) {
   if (backendLoading) {return <p>Loading...</p>};
   if (backendError) {return <p>An Error occurred</p>};
   const backendPosts = backendData.posts;
+  const count = backendData.count[0]['COUNT(*)'] - 1;
 
   const postElements = backendPosts.map((post, index) => {
     return <PostCard key={index} post={post} />
@@ -25,6 +27,7 @@ export default React.memo(function ContentHolder(props) {
   return (
     <div className='content-holder'>
       {postElements}
+      <PageSelect pages={Math.ceil(count/2)} />
     </div>
   )
 });
