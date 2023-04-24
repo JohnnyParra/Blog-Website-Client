@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
@@ -46,12 +46,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar() {
+  const [search, setSearch] = useState('')
+
+  function checkKeyPress(event) {
+    if (event.key === 'Enter') {
+      
+    }
+  }
+
   return (
     <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        value={search}
+        onChange={(event) => setSearch(event.target.value)}
+        onKeyDown={(event) => checkKeyPress(event)}
         placeholder='Search…'
         inputProps={{ 'aria-label': 'search' }}
       />
