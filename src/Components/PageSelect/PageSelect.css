@@ -1,6 +1,8 @@
 .page-select-container {
   background-color: white;
   display: flex;
+  min-height: 40px;
+  overflow-x: auto;
   width: 100%;
 }
 
@@ -10,6 +12,7 @@
   justify-content: center;
   margin-right: 5px;
   min-width: 25px;
+  max-height: 27px;
   padding: 3px;
 }
 

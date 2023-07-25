@@ -91,7 +91,7 @@ export default function Profile() {
     setResponseMessage({ state: false });
   }
 
-  async function handleClick(event) {
+  function handleClick(event) {
     setInput((prevInput) => ({ ...prevInput, password: '' }));
     if (event.target.name === 'save') {
       let formData = new FormData();

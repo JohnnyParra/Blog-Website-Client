@@ -33,7 +33,7 @@ export default function Posts() {
     return <p>An Error occurred</p>;
   }
 
-  async function handleClick(event) {
+  function handleClick(event) {
     if (event.target.name === 'published') {
       setUserPosts(1);
       setBtnSelected('published');

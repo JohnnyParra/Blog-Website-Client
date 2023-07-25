@@ -41,13 +41,13 @@ export default function Home(){
   if(!(sortOptions.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
   if(userLoading) {return <p>Loading...</p>};
 
-  async function handleSelect(value){
+  function handleSelect(value){
     searchParams.set('sort', value);
     searchParams.set('page', 1)
     setSearchParams(searchParams);
   };
   
-  async function handleCategoryClick(event, value){
+  function handleCategoryClick(event, value){
     event.preventDefault();
     searchParams.set("category", value);
     searchParams.set('page', 1)

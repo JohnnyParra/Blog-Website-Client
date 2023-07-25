@@ -119,7 +119,7 @@ export default function CreatePost() {
     }
   };
 
-  async function fileSubmit(event) {
+  function fileSubmit(event) {
     let imageData = new FormData();
     imageData.append('image', event.target.files[0]);
     setInput((prevInput) => ({
