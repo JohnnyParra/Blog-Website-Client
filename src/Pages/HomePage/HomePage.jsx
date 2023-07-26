@@ -71,7 +71,7 @@ export default function Home(){
           <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant='contained' color='warning' startIcon={<CreateIcon />}>
             Create A Post
           </Button>
-          <SelectOption start={searchParams.get('sort')} options={sortOptions} selection='Sort' handleSelect={handleSelect}/>
+          <SelectOption key={searchParams.get('sort')} start={searchParams.get('sort')} options={sortOptions} selection='Sort' handleSelect={handleSelect}/>
         </div>
         <div className='post-card-container'>
           <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} page={searchParams.get('page')} />
