@@ -15,7 +15,12 @@ export default React.memo(function PageSelect(props) {
     buttonElements.push(
       <div 
       key={i}
-      style={{color: searchParams.get('page') == i + 1 ? 'white': 'black', backgroundColor: searchParams.get('page') == i + 1 ? 'rgb(255, 106, 0)' : 'white'}}
+      style={
+        {
+          color: searchParams.get('page') == i + 1 ? 'white': 'black', 
+          backgroundColor: searchParams.get('page') == i + 1 ? 'rgb(255, 106, 0)' : 'white'
+        }
+      }
       onClick={(event) => handleSelect(event)}
       className='page-button'>
         {i + 1}

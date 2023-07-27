@@ -39,7 +39,7 @@ export default function CreatePost() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
-        navigate('/HomePage');
+        navigate('/HomePage/Posts');
       },
     }
   );

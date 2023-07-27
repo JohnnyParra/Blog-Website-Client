@@ -40,6 +40,8 @@ export default function Posts() {
     } else if (event.target.name === 'drafts') {
       setUserPosts(0);
       setBtnSelected('drafts');
+    } else if (event.target.name === 'deleted') {
+      setBtnSelected('deleted')
     }
   }
 
@@ -63,6 +65,12 @@ export default function Posts() {
             isSelected={btnSelected}
             text='Drafts'
             name='drafts'
+          />
+          <Button
+            handleClick={handleClick}
+            isSelected={btnSelected}
+            text='Deleted Posts'
+            name='deleted' 
           />
         </div>
         {postElements}

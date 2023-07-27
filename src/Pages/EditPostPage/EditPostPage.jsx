@@ -44,7 +44,7 @@ export default function CreatePost() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
-        navigate('/HomePage');
+        navigate('/HomePage/Posts');
       },
     }
   );
@@ -54,7 +54,7 @@ export default function CreatePost() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
-        navigate('/HomePage');
+        navigate('/HomePage/Posts');
       },
     }
   );
@@ -76,7 +76,7 @@ export default function CreatePost() {
   function submit(event) {
     event.preventDefault();
     if (event.target.name === 'cancel') {
-      navigate(`/HomePage`);
+      navigate(`/HomePage/Posts`);
       return;
     } else if (event.target.name === 'delete') {
       mutateDeletePosts(data[0].post_id);
