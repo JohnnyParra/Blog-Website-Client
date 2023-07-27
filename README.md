@@ -33,4 +33,4 @@ PORT         = //The port you want the express backend to run on (ex. 3000)
    ```
 
 ### How it should look
-[website screenshot](/public/Blog_screenshot.png)
+![website screenshot](/public/Blog_screenshot.png)
