@@ -9,7 +9,7 @@ The backend of this application can be found here: [Server Repo](https://github.
 ```
 npm i
 ```
-The above step will need to completed twice, once while in the Client directory and another in the Server directory
+  -The above step will need to completed twice, once while in the Client directory and another in the Server directory
 
 3. Import the database dump into mysql in the folder ExampleDB on the [Servo Repo](https://github.com/JohnnyParra/BVTCA-Final-Project-Server)
 
