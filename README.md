@@ -11,7 +11,7 @@ The backend of this application can be found here: [Server Repo](https://github.
 npm i
 ```
 
-3. Import the database dump into mysql in the folder ExampleDB on the [Servo Repo](https://github.com/JohnnyParra/BVTCA-Final-Project-Server)
+3. Import the database dump into mysql using the folder ExampleDB that is in the [Servo Repo](https://github.com/JohnnyParra/BVTCA-Final-Project-Server)
 
 4. Create a .env file in the server folder that stores the following information:  <br>
 DB_HOST      = //The name of the database host (ex. localhost)  
