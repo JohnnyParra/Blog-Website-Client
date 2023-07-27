@@ -6,10 +6,10 @@ The backend of this application can be found here: [Server Repo](https://github.
 1. Clone both the Client and Server repositories into a single folder
 
 2. Install all the dependecies for both repos with the following commmand:
+     -This step will need to be completed twice, once while in the Client directory and another in the Server directory
 ```
 npm i
 ```
-  -The above step will need to completed twice, once while in the Client directory and another in the Server directory
 
 3. Import the database dump into mysql in the folder ExampleDB on the [Servo Repo](https://github.com/JohnnyParra/BVTCA-Final-Project-Server)
 
