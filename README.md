@@ -5,7 +5,7 @@ The backend of this application can be found here: [Server Repo](https://github.
 ## Getting Started
 1. Clone both the Client and Server repositories into a single folder
 
-2. Install all the dependecies for both repos with the following commmand:
+2. Install all the dependecies for both repos with the following commmand: <br>
      -This step will need to be completed twice, once while in the Client directory and another in the Server directory
 ```
 npm i
