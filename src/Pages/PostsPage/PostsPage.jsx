@@ -1,10 +1,16 @@
+// Libraries
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+
+// Api Services
 import { fetchUserPosts } from '../../ApiServices/TasksService';
+
+// Components
 import PostCard from '../../Components/PostCard/PostCard';
 import Navbar from '../../Components/Navbar/Navbar';
 import Button from '../../Components/common/Button';
 
+// Styling
 import './PostsPage.css';
 
 export default function Posts() {

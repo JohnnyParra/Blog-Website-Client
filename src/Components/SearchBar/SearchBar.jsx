@@ -1,4 +1,7 @@
+//Libraries
 import React, { useState } from 'react';
+
+// MUI Components && Icons
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';

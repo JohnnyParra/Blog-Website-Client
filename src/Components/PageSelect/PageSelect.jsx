@@ -1,5 +1,8 @@
+// Libraries
 import React from "react";
 import { useSearchParams } from 'react-router-dom';
+
+//Styling
 import './PageSelect.css'
 
 export default React.memo(function PageSelect(props) {

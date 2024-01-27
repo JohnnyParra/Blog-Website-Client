@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-// Authentication
+// Api Services: Authentication
 import { setJwt } from '../../ApiServices/JwtService';
 import { authenticateUser } from '../../ApiServices/AuthService';
 
@@ -145,6 +145,7 @@ export default function Login() {
               Sign up
             </Link>
           </p>
+          <p>skip login</p>
         </div>
       </div>
     </div>

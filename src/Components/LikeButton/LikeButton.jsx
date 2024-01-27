@@ -1,10 +1,15 @@
+// Libraries
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+// Api Services
+import { addLikeRequest, fetchLikes, deleteLikeRequest } from '../../ApiServices/TasksService';
+
+// MUI Icons
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import { addLikeRequest, fetchLikes, deleteLikeRequest } from '../../ApiServices/TasksService';
-
+// Styling
 import './LikeButton.css';
 
 export default function LikeButton(props) {

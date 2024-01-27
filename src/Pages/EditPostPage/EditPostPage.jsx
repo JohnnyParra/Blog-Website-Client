@@ -1,6 +1,12 @@
+// Library && Context
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from 'react-query';
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { UserContext } from '../../Context/UserContext';
+
+// MUI components && Icons
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -8,16 +14,17 @@ import SaveIcon from '@mui/icons-material/Save';
 import PublishIcon from '@mui/icons-material/Publish';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-
+// Api Services
 import { updatePostRequest, deletePostRequest } from '../../ApiServices/TasksService';
 
+// Components
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Navbar from '../../Components/Navbar/Navbar';
+
+// Utilities
 import { categoryOptions } from '../../Utils/CategoryOptions';
 
-import { UserContext } from '../../Context/UserContext';
+// Styling
 import './EditPostPage.css';
 
 export default function CreatePost() {

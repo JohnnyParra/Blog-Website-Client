@@ -1,8 +1,14 @@
+// Libraries
 import { useQuery } from 'react-query';
+
+// Api Services
 import { fetchUserLikedPosts } from '../../ApiServices/TasksService';
+
+// Components
 import PostCard from '../../Components/PostCard/PostCard';
 import Navbar from '../../Components/Navbar/Navbar';
 
+// Styling
 import './LikesPage.css';
 
 export default function Posts() {

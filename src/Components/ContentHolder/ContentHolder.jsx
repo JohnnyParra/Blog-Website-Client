@@ -1,7 +1,11 @@
+// Libraries
 import React from 'react';
 import { useQuery } from 'react-query';
 
+// Api Services
 import { fetchPosts } from '../../ApiServices/TasksService';
+
+// Components
 import PostCard from '../PostCard/PostCard';
 import PageSelect from '../PageSelect/PageSelect'
 

@@ -1,5 +1,8 @@
+// Libraries
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// MUI Components
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import CardActionArea from '@mui/material/CardActionArea';

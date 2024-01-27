@@ -1,16 +1,19 @@
+// Libraries && Context
 import React, { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
-
-import { UserContext } from '../../Context/UserContext';
-import { fetchPost } from '../../ApiServices/TasksService';
-
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from 'draft-js';
+import { UserContext } from '../../Context/UserContext';
 
+// Api Services
+import { fetchPost } from '../../ApiServices/TasksService';
+
+// Components
 import Navbar from '../../Components/Navbar/Navbar';
 import LikeButton from '../../Components/LikeButton/LikeButton';
 
+// Styling
 import './PostPage.css';
 
 export default function Post() {

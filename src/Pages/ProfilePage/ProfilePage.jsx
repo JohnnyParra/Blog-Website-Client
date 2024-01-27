@@ -1,15 +1,23 @@
+// Libraries && Context
 import { useState, useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { UserContext } from '../../Context/UserContext';
-import Navbar from '../../Components/Navbar/Navbar';
-import { Avatar, IconButton } from '@mui/material';
-import { updateAvatarRequest } from '../../ApiServices/TasksService';
 
+// Api Services
+import { updateAvatarRequest } from '../../ApiServices/TasksService';
+import { fetchUser } from '../../ApiServices/TasksService';
+
+// MUI Components
+import { Avatar, IconButton } from '@mui/material';
+
+// Components
+import Navbar from '../../Components/Navbar/Navbar';
+
+// Image Assets
 import eye from '../../Assets/eye.svg';
 import eyeSlash from '../../Assets/eye-slash.svg';
 
-import { fetchUser } from '../../ApiServices/TasksService';
-
+// Styling
 import './ProfilePage.css';
 
 export default function Profile() {

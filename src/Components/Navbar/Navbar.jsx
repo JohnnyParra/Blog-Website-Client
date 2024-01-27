@@ -1,7 +1,11 @@
+//Libraries
 import React from 'react';
+
+// Components
 import Dropdown from '../Dropdown/Dropdown';
 import SearchBar from '../SearchBar/SearchBar';
 
+// Styling
 import './Navbar.css';
 
 export default React.memo(function Navbar(props) {

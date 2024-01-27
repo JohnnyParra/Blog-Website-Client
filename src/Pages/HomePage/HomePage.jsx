@@ -1,21 +1,23 @@
-// Libraries
+// Libraries && Context
 import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
+
+// MUI Components && Icons
 import CreateIcon from '@mui/icons-material/Create';
 import Button from '@mui/material/Button';
 
-// API Services
+// Api Services
 import { fetchUser } from '../../ApiServices/TasksService';
 
-//Components
+// Components
 import Navbar from '../../Components/Navbar/Navbar';
 import ContentHolder from '../../Components/ContentHolder/ContentHolder';
 import FeaturedContentHolder from '../../Components/FeaturedContentHolder/FeaturedContentHolder';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 
-//Utilities
+// Utilities
 import { sortOptions } from '../../Utils/SortOptions';
 import { categoryOptions } from '../../Utils/CategoryOptions';
 
@@ -43,14 +45,14 @@ export default function Home(){
 
   function handleSelect(value){
     searchParams.set('sort', value);
-    searchParams.set('page', 1)
+    searchParams.set('page', 1);
     setSearchParams(searchParams);
   };
   
   function handleCategoryClick(event, value){
     event.preventDefault();
     searchParams.set("category", value);
-    searchParams.set('page', 1)
+    searchParams.set('page', 1);
     setSearchParams(searchParams);
   };
 

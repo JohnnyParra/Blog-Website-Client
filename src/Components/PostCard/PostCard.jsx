@@ -1,5 +1,8 @@
+// Libraries
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// MUI Components && Icons
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -7,6 +10,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
+// Styling
 import './PostCard.css';
 
 export default React.memo(function PostCard(props) {

@@ -1,7 +1,11 @@
+// Libraries
 import React from 'react';
 import { useQuery } from 'react-query';
 
+// Api Services
 import { fetchFeaturedPost } from '../../ApiServices/TasksService';
+
+// Components
 import FeaturedPost from '../FeaturedPost/FeaturedPost';
 
 export default React.memo(function FeaturedContentHolder(props) {

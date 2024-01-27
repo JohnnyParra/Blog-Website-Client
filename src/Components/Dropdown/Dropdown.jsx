@@ -1,5 +1,8 @@
+// Libraries
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// MUI Components && Icons
 import { styled, alpha } from '@mui/material/styles';
 import { UserContext } from '../../Context/UserContext';
 import Avatar from '@mui/material/Avatar';

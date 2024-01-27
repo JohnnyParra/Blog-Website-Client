@@ -1,22 +1,29 @@
+// Libraries
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { useMutation, useQueryClient } from 'react-query';
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from 'draft-js';
+
+// MUI Components && Icons
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 import SaveIcon from '@mui/icons-material/Save';
 import PublishIcon from '@mui/icons-material/Publish';
 
-import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, convertToRaw } from 'draft-js';
-
+// Api Services
 import { addPostRequest } from '../../ApiServices/TasksService';
 
+// Components
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Navbar from '../../Components/Navbar/Navbar';
+
+// Utilities
 import { categoryOptions } from '../../Utils/CategoryOptions';
 
+// Styling
 import './CreatePostPage.css';
 
 export default function CreatePost() {
