@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import SignUp from './Pages/SignUpPage/SignUp';
 import Login from './Pages/LoginPage/LoginPage';
 import Home from './Pages/HomePage/HomePage';
+import Search from './Pages/SearchPage/SearchPage'
 import CreatePost from './Pages/CreatePostPage/CreatePostPage';
 import EditPost from './Pages/EditPostPage/EditPostPage';
 import Likes from './Pages/LikesPage/LikesPage';
@@ -25,6 +26,7 @@ export default function App() {
         <Route path='/Login' element={<Login />} />
         <Route element={<PrivateRoutes />}>
           <Route path='/HomePage' element={<Home />} />
+          <Route path='/HomePage/Search/:search' element={<Search />} />
           <Route path='/HomePage/:id' element={<Post />} />
           <Route path='HomePage/Profile' element={<Profile />} />
           <Route path='HomePage/Posts' element={<Posts />} />

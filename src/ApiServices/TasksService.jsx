@@ -57,6 +57,14 @@ export const fetchUserLikedPosts = async () => {
   }
 }
 
+export const fetchSearch = async (search) => {
+  try {
+    return get(`${API_URL}/search/${search}`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
 export const addPostRequest = async (newPost) => {
   try{
     return formPost(`${API_URL}/post`, newPost);

@@ -1,5 +1,6 @@
 //Libraries
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // MUI Components && Icons
 import { styled, alpha } from '@mui/material/styles';
@@ -49,11 +50,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('')
 
   function checkKeyPress(event) {
-    if (event.key === 'Enter') {
-      
+    if (event.key === 'Enter' && search.trim() !== '') {
+      navigate(`/HomePage/Search/${search}`);
     }
   }
 
