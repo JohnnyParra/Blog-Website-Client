@@ -47,6 +47,7 @@ export default function Posts() {
       setUserPosts(0);
       setBtnSelected('drafts');
     } else if (event.target.name === 'deleted') {
+      setUserPosts('deleted');
       setBtnSelected('deleted')
     }
   }
