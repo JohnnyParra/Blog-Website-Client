@@ -11,12 +11,12 @@ import Box from '@mui/material/Box';
 
 export default React.memo(function FeaturedPost(props) {
   const { post } = props;
-  const { post_id, post_title, post_description, image, date_created } = post;
+  const { id, title, description, image, date_published } = post;
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`/HomePage/${post_id}`);
+    navigate(`/HomePage/${id}`);
   }
 
   return (
@@ -60,10 +60,10 @@ export default React.memo(function FeaturedPost(props) {
                 color='inherit'
                 gutterBottom
               >
-                {post_title}
+                {title}
               </Typography>
               <Typography variant='h5' color='inherit' paragraph>
-                {post_description}
+                {description}
               </Typography>
               <Typography variant='subtitle1' color={`rgb(255,255,255)`}>
                 Continue reading...

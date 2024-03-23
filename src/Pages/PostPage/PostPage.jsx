@@ -16,7 +16,7 @@ import LikeButton from '../../Components/LikeButton/LikeButton';
 // Styling
 import './PostPage.css';
 
-export default function Post() {
+export default function Post() { /// something wrong with how the LikeButton component works
   const { updateData, currentUser } = useContext(UserContext);
   const { id } = useParams();
   const [editorState, setEditorState] = useState();
@@ -37,29 +37,31 @@ export default function Post() {
   if (isLoading) {return <p>Loading...</p>};
   if (isError) {return <p>An Error occurred</p>};
   const data = postData.post;
-
+  
   return (
     <main className='post-page'>
       <div className='App'>
         <Navbar />
-        <h1>{data[0].post_title}</h1>
+        <h1>{data[0].title}</h1>
         <h3>
-          <i>{data[0].post_description}</i>
+          <i>{data[0].description}</i>
         </h3>
-        <p className='created-date'>
-          Created: {new Date(Number(data[0].date_created)).toLocaleString()}
+        {data[0].date_published && (
+          <p className='created-date'>
+          Published: {new Date(data[0].date_published).toLocaleString()}
         </p>
+        )}
         {data[0].date_edited && (
           <p className='edited-date'>
             Last Edited:{' '}
-            {new Date(Number(data[0].date_edited)).toLocaleString()}
+            {new Date(data[0].date_edited).toLocaleString()}
           </p>
         )}
-        <p className='created-by'>By: {data[0].Author}</p>
+        <p className='created-by'>By: {data[0].author}</p>
         {data[0].user_id === currentUser.user.userId && (
-          <Link to={`/HomePage/Posts/EditPost/${data[0].post_id}`}>edit</Link>
+          <Link to={`/HomePage/Posts/EditPost/${data[0].id}`}>edit</Link>
         )}
-        <LikeButton id={data[0].post_id} />
+        <LikeButton id={data[0].id} />
         <div className='editor-container'>
           <Editor
             toolbarHidden={true}

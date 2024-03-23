@@ -53,7 +53,7 @@ export default function Posts() {
   }
 
   const postElements = userData.posts.map((post) => (
-    <PostCard key={post.post_id} post={post} />
+    <PostCard key={post.id} post={post} />
   ));
 
   return (

@@ -152,7 +152,7 @@ export default function Profile() {
         <p>
           Member since:{' '}
           {new Date(
-            Number(currentUser.userInfo[0].date_created)
+            currentUser.userInfo[0].date_created
           ).toLocaleString()}
         </p>
         <div className='input-container'>

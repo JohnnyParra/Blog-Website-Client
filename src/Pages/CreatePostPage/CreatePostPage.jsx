@@ -30,8 +30,8 @@ export default function CreatePost() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [input, setInput] = useState({
-    post_title: '',
-    post_description: '',
+    title: '',
+    description: '',
     image: '',
     category: 4,
   });
@@ -74,20 +74,19 @@ export default function CreatePost() {
       let formData = new FormData();
       if (input.image != '') formData.append('image', input.image);
       formData.append('type', 'save');
-      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('title', JSON.stringify(input.title));
       formData.append(
-        'post_description',
-        JSON.stringify(input.post_description)
+        'description',
+        JSON.stringify(input.description)
       );
       formData.append('content', JSON.stringify(contentState));
       formData.append('category', input.category);
-      formData.append('post_id', nanoid());
-      formData.append('date_created', new Date().getTime().toString());
+      formData.append('id', nanoid());
       mutateAddPosts(formData);
     } else if (event.target.name === 'publish') {
       if (
-        input.post_title === '' ||
-        input.post_description === '' ||
+        input.title === '' ||
+        input.description === '' ||
         input.image === ''
       ) {
         return alert('Missing Inputs');
@@ -95,15 +94,14 @@ export default function CreatePost() {
       let formData = new FormData();
       formData.append('image', input.image);
       formData.append('type', 'publish');
-      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('title', JSON.stringify(input.title));
       formData.append(
-        'post_description',
-        JSON.stringify(input.post_description)
+        'description',
+        JSON.stringify(input.description)
       );
       formData.append('content', JSON.stringify(contentState));
       formData.append('category', input.category);
-      formData.append('post_id', nanoid());
-      formData.append('date_created', new Date().getTime().toString());
+      formData.append('id', nanoid());
       mutateAddPosts(formData);
     }
   }
@@ -130,9 +128,9 @@ export default function CreatePost() {
                 className='title-input'
                 type='text'
                 maxLength='50'
-                name='post_title'
+                name='title'
                 id='post-title'
-                value={input.post_title}
+                value={input.title}
                 onChange={(event) => handleChange(event)}
               />
               <label htmlFor='post-description'>Description</label>
@@ -140,9 +138,9 @@ export default function CreatePost() {
                 className='description-input'
                 type='text'
                 maxLength='100'
-                name='post_description'
+                name='description'
                 id='post-description'
-                value={input.post_description}
+                value={input.description}
                 onChange={(event) => handleChange(event)}
               />
             </div>

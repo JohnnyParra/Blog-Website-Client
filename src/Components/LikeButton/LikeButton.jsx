@@ -15,14 +15,17 @@ import './LikeButton.css';
 export default function LikeButton(props) {
   const [likeButton, setLikeButton] = useState(false);
   const queryClient = useQueryClient();
+  // console.log(props.id)
 
   const { data, isLoading, isError } = useQuery(
-    'likes',
+    ['likes', props.id],
     () => fetchLikes(props.id),
     {
       onSuccess: (data) => {
         if (data.userLike[0].userLike > 0) {
           setLikeButton(true);
+        } else {
+          setLikeButton(false);
         }
       },
     }
@@ -52,7 +55,7 @@ export default function LikeButton(props) {
 
   function addLikeClick() {
     setLikeButton(true);
-    mutateAddLike({ post_id: props.id });
+    mutateAddLike({ id: props.id });
   }
 
   function removeLikeClick() {

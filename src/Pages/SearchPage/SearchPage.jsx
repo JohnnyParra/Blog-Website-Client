@@ -41,7 +41,7 @@ export default function Search() {
 
   const searchElements = searchData.posts.map((post) => {
     return (
-      <div key={post.post_id} className="post-card-container">
+      <div key={post.id} className="post-card-container">
         <PostCard post={post} />
       </div>
     );
