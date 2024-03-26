@@ -80,6 +80,9 @@ export default function Posts() {
             name='deleted' 
           />
         </div>
+        {btnSelected === 'deleted' && (
+          <h4>Posts here will automatically delete after 30 days.</h4>
+        )}
         {postElements}
       </div>
     </main>
