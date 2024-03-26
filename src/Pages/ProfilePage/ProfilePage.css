@@ -97,3 +97,87 @@
   padding: 10px 20px 10px 20px;
   width: 100%;
 }
+
+.profile-page .delete {
+  padding-top: 20px;
+}
+
+.profile-page .delete span{
+  color: red;
+}
+
+.profile-page .delete span:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.profile-page .popup-background {
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.8);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+}
+
+.profile-page .popup {
+  background: rgb(237, 237, 237);
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px black;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-around;
+  padding: 5px;
+  width: 300px;
+}
+
+.profile-page .popup-btn-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile-page .popup h1 {
+  font-size: 18px;
+}
+
+.profile-page .popup h4 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-page .popup-btn {
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.profile-page .popup-cancel-btn {
+  background: linear-gradient(grey, white, white);
+  color: black;
+  width: 100px;
+}
+
+.profile-page .popup-cancel-btn:hover {
+  background: linear-gradient(white, grey, grey);
+  color: black;
+  cursor: pointer;
+}
+
+.profile-page .popup-delete-btn {
+  background: linear-gradient(rgb(212, 25, 25), rgb(158, 50, 50));
+  color: white;
+  width: 100px;
+}
+
+.profile-page .popup-delete-btn:hover {
+  background: linear-gradient(rgb(158, 50, 50), rgb(212, 25, 25));
+  color: white;
+  cursor: pointer;
+}

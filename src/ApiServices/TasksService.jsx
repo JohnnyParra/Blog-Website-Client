@@ -89,6 +89,14 @@ export const addLikeRequest = async (post_id) => {
   }
 }
 
+export const deleteAccountRequest = async (id) => {
+  try {
+    return remove(`${API_URL}/user`);
+  } catch (err) {
+    return { data: [], error: err } 
+  }
+}
+
 export const deletePostRequest = async (id) => {
   try {
     return remove(`${API_URL}/post/${id}`);

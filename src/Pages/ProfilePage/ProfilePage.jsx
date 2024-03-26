@@ -2,10 +2,13 @@
 import { useState, useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { UserContext } from '../../Context/UserContext';
+import { useNavigate } from 'react-router-dom';
+
 
 // Api Services
 import { updateAvatarRequest } from '../../ApiServices/TasksService';
 import { fetchUser } from '../../ApiServices/TasksService';
+import { deleteAccountRequest } from '../../ApiServices/TasksService';
 
 // MUI Components
 import { Avatar, IconButton } from '@mui/material';
@@ -21,8 +24,10 @@ import eyeSlash from '../../Assets/eye-slash.svg';
 import './ProfilePage.css';
 
 export default function Profile() {
-  const { currentUser, loginUser } = useContext(UserContext);
+  const { currentUser, loginUser, logoutUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [popup, setPopup] = useState(false);
   const [input, setInput] = useState({
     name: currentUser.userInfo[0].name,
     email: currentUser.userInfo[0].email,
@@ -65,6 +70,16 @@ export default function Profile() {
     }
   );
 
+  const { mutate: mutateDeleteAccount } = useMutation(
+    () => deleteAccountRequest(),
+    {
+      onSuccess: () => {
+        navigate('/Login');
+        logoutUser();
+      },
+    }
+  );
+
   const { isLoading: userLoading, isError: userError } = useQuery(
     'user', 
     fetchUser, 
@@ -97,6 +112,15 @@ export default function Profile() {
     }));
     setChanges(true);
     setResponseMessage({ state: false });
+  }
+
+  function popUp() {
+    setPopup(true);
+  }
+
+  function deleteAccount() {
+    mutateDeleteAccount();
+    setPopup(false);
   }
 
   function handleClick(event) {
@@ -205,6 +229,19 @@ export default function Profile() {
             </button>
           )}
         </div>
+        <div className="delete" onClick={() => popUp()}><span>Delete Account</span></div>
+        {popup && (
+          <div className="popup-background">
+            <div className="popup">
+              <h1>Confirm Deletion of Account</h1>
+              <h4>You will Have 30 days to reactivate the account if this was a mistake</h4>
+              <div className="popup-btn-container">
+                <button className="popup-btn popup-cancel-btn" onClick={() => setPopup(false)}>Cancel</button>
+                <button className="popup-btn popup-delete-btn" onClick={() => deleteAccount()}>Delete</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
