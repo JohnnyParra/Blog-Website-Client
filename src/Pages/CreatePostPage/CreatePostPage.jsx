@@ -198,7 +198,7 @@ export default function CreatePost() {
               color='warning'
               endIcon={<SaveIcon />}
             >
-              Save
+              Save to Drafts
             </Button>
             {/* <button onClick={(event) => submit(event)} name="save">Save</button> */}
             <Button

@@ -27,7 +27,7 @@ import { categoryOptions } from '../../Utils/CategoryOptions';
 // Styling
 import './EditPostPage.css';
 
-export default function CreatePost() {
+export default function EditPost() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { id } = useParams();
@@ -45,6 +45,8 @@ export default function CreatePost() {
   });
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState(data[0].image);
+
+  console.log(data)
 
   const { mutate: mutateUpdatePosts } = useMutation(
     (newPost) => updatePostRequest(newPost),
@@ -205,17 +207,19 @@ export default function CreatePost() {
             >
               Cancel
             </Button>
-            <Button
-              className='btn'
-              onClick={(event) => submit(event)}
-              name='delete'
-              size='small'
-              variant='contained'
-              color='warning'
-              endIcon={<DeleteIcon />}
-            >
-              Delete
-            </Button>
+            {!data[0].date_deleted && (
+              <Button
+                className='btn'
+                onClick={(event) => submit(event)}
+                name='delete'
+                size='small'
+                variant='contained'
+                color='warning'
+                endIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            )}
             <Button
               className='btn'
               onClick={(event) => submit(event)}
@@ -225,7 +229,7 @@ export default function CreatePost() {
               color='warning'
               endIcon={<SaveIcon />}
             >
-              Save
+              Save to Drafts
             </Button>
             {data[0].published != 1 && (
               <Button
@@ -237,7 +241,7 @@ export default function CreatePost() {
                 color='warning'
                 endIcon={<PublishIcon />}
               >
-                Publish
+                {!data[0].date_deleted ? 'Update' : 'Publish'}
               </Button>
             )}
           </div>
