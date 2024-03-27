@@ -61,7 +61,7 @@ export default function Post() { /// something wrong with how the LikeButton com
         {data[0].user_id === currentUser.user.userId && (
           <Link to={`/HomePage/Posts/EditPost/${data[0].id}`}>edit</Link>
         )}
-        <LikeButton id={data[0].id} />
+        <LikeButton id={id} />
         <div className='editor-container'>
           <Editor
             toolbarHidden={true}
