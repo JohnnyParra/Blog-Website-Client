@@ -41,6 +41,72 @@ export const fetchLikes = async (id) => {
   }
 }
 
+export const addLikeRequest = async (post_id) => {
+  try{
+    return post(`${API_URL}/likes`, post_id);
+  } catch(err){
+    return { data: [], error: err }
+  }
+}
+
+export const deleteLikeRequest = async (id) => {
+  try{
+    return remove(`${API_URL}/likes/${id}`);
+  } catch (err) {
+    return { data: [], error: err } 
+  }
+}
+
+export const fetchCommentLikes = async (id) => {
+  try {
+    return get(`${API_URL}/comments/likes/${id}`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
+export const addCommentLikeRequest = async (id) => {
+  try{
+    return post(`${API_URL}/comments/likes/${id}`);
+  } catch(err){
+    return { data: [], error: err }
+  }
+}
+
+export const deleteCommentLikeRequest = async (id) => {
+  try{
+    return remove(`${API_URL}/comments/likes/${id}`);
+  } catch (err) {
+    return { data: [], error: err } 
+  }
+}
+
+export const fetchComments = async (id) => {
+  try {
+    return get(`${API_URL}/comments/${id}`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
+export const fetchCommentReplies = async (id) => {
+  try {
+    return get(`${API_URL}/comments/replies/${id}`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
+export const addCommentRequest = async (data) => {
+  try{
+    return post(`${API_URL}/comments`, data);
+  } catch(err){
+    return { data: [], error: err }
+  }
+}
+
+
+
 export const fetchUserPosts = async (published) => {
   try {
     return get(`${API_URL}/user/posts/${published}`);
@@ -81,13 +147,6 @@ export const updatePostRequest = async (newPost) => {
   }
 }
 
-export const addLikeRequest = async (post_id) => {
-  try{
-    return post(`${API_URL}/likes`, post_id);
-  } catch(err){
-    return { data: [], error: err }
-  }
-}
 
 export const deleteAccountRequest = async (id) => {
   try {
@@ -105,13 +164,6 @@ export const deletePostRequest = async (id) => {
   }
 }
 
-export const deleteLikeRequest = async (id) => {
-  try{
-    return remove(`${API_URL}/likes/${id}`);
-  } catch (err) {
-    return { data: [], error: err } 
-  }
-}
 
 export const updateAvatarRequest = async (newAvatar) => {
   try{

@@ -1,0 +1,36 @@
+.btns {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: flex-end;
+}
+
+.btns .cancel {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  margin: 4px;
+}
+
+.btns .cancel:hover {
+  background: rgb(235, 235, 235);
+  border-radius: 10px;
+  cursor: pointer;
+  height: 36px;
+  margin: 4px;
+}
+
+.btns .comment {
+  border-radius: 10px;
+  font-size: 0.875rem;
+  height: 36px;
+  margin: 4px;
+}
+
+.input-text {
+  border: none;
+  border-bottom: 1px solid black;
+  cursor: text;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+}

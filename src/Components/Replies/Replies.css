@@ -1,0 +1,6 @@
+.replies-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-left: 50px;
+}

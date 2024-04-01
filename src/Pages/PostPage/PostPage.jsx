@@ -12,6 +12,7 @@ import { fetchPost } from '../../ApiServices/TasksService';
 // Components
 import Navbar from '../../Components/Navbar/Navbar';
 import LikeButton from '../../Components/LikeButton/LikeButton';
+import CommentSection from '../../Components/CommentsSection/CommentsSection';
 
 // Styling
 import './PostPage.css';
@@ -61,7 +62,7 @@ export default function Post() { /// something wrong with how the LikeButton com
         {data[0].user_id === currentUser.user.userId && (
           <Link to={`/HomePage/Posts/EditPost/${data[0].id}`}>edit</Link>
         )}
-        <LikeButton id={id} />
+        <LikeButton id={id} type={'post_likes'} />
         <div className='editor-container'>
           <Editor
             toolbarHidden={true}
@@ -69,6 +70,7 @@ export default function Post() { /// something wrong with how the LikeButton com
             readOnly={true}
           />
         </div>
+        <CommentSection id={id} />
       </div>
     </main>
   );
