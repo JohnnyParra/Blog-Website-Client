@@ -33,7 +33,7 @@ export default function CommentSection(props) {
       <Comment
         key={comment.id}
         id={props.id}
-        parent_id={null}
+        parent_id={comment.id}
         comment={comment}
         size={40}
         refreshQuery={refreshQuery}
