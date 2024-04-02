@@ -36,13 +36,12 @@ export default function Comment(props) {
           <Avatar
             src={props.comment.avatar}
             sx={{
-              fontSize: 100,
               width: props.size,
               height: props.size,
               m: 1,
               bgcolor: "#ff3d00",
             }}
-          ></Avatar>
+          >{props.comment.name[0].toUpperCase()}</Avatar>
           <div className="header-content-container">
             <div className="header">
               <span className="name">{props.comment.name}</span>
