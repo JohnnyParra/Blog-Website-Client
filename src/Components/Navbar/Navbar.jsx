@@ -1,5 +1,6 @@
 //Libraries
 import React from 'react';
+import { Link } from "react-router-dom";
 
 // Components
 import Dropdown from '../Dropdown/Dropdown';
@@ -12,7 +13,7 @@ export default React.memo(function Navbar(props) {
   return (
     <div className='header'>
       <nav>
-        <h1>Blog</h1>
+        <h1 className="title"><Link to="/HomePage">Blog</Link></h1>
         <div className='right'>
           <SearchBar />
           <Dropdown />

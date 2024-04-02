@@ -15,12 +15,12 @@ import './PostCard.css';
 
 export default React.memo(function PostCard(props) {
   const { post } = props;
-  const { post_id, post_title, post_description, date_created, image } = post;
+  const { id, title, description, date_published, image } = post;
 
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`/HomePage/${post_id}`);
+    navigate(`/HomePage/${id}`);
   };
 
   return (
@@ -30,13 +30,13 @@ export default React.memo(function PostCard(props) {
           <Card sx={{ display: 'flex' }}>
             <CardContent sx={{ flex: 1 }}>
               <Typography component='h2' variant='h5'>
-                {post_title}
+                {title}
               </Typography>
               <Typography variant='subtitle1' color='text.secondary'>
-                {new Date(Number(date_created)).toLocaleString()}
+                {date_published ? new Date(date_published).toLocaleString() : "Not Published"}
               </Typography>
               <Typography variant='subtitle1' paragraph>
-                {post_description}
+                {description}
               </Typography>
               <Typography variant='subtitle1' color='primary'>
                 Continue reading...

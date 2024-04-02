@@ -1,25 +1,28 @@
 // Libraries
-import React, { useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import React, { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 // Api Services
-import { addLikeRequest, fetchLikes, deleteLikeRequest } from '../../ApiServices/TasksService';
+import {
+  addCommentLikeRequest,
+  fetchCommentLikes,
+  deleteCommentLikeRequest,
+} from "../../ApiServices/TasksService";
 
 // MUI Icons
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 // Styling
-import './LikeButton.css';
+import "./CommentLikeButton.css";
 
-export default function LikeButton(props) {
+export default function CommentLikeButton(props) {
   const [likeButton, setLikeButton] = useState(false);
   const queryClient = useQueryClient();
-  // console.log(props.id)
 
   const { data, isLoading, isError } = useQuery(
-    ['likes', props.id],
-    () => fetchLikes(props.id),
+    ["likes", props.id],
+    () => fetchCommentLikes(props.id),
     {
       onSuccess: (data) => {
         if (data.userLike[0].userLike > 0) {
@@ -32,30 +35,30 @@ export default function LikeButton(props) {
   );
 
   const { mutate: mutateAddLike } = useMutation(
-    (like) => addLikeRequest(like),
+    () => addCommentLikeRequest(props.id),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['likes']);
+        queryClient.invalidateQueries(["likes"]);
       },
     }
   );
 
   const { mutate: mutateDeleteLike } = useMutation(
-    () => deleteLikeRequest(props.id),
+    () => deleteCommentLikeRequest(props.id),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['likes']);
+        queryClient.invalidateQueries(["likes"]);
       },
     }
   );
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error Occurred</p>;
-  const styles = { color: 'red' };
+  const styles = { color: "red" };
 
   function addLikeClick() {
     setLikeButton(true);
-    mutateAddLike({ id: props.id });
+    mutateAddLike();
   }
 
   function removeLikeClick() {
@@ -70,9 +73,9 @@ export default function LikeButton(props) {
   );
 
   return (
-    <div className='like-btn'>
+    <div className="like-btn">
       <span>{data.likes[0].Likes}</span>
       {likeBtn}
     </div>
   );
-};
+}

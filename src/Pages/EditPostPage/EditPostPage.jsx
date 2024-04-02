@@ -27,24 +27,26 @@ import { categoryOptions } from '../../Utils/CategoryOptions';
 // Styling
 import './EditPostPage.css';
 
-export default function CreatePost() {
+export default function EditPost() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { id } = useParams();
   const { data } = useContext(UserContext);
-  if (data[0].post_id !== id) navigate(-1);
+  if (data[0].id !== id) navigate(-1);
   const convertedState = convertFromRaw(data[0].content);
   const [editorState, setEditorState] = useState(() =>
     EditorState.createWithContent(convertedState)
   );
   const [input, setInput] = useState({
-    post_title: data[0].post_title,
-    post_description: data[0].post_description,
+    title: data[0].title,
+    description: data[0].description,
     image: '',
     category: data[0].category,
   });
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState(data[0].image);
+
+  console.log(data)
 
   const { mutate: mutateUpdatePosts } = useMutation(
     (newPost) => updatePostRequest(newPost),
@@ -86,9 +88,9 @@ export default function CreatePost() {
       navigate(`/HomePage/Posts`);
       return;
     } else if (event.target.name === 'delete') {
-      mutateDeletePosts(data[0].post_id);
+      mutateDeletePosts(data[0].id);
     } else if (event.target.name === 'save') {
-      if (input.post_title === '' || input.post_description === '') {
+      if (input.title === '' || input.description === '') {
         return alert('Missing Inputs');
       }
       let formData = new FormData();
@@ -96,32 +98,31 @@ export default function CreatePost() {
       data[0].published == 1
         ? formData.append('type', 'publish')
         : formData.append('type', 'save');
-      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('title', JSON.stringify(input.title));
       formData.append(
-        'post_description',
-        JSON.stringify(input.post_description)
+        'description',
+        JSON.stringify(input.description)
       );
       formData.append('content', JSON.stringify(contentState));
       formData.append('category', input.category);
-      formData.append('post_id', data[0].post_id);
+      formData.append('id', data[0].id);
       formData.append('date_edited', new Date().getTime().toString());
       mutateUpdatePosts(formData);
     } else if (event.target.name === 'publish') {
-      if (input.post_title === '' || input.post_description === '') {
+      if (input.title === '' || input.description === '') {
         return alert('Missing Inputs');
       }
       let formData = new FormData();
       if (input.image != '') formData.append('image', input.image);
       formData.append('type', 'publish');
-      formData.append('post_title', JSON.stringify(input.post_title));
+      formData.append('title', JSON.stringify(input.title));
       formData.append(
-        'post_description',
-        JSON.stringify(input.post_description)
+        'description',
+        JSON.stringify(input.description)
       );
       formData.append('content', JSON.stringify(contentState));
       formData.append('category', input.category);
-      formData.append('post_id', data[0].post_id);
-      formData.append('date_created', new Date().getTime().toString());
+      formData.append('id', data[0].id);
       mutateUpdatePosts(formData);
     }
   };
@@ -148,9 +149,9 @@ export default function CreatePost() {
                 className='title-input'
                 type='text'
                 maxLength='50'
-                name='post_title'
+                name='title'
                 id='post-title'
-                value={input.post_title}
+                value={input.title}
                 onChange={(event) => handleChange(event)}
               />
               <label htmlFor='post-description'>Description</label>
@@ -158,9 +159,9 @@ export default function CreatePost() {
                 className='description-input'
                 type='text'
                 maxLength='100'
-                name='post_description'
+                name='description'
                 id='post-description'
-                value={input.post_description}
+                value={input.description}
                 onChange={(event) => handleChange(event)}
               />
             </div>
@@ -206,17 +207,19 @@ export default function CreatePost() {
             >
               Cancel
             </Button>
-            <Button
-              className='btn'
-              onClick={(event) => submit(event)}
-              name='delete'
-              size='small'
-              variant='contained'
-              color='warning'
-              endIcon={<DeleteIcon />}
-            >
-              Delete
-            </Button>
+            {!data[0].date_deleted && (
+              <Button
+                className='btn'
+                onClick={(event) => submit(event)}
+                name='delete'
+                size='small'
+                variant='contained'
+                color='warning'
+                endIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            )}
             <Button
               className='btn'
               onClick={(event) => submit(event)}
@@ -226,7 +229,7 @@ export default function CreatePost() {
               color='warning'
               endIcon={<SaveIcon />}
             >
-              Save
+              Save to Drafts
             </Button>
             {data[0].published != 1 && (
               <Button
@@ -238,7 +241,7 @@ export default function CreatePost() {
                 color='warning'
                 endIcon={<PublishIcon />}
               >
-                Publish
+                {!data[0].date_deleted ? 'Update' : 'Publish'}
               </Button>
             )}
           </div>

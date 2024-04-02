@@ -5,8 +5,13 @@
   justify-content: center;
 }
 
-.header h1 {
+/* .header .title {
   color: rgb(255, 106, 0);
+} */
+
+.header .title a {
+  color: rgb(255, 106, 0);
+  text-decoration: none;
 }
 
 .header nav {

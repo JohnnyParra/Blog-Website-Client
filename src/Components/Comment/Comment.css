@@ -1,0 +1,85 @@
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 5px 0px;
+}
+
+.comment-container .body {
+  display: flex;
+  justify-content: left;
+}
+
+.comment-container .header-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-container .header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.comment-container .header .name {
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  margin-right: 4px;
+}
+
+.comment-container .header .date {
+  color: rgb(65, 65, 65);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+}
+
+.comment-container .content {
+  font-size: 0.875;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+
+.comment-container .interaction {
+  align-items: center;
+  display: flex;
+  justify-content: left;
+}
+
+.comment-container .interaction .like {
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  margin-right: 4px;
+}
+
+.comment-container .interaction .reply {
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  margin-left: 10px;
+  margin-right: 4px;
+}
+
+.comment-container .interaction .reply:hover {
+  cursor: pointer;
+}
+
+.comment-container .replies-btn-container {
+  align-items: center;
+  display: flex;
+  justify-content: left;
+}
+
+.comment-container .replies {
+  align-items: center;
+  color: rgb(228, 148, 0);
+  display: flex;
+  justify-content: center;
+}
+
+.comment-container .replies:hover {
+  cursor: pointer;
+}

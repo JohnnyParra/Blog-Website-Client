@@ -68,6 +68,7 @@ export default function Login() {
     }
     // refetch call
     const registerResponse = await refetch();
+    console.log(registerResponse.data.jwt);
     if (!registerResponse.isError && registerResponse.data.jwt) {
       const token = registerResponse.data.jwt;
       setJwt(token);

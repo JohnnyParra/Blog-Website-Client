@@ -47,12 +47,13 @@ export default function Posts() {
       setUserPosts(0);
       setBtnSelected('drafts');
     } else if (event.target.name === 'deleted') {
+      setUserPosts('deleted');
       setBtnSelected('deleted')
     }
   }
 
   const postElements = userData.posts.map((post) => (
-    <PostCard key={post.post_id} post={post} />
+    <PostCard key={post.id} post={post} />
   ));
 
   return (
@@ -79,6 +80,9 @@ export default function Posts() {
             name='deleted' 
           />
         </div>
+        {btnSelected === 'deleted' && (
+          <h4>Posts here will automatically delete after 30 days.</h4>
+        )}
         {postElements}
       </div>
     </main>
