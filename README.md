@@ -1,9 +1,12 @@
 # Blog Application (Client / Front-end)
 
+Website using Netlify for the front-end, Vercel for the backend, and Azure MySQL database: [Blog Website](https://johnnymparra-blog.netlify.app/)
+
+
 The backend of this application can be found here: [Server Repo](https://github.com/JohnnyParra/BVTCA-Final-Project-Server)
 
-## Getting Started
-1. Clone both the Client and Server repositories into a single folder
+## Getting Started (Locally)
+1. Clone both the Client and Server repositories into a single folder. (git checkout to the "Original" branch that is the project before adding config for vercel)
 
 2. Install all the dependecies for both repos with the following commmand: <br>
      -This step will need to be completed twice, once while in the Client directory and another in the Server directory
@@ -24,7 +27,9 @@ PORT         = //The port you want the express backend to run on (ex. 3000)
 
 5. Start the backend server with the following command in the server directory:
    ```
-   npm start
+   npm run start
+   or
+   npm run devStart (which is for nodemon)
    ```
 
 6. Start the frontend server with the following command in the clinet directory:
