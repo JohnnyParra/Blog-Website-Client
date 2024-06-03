@@ -1,15 +1,9 @@
-// Libraries
-import React from 'react';
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-// MUI Components
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import CardActionArea from '@mui/material/CardActionArea';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
+import './FeaturedPost.css';
 
-export default React.memo(function FeaturedPost(props) {
+export default function FeaturedPost(props) {
   const { post } = props;
   const { id, title, description, image, date_published } = post;
 
@@ -20,58 +14,28 @@ export default React.memo(function FeaturedPost(props) {
   }
 
   return (
-    <Paper
-      sx={{
-        position: 'relative',
-        backgroundColor: 'grey.800',
-        color: '#fff',
-        mb: 4,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundImage: `url("${image}")`,
-      }}
-    >
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={image} alt='image' />}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          right: 0,
-          left: 0,
-          backgroundColor: 'rgba(0,0,0,.7)',
-        }}
-      />
-      <Grid container>
-        <CardActionArea component='a' onClick={handleClick}>
-          <Grid item md={6}>
-            <Box
-              sx={{
-                position: 'relative',
-                p: { xs: 3, md: 6 },
-                pr: { md: 0 },
-              }}
-            >
-              <Typography
-                component='h1'
-                variant='h3'
-                color='inherit'
-                gutterBottom
-              >
-                {title}
-              </Typography>
-              <Typography variant='h5' color='inherit' paragraph>
-                {description}
-              </Typography>
-              <Typography variant='subtitle1' color={`rgb(255,255,255)`}>
-                Continue reading...
-              </Typography>
-            </Box>
-          </Grid>
-        </CardActionArea>
-      </Grid>
-    </Paper>
-  );
-});
+    <div className="featured-post-container">
+      <div 
+        className="featured-post"
+        onClick={() => handleClick()}
+      >
+        <div className="image-container" style={{backgroundImage: `url(${image})`}}>
+          <div className="image-overlay"></div>
+          <div className="text-overlay">
+            <div className="title-description-container">
+              <div className="title-container">
+                <h1 className="title">{title}</h1>
+              </div>
+              <div className="description-container">
+                <h3 className="description">{description}</h3>
+              </div>
+            </div>
+            <div className="continue-container">
+              <h5 className="continue">continue reading...</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

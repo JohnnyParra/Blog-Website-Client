@@ -1,0 +1,160 @@
+.featured-post-container {
+  display: flex;
+  margin: 0px 0px 32px 0px;
+
+  & .featured-post {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 100%;
+
+    & .image-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      height: 100%;
+      width: 100%;
+
+      & .image-overlay {
+        background-color: rgba(35, 35, 35, 0.8);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+      }
+      & .text-overlay {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 10px;
+        position: relative;
+        height: 100%;
+        max-width: 550px;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        z-index: 2;
+
+        & .title-description-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 1;
+
+          & .title-container {
+            display: flex;
+            justify-content: center;
+  
+            & .title {
+              color: white;
+              font-size: 36px;
+              margin: 10px 0px;
+            }
+          }
+          & .description-container {
+            display: flex;
+            justify-content: center;
+  
+            & .description {
+              color: white;
+              margin: 8px 0px;
+            }
+          }
+        }
+        
+        & .continue-container {
+          display: flex;
+          justify-content: center;
+          margin-top: auto;
+                   
+          & .continue {
+            color: white;
+            margin: 5px 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .featured-post-container {
+
+    & .featured-post {
+
+      & .image-container {
+
+        & .image-overlay {
+        }
+        & .text-overlay {
+
+          & .title-description-container {
+
+            & .title-container {
+  
+              & .title {
+                font-size: 28px;
+              }
+            }
+            & .description-container {
+  
+              & .description {
+                font-size: 16px;
+              }
+            }
+          }
+          
+          & .continue-container {
+            
+            & .continue {
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .featured-post-container {
+
+    & .featured-post {
+
+      & .image-container {
+
+        & .image-overlay {
+        }
+        & .text-overlay {
+
+          & .title-description-container {
+
+            & .title-container {
+  
+              & .title {
+                font-size: 24px;
+              }
+            }
+            & .description-container {
+  
+              & .description {
+                font-size: 14px;
+              }
+            }
+          }
+          
+          & .continue-container {
+            
+            & .continue {
+            }
+          }
+        }
+      }
+    }
+  }
+}
