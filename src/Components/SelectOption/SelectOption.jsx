@@ -30,7 +30,7 @@ export default React.memo(function SelectOption(props) {
           labelId='demo-simple-select-label'
           id='demo-simple-select'
           value={sort}
-          label='Sort'
+          label={props.selection}
           onChange={handleChange}
           sx={{ color: '#1976d2' }}
         >

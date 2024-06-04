@@ -1,4 +1,4 @@
-.create-post .top-container {
+/* .create-post .top-container {
   align-items: center;
   display: flex;
   height: 105px;
@@ -57,4 +57,73 @@
 
 .create-post .create-post-btns .btn {
   margin: 5px;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .create-post .top-container {
+    flex-wrap: wrap;
+  }
+} */
+
+.create-post {
+
+  & .App {
+    
+    & form {
+      display: flex;
+      flex-direction: column;
+
+      & .title-description-category-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 10px;
+        width: 100%;
+
+        & .title-description-container {
+          display: flex;
+          flex: 1 300px;
+          flex-direction: column;
+          margin-right: 20px;
+
+          & .title-label,
+            .description-label {
+            font-size: 13px;
+            text-align: left;
+          }
+          & .title {
+            max-width: 300px;
+          }
+          & .description {
+            width: 100%;
+          }
+        }
+        & .category-container {
+          display: flex;
+          align-items: flex-end;
+        }
+      }
+      & .editor-container {
+        border: 1px solid black;
+        flex-grow: 1;
+        margin: 10px 0px;
+        max-height: 558px;
+        min-height: 400px;
+        overflow: scroll;
+        padding: 2px;
+      }
+      & .image {
+        margin: 10px 0px;
+      }
+      & .image-container {
+        height: 164px;
+      }
+      & .btn-container {
+        & .btn {
+          margin: 5px;
+        }
+      }
+    }
+  }
 }

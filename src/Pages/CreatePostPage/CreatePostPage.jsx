@@ -121,30 +121,30 @@ export default function CreatePost() {
       <div className='App'>
         <Navbar />
         <form>
-          <div className='top-container'>
-            <div className='left-container'>
-              <label htmlFor='post-title'>Title</label>
+          <div className='title-description-category-container'>
+            <div className='title-description-container'>
+              <label className="title-label" htmlFor='title'>Title</label>
               <input
-                className='title-input'
+                className='title'
                 type='text'
                 maxLength='50'
                 name='title'
-                id='post-title'
+                id='title-label'
                 value={input.title}
                 onChange={(event) => handleChange(event)}
               />
-              <label htmlFor='post-description'>Description</label>
+              <label className="description-label" htmlFor='description'>Description</label>
               <input
-                className='description-input'
+                className='description'
                 type='text'
                 maxLength='100'
                 name='description'
-                id='post-description'
+                id='description-label'
                 value={input.description}
                 onChange={(event) => handleChange(event)}
               />
             </div>
-            <div className='right-container'>
+            <div className='category-container'>
               <SelectOption
                 options={categoryOptions}
                 selection='Category'
@@ -152,17 +152,18 @@ export default function CreatePost() {
               />
             </div>
           </div>
-          <div className='body-container'>
+          <div className='editor-container'>
             <Editor
               name='body'
               editorState={editorState}
               onEditorStateChange={setEditorState}
             />
           </div>
-          <label htmlFor='image'>Choose an Image</label>
+          <label className="image-label" htmlFor='image'>Choose an Image</label>
           <input
             type='file'
             name='image'
+            className="image"
             accept='image/*'
             onChange={(event) => fileSubmit(event)}
           ></input>
@@ -176,7 +177,7 @@ export default function CreatePost() {
               />
             )}
           </div>
-          <div className='create-post-btns'>
+          <div className='btn-container'>
             <Button
               className='btn'
               onClick={(event) => submit(event)}
