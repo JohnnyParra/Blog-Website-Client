@@ -1,60 +1,61 @@
-.edit-page .top-container {
-  align-items: center;
-  display: flex;
-  height: 105px;
-  justify-content: space-between;
-}
+.edit-post {
 
-.edit-page .top-container .left-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
-  justify-content: center;
-  margin-right: 10px;
-}
+  & .App {
+    
+    & form {
+      display: flex;
+      flex-direction: column;
 
-.edit-page .top-container .right-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-end;
-  margin-bottom: 27px;
-}
+      & .title-description-category-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 10px;
+        width: 100%;
 
-.edit-page .title-input {
-  width: 300px;
-}
+        & .title-description-container {
+          display: flex;
+          flex: 1 300px;
+          flex-direction: column;
+          margin-right: 20px;
 
-.edit-page .description-input {
-  width: 100%;
-}
-
-.edit-page label {
-  font-size: 13px;
-  text-align: left;
-}
-
-.edit-page form {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.edit-page .image-container {
-  height: 164px;
-}
-
-.edit-page .body-container {
-  border: 1px solid black;
-  flex-grow: 1;
-  margin-bottom: 5px;
-  max-height: 558px;
-  min-height: 400px;
-  overflow: scroll;
-  padding: 2px;
-}
-
-.edit-page .create-post-btns .btn {
-  margin: 5px;
+          & .title-label,
+            .description-label {
+            font-size: 13px;
+            text-align: left;
+          }
+          & .title {
+            max-width: 300px;
+          }
+          & .description {
+            width: 100%;
+          }
+        }
+        & .category-container {
+          display: flex;
+          align-items: flex-end;
+        }
+      }
+      & .editor-container {
+        border: 1px solid black;
+        flex-grow: 1;
+        margin: 10px 0px;
+        max-height: 558px;
+        min-height: 400px;
+        overflow: scroll;
+        padding: 2px;
+      }
+      & .image {
+        margin: 10px 0px;
+      }
+      & .image-container {
+        height: 164px;
+      }
+      & .btn-container {
+        & .btn {
+          margin: 5px;
+        }
+      }
+    }
+  }
 }
