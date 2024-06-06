@@ -56,6 +56,11 @@ export default function Home(){
     setSearchParams(searchParams);
   };
 
+  function scrollToTop() {
+    const container = document.querySelector('.App');
+    container.scrollTop = 0;
+  }
+
   const linkElements = categoryOptions.map((category, index) => {
     return <a key={index} style={{color: searchParams.get('category') == category.value ? 'rgb(255, 106, 0)' : 'black'}} onClick={(event) => handleCategoryClick(event, category.value)}href='#'>{category.title}</a>
   })
@@ -77,6 +82,9 @@ export default function Home(){
         </div>
         <div className='post-card-container'>
           <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} page={searchParams.get('page')} />
+        </div>
+        <div className="scroll-to-top">
+          <span onClick={() => scrollToTop()}>back to top</span>
         </div>
       </div>
     </main>
