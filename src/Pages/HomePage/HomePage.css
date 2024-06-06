@@ -56,3 +56,9 @@ main {
     margin: 10px;
   }
 }
+
+@media only screen and (max-width: 1250px) {
+  .App {
+    border: none;
+  }
+}

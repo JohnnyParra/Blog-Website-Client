@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
+
+import { UserContext } from "../../Context/UserContext";
+import { Avatar } from "@mui/material";
 
 import { addCommentRequest } from "../../ApiServices/TasksService";
 
@@ -7,6 +10,7 @@ import "./CommentInput.css";
 
 export default function CommentInput(props) {
   const queryClient = useQueryClient();
+  const { currentUser } = useContext(UserContext);
   const [comment, setComment] = useState(
     props.parent_id != null ? `@${props.comment.name}` : ""
   );
@@ -40,16 +44,29 @@ export default function CommentInput(props) {
 
   return (
     <React.Fragment>
-      <input
-        className="input-text"
-        type="text"
-        name="comment"
-        value={comment}
-        onChange={(event) => setComment(event.target.value)}
-        onFocus={() => setCommentClicked(true)}
-        maxLength={1000}
-        placeholder="Add a comment..."
-      ></input>
+      <div className="reply-input-container">
+        <Avatar
+          src={currentUser?.userInfo[0].avatar}
+          sx={{ 
+            m: 1, 
+            width:props.avatarSize,
+            height: props.avatarSize, 
+            bgcolor: '#ff3d00' 
+          }}
+        >
+          {currentUser?.userInfo[0].name[0]}
+        </Avatar>
+        <input
+          className="input-text"
+          type="text"
+          name="comment"
+          value={comment}
+          onChange={(event) => setComment(event.target.value)}
+          onFocus={() => setCommentClicked(true)}
+          maxLength={1000}
+          placeholder="Add a comment..."
+        ></input>
+      </div>
       {commentClicked && (
         <div className="btns">
           <button className="cancel" onClick={() => handleCancel()}>

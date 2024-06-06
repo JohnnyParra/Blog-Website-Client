@@ -51,6 +51,7 @@ export default function CommentSection(props) {
         parent_id={null}
         refreshQuery={refreshQuery}
         handleReplySubmit={() => null}
+        avatarSize={40}
       />
       {commentElements}
     </div>
