@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 
+// Components
+import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
+
 // Api Services
 import { setJwt } from '../../ApiServices/JwtService';
 import { registerUser } from '../../ApiServices/AuthService';
@@ -99,15 +102,9 @@ export default function Login() {
       </div>
       <div className='right'>
         <h1 className='logo'>Blog</h1>
-        <div className='log-in'>
-          <p>Already have an account?</p>
-          <Link to='/Login'>
-            <button>Log in</button>
-          </Link>
-        </div>
         <div className='input-field-container'>
           <div className='input-field'>
-            <h1>Sign Up</h1>
+            <h2>Sign up</h2>
             {responseMessage.state && (
               <div className='register-response-message'>
                 <p>{responseMessage.msg}</p>
@@ -160,11 +157,16 @@ export default function Login() {
                 onClick={(event) => showPasswordBtn(event)}
               ></button>
             </div>
-
-            <button onClick={() => handleRegisterClick()}>
-              {isRefetching ? 'Loading...' : 'Register'}
-            </button>
-            {/* <p className='password-error-text'>{passwordMatchMsg}</p> */}
+            <SquareButton 
+              className={"btn-width"}
+              name={"sign up button"}
+              title={"sign up for website"}
+              text={isRefetching ? 'Loading...' : 'Sign up'}
+              isSelected={true}
+              isDisabled={false}
+              onClick={() => handleLoginClick()}
+              shape={"square"}
+            />
           </div>
           <p className='link'>
             Already have an account?{' '}

@@ -13,7 +13,7 @@ export default React.memo(function Navbar(props) {
   return (
     <div className='header'>
       <nav>
-        <h1 className="title"><Link to="/HomePage">Blog</Link></h1>
+        <h2 className="title"><Link to="/HomePage">Blog</Link></h2>
         <div className='right'>
           <SearchBar />
           <Dropdown />

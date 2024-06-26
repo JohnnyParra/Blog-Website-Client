@@ -3,6 +3,9 @@ import { useQuery } from 'react-query';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+//Components
+import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
+
 // Api Services: Authentication
 import { setJwt } from '../../ApiServices/JwtService';
 import { authenticateUser } from '../../ApiServices/AuthService';
@@ -88,15 +91,9 @@ export default function Login() {
       </div>
       <div className='right'>
         <h1 className='logo'>Blog</h1>
-        <div className='sign-up-section'>
-          <p>Don't have an account?</p>
-          <Link to='/'>
-            <button>Sign up</button>
-          </Link>
-        </div>
         <div className='input-field-container'>
           <div className='input-field'>
-            <h1>Login</h1>
+            <h2>Login</h2>
             {responseMessage.state && (
               <div className='login-response-message'>
                 <p>{responseMessage.msg}</p>
@@ -105,39 +102,50 @@ export default function Login() {
             <label htmlFor='email'>Email</label>
             <input
               onChange={(event) => handleFormChange(event)}
-              id={
-                responseMessage.error === 'missing' && loginForm.email === ''
+              className={
+                responseMessage.error === 'missing' 
+                && loginForm.email === ''
                   ? 'error'
                   : 'email'
               }
+              id='email'
               name='email'
               type='email'
               placeholder='Enter your email'
+              autoComplete='on'
             />
 
             <label htmlFor='password'>Password</label>
             <div className='password-input'>
               <input
                 onChange={(event) => handleFormChange(event)}
-                id={
-                  responseMessage.error === 'missing' &&
-                  loginForm.password === ''
+                className={
+                  responseMessage.error === 'missing' 
+                  && loginForm.password === ''
                     ? 'error'
                     : 'password'
                 }
+                id='password'
                 name='password'
                 type={types}
                 placeholder='Enter Password'
+                autoComplete='on'
               />
               <button
                 style={styles}
                 onClick={(event) => password(event)}
               ></button>
             </div>
-
-            <button onClick={() => handleLoginClick()}>
-              {isRefetching ? 'Loading...' : 'Log in'}
-            </button>
+            <SquareButton 
+              className={"btn-width"}
+              name={"log in button"}
+              title={"Log into website"}
+              text={isRefetching ? 'Loading...' : 'Log in'}
+              isSelected={true}
+              isDisabled={false}
+              onClick={() => handleLoginClick()}
+              shape={"square"}
+            />
           </div>
           <p className='link'>
             Don't have an account?{' '}
@@ -145,7 +153,7 @@ export default function Login() {
               Sign up
             </Link>
           </p>
-          <p>skip login</p>
+          {/* <p>skip login</p> */}
         </div>
       </div>
     </div>

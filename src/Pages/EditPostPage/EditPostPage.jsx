@@ -8,7 +8,6 @@ import { UserContext } from '../../Context/UserContext';
 
 // MUI components && Icons
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 import SaveIcon from '@mui/icons-material/Save';
 import PublishIcon from '@mui/icons-material/Publish';
@@ -20,6 +19,7 @@ import { updatePostRequest, deletePostRequest } from '../../ApiServices/TasksSer
 // Components
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Navbar from '../../Components/Navbar/Navbar';
+import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
 
 // Utilities
 import { categoryOptions } from '../../Utils/CategoryOptions';
@@ -45,8 +45,6 @@ export default function EditPost() {
   });
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState(data[0].image);
-
-  console.log(data)
 
   const { mutate: mutateUpdatePosts } = useMutation(
     (newPost) => updatePostRequest(newPost),
@@ -84,12 +82,13 @@ export default function EditPost() {
 
   function submit(event) {
     event.preventDefault();
-    if (event.target.name === 'cancel') {
+    let name = event.currentTarget.getAttribute('name');
+    if (name === 'cancel') {
       navigate(`/HomePage/Posts`);
       return;
-    } else if (event.target.name === 'delete') {
+    } else if (name === 'delete') {
       mutateDeletePosts(data[0].id);
-    } else if (event.target.name === 'save') {
+    } else if (name === 'save') {
       if (input.title === '' || input.description === '') {
         return alert('Missing Inputs');
       }
@@ -108,7 +107,7 @@ export default function EditPost() {
       formData.append('id', data[0].id);
       formData.append('date_edited', new Date().getTime().toString());
       mutateUpdatePosts(formData);
-    } else if (event.target.name === 'publish') {
+    } else if (name === 'publish') {
       if (input.title === '' || input.description === '') {
         return alert('Missing Inputs');
       }
@@ -144,7 +143,7 @@ export default function EditPost() {
         <form>
           <div className='title-description-category-container'>
             <div className='title-description-container'>
-              <label className="title-label" htmlFor='title'>Title</label>
+              <label className="title-label" htmlFor='title-label'>Title</label>
               <input
                 className='title'
                 type='text'
@@ -154,7 +153,7 @@ export default function EditPost() {
                 value={input.title}
                 onChange={(event) => handleChange(event)}
               />
-              <label className="description-label" htmlFor='description'>Description</label>
+              <label className="description-label" htmlFor='description-label'>Description</label>
               <input
                 className='description'
                 type='text'
@@ -185,6 +184,7 @@ export default function EditPost() {
             type='file'
             name='image'
             className="image"
+            id='image'
             accept='image/*'
             onChange={(event) => fileSubmit(event)}
           ></input>
@@ -197,53 +197,49 @@ export default function EditPost() {
             />
           </div>
           <div className='btn-container'>
-            <Button
-              className='btn'
-              onClick={(event) => submit(event)}
-              name='cancel'
-              size='small'
-              variant='contained'
-              color='warning'
-              startIcon={<ClearIcon />}
-            >
-              Cancel
-            </Button>
+            <SquareButton 
+              className={""}
+              name={"cancel"}
+              title={"cancel"}
+              text={"Cancel"}
+              color={"primary"}
+              isSelected={true}
+              onClick={(event) => submit(event)} 
+              icon={<ClearIcon />}
+            />
             {!data[0].date_deleted && (
-              <Button
-                className='btn'
-                onClick={(event) => submit(event)}
-                name='delete'
-                size='small'
-                variant='contained'
-                color='warning'
-                endIcon={<DeleteIcon />}
-              >
-                Delete
-              </Button>
+              <SquareButton 
+                className={""}
+                name={"delete"}
+                title={"delete"}
+                text={"Delete"}
+                color={"primary"}
+                isSelected={true}
+                onClick={(event) => submit(event)} 
+                icon={<DeleteIcon />}
+              />
             )}
-            <Button
-              className='btn'
-              onClick={(event) => submit(event)}
-              name='save'
-              size='small'
-              variant='contained'
-              color='warning'
-              endIcon={<SaveIcon />}
-            >
-              Save to Drafts
-            </Button>
+            <SquareButton 
+              className={""}
+              name={"save to drafts"}
+              title={"save to drafts"}
+              text={"Save to Drafts"}
+              color={"primary"}
+              isSelected={true}
+              onClick={(event) => submit(event)} 
+              icon={<SaveIcon />}
+            />
             {data[0].published != 1 && (
-              <Button
-                className='btn'
-                onClick={(event) => submit(event)}
-                name='publish'
-                size='small'
-                variant='contained'
-                color='warning'
-                endIcon={<PublishIcon />}
-              >
-                {!data[0].date_deleted ? 'Update' : 'Publish'}
-              </Button>
+              <SquareButton 
+                className={""}
+                name={"publish"}
+                title={"publish"}
+                text={"Publish"}
+                color={"primary"}
+                isSelected={true}
+                onClick={(event) => submit(event)} 
+                icon={<PublishIcon />}
+              />
             )}
           </div>
         </form>

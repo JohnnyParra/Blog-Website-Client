@@ -21,19 +21,40 @@
 
           & .title-label,
             .description-label {
-            font-size: 13px;
+            font-size: var(--fs-300);
             text-align: left;
           }
+          & label {
+            margin-top: 4px;
+          }
           & .title {
+            background: linear-gradient(black 0 0) bottom / 0% 1px no-repeat;
+            border: none;
+            border-bottom: 1px solid black;
             max-width: 300px;
+            transition: 0.5s;
+            transition-property: background;
+            &:focus {
+              background-size: 100% 1px;
+              outline: none;
+            }
           }
           & .description {
+            background: linear-gradient(black 0 0) bottom / 0% 1px no-repeat;
+            border: none;
+            border-bottom: 1px solid black;
+            transition: 0.5s;
+            transition-property: background;
             width: 100%;
+            &:focus {
+              background-size: 100% 1px;
+              outline: none;
+            }
           }
         }
         & .category-container {
-          display: flex;
           align-items: flex-end;
+          display: flex;
         }
       }
       & .editor-container {
@@ -46,12 +67,36 @@
         padding: 2px;
       }
       & .image {
+        align-self: center;
         margin: 10px 0px;
+        &::file-selector-button {
+          background-color: var(--secondary-color);
+          border: 1px solid black;
+          border-radius: 5px;
+          color: white;
+          cursor: pointer;
+          height: 26px;
+          padding: 0px 16px;
+        }
+        &::file-selector-button:hover {
+          background-color: var(--secondary-color-hover-dark)
+        }
+      }
+      & .image-label {
+        font-size: var(--fs-400);
+        font-weight: 600;
+        letter-spacing: 0.08rem;
       }
       & .image-container {
+        align-self: center;
         height: 164px;
+        margin: 4px 0px;
       }
       & .btn-container {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         & .btn {
           margin: 5px;
         }

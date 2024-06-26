@@ -6,7 +6,6 @@ import { UserContext } from '../../Context/UserContext';
 
 // MUI Components && Icons
 import CreateIcon from '@mui/icons-material/Create';
-import Button from '@mui/material/Button';
 
 // Api Services
 import { fetchUser } from '../../ApiServices/TasksService';
@@ -16,6 +15,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 import ContentHolder from '../../Components/ContentHolder/ContentHolder';
 import FeaturedContentHolder from '../../Components/FeaturedContentHolder/FeaturedContentHolder';
 import SelectOption from '../../Components/SelectOption/SelectOption';
+import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
 
 // Utilities
 import { sortOptions } from '../../Utils/SortOptions';
@@ -62,7 +62,7 @@ export default function Home(){
   }
 
   const linkElements = categoryOptions.map((category, index) => {
-    return <a key={index} style={{color: searchParams.get('category') == category.value ? 'rgb(255, 106, 0)' : 'black'}} onClick={(event) => handleCategoryClick(event, category.value)}href='#'>{category.title}</a>
+    return <a key={index} style={{color: searchParams.get('category') == category.value ? 'var(--primary-color)' : 'black'}} onClick={(event) => handleCategoryClick(event, category.value)}href='#'>{category.title}</a>
   })
 
   return (
@@ -70,14 +70,23 @@ export default function Home(){
       <div className = 'App'>
         <Navbar />
         <div className='category-links'>
-          <a style={{color: searchParams.get('category') == 0 ? 'rgb(255, 106, 0)' : 'black'}} onClick={(event) => handleCategoryClick(event, 0)}href='#'>All</a>
+          <a style={{color: searchParams.get('category') == 0 ? 'var(--primary-color)' : 'black'}} onClick={(event) => handleCategoryClick(event, 0)}href='#'>All</a>
           {linkElements}
         </div>
         <FeaturedContentHolder category={searchParams.get('category')} />
         <div className='select-option-container'>
-          <Button onClick={() => navigate('Posts/CreatePost')} size='small' variant='contained' color='warning' startIcon={<CreateIcon />}>
-            Create A Post
-          </Button>
+          <SquareButton 
+            className={""}
+            name={"create a post"}
+            title={"create a post"}
+            text={"Create A Post"}
+            disabled={false}
+            shape={"square"}
+            color={"primary"}
+            isSelected={true}
+            onClick={() => navigate('Posts/CreatePost')} 
+            icon={<CreateIcon />}
+          />
           <SelectOption key={searchParams.get('sort')} start={searchParams.get('sort')} options={sortOptions} selection='Sort' handleSelect={handleSelect}/>
         </div>
         <div className='post-card-container'>

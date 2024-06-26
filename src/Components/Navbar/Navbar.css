@@ -5,12 +5,8 @@
   justify-content: center;
 }
 
-/* .header .title {
-  color: rgb(255, 106, 0);
-} */
-
 .header .title a {
-  color: rgb(255, 106, 0);
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -52,6 +48,10 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.MuiInputBase-root {
+  font-size: var(--fs-400) !important;
 }
 
 .menuItem {

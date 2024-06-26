@@ -1,0 +1,195 @@
+.select-container {
+  height: auto;
+  max-width: 160px;
+  position: relative;
+
+  & .label {
+    background-color: white;
+    color: rgb(150, 150, 150);
+    font-size: 0.9rem;
+    font-weight: 100;
+    left: 0;
+    padding: 0px 8px 0px 4px;
+    position: absolute;
+    top: 0;
+    transform: translate(10px, -7px);
+    z-index: 1;
+  }
+  & .select {
+    border: 1px solid rgb(150, 150, 150);;
+    border-radius: 5px;
+    display: flex;
+    flex: 1;
+    font-size: var(--fs-400);
+    &:hover {
+      border-color: black;
+      cursor: pointer;
+    }
+    &:focus {
+      border-color: var(--secondary-color);
+      outline: 1px solid var(--secondary-color);
+    }
+    & .text {
+      align-items: center;
+      color: rgb(150, 150, 150);
+      display: flex;
+      flex: 1;
+      height: 50px;
+      justify-content: space-between;
+      padding: 10px;
+
+      & span {
+        color: var(--secondary-color);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    & .dropdown-content-container {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      display: none;
+      padding: 4px 0px;
+      position: absolute;
+      right: 0;
+      top: 54px;
+      z-index: 10;
+  
+      & .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        
+        & .option-container {
+          align-items: center;
+          cursor: pointer;
+          display: flex;
+          height: 36px;
+          justify-content: center;
+          padding: 0px 16px;
+  
+          & .icon {
+            margin-right: 5px;
+          }
+          & .option {
+            & span {
+              color: var(--secondary-color);
+              font-size: var(--fs-400);
+            }
+          }
+        }
+        & .highlighted {
+          background-color: var(--secondary-color-hover);
+        }
+        & .selected {
+          background-color: var(--secondary-color-selected) !important;
+        }
+      }
+    }
+    & .show {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .select-container {
+
+  
+    & .label {
+    }
+    & .select {
+      &:hover {
+
+      }
+      &:focus {
+
+      }
+      & .text {
+        height: 40px;
+        & span {
+
+        }
+      }
+      & .dropdown-content-container {
+
+    
+        & .dropdown-content {
+
+          
+          & .option-container {
+            height: 30px;
+    
+            & .icon {
+
+            }
+            & .option {
+              & span {
+
+              }
+            }
+            &:hover {
+            }
+          }
+          & .selected {
+          }
+        }
+      }
+      & .show {
+
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .select-container {
+
+  
+    & .label {
+    }
+    & .select {
+      &:hover {
+
+      }
+      &:focus {
+
+      }
+      & .text {
+
+  
+        & span {
+
+        }
+      }
+      & .dropdown-content-container {
+
+    
+        & .dropdown-content {
+
+          
+          & .option-container {
+
+    
+            & .icon {
+
+            }
+            & .option {
+              & span {
+
+              }
+            }
+            &:hover {
+            }
+          }
+          & .selected {
+          }
+        }
+      }
+      & .show {
+
+      }
+    }
+  }
+}

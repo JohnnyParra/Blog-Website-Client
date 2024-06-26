@@ -1,0 +1,15 @@
+.comment-section-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px 20px 0px;
+
+  & .title {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+
+    & span {
+      font-size: var(--fs-500);
+    }
+  }
+}

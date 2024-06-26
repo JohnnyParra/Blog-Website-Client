@@ -1,0 +1,10 @@
+.user-posts-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  width: 100%;
+
+  & .loading {
+    align-self: center;
+  }
+}

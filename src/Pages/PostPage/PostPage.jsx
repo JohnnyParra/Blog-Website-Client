@@ -12,7 +12,7 @@ import { fetchPost } from '../../ApiServices/TasksService';
 // Components
 import Navbar from '../../Components/Navbar/Navbar';
 import LikeButton from '../../Components/LikeButton/LikeButton';
-import CommentSection from '../../Components/CommentsSection/CommentsSection';
+import CommentSection from '../../Components/CommentSection/CommentSection';
 
 // Styling
 import './PostPage.css';
@@ -43,25 +43,35 @@ export default function Post() { /// something wrong with how the LikeButton com
     <main className='post-page'>
       <div className='App'>
         <Navbar />
-        <h1>{data[0].title}</h1>
-        <h3>
-          <i>{data[0].description}</i>
-        </h3>
-        {data[0].date_published && (
-          <p className='created-date'>
-          Published: {new Date(data[0].date_published).toLocaleString()}
-        </p>
-        )}
-        {data[0].date_edited && (
-          <p className='edited-date'>
-            Last Edited:{' '}
-            {new Date(data[0].date_edited).toLocaleString()}
-          </p>
-        )}
-        <p className='created-by'>By: {data[0].author}</p>
-        {data[0].user_id === currentUser.user.userId && (
-          <Link to={`/HomePage/Posts/EditPost/${data[0].id}`}>edit</Link>
-        )}
+        <div className="title-container">
+          <h1>{data[0].title}</h1>
+        </div>
+        <div className="description-container">
+          <h5>
+            <i>{data[0].description}</i>
+          </h5>
+        </div>
+        <div className="dates-container">
+          {data[0].date_published && (
+            <span className='created-date'>
+            Published: {new Date(data[0].date_published).toLocaleString()}
+          </span>
+          )}
+          {data[0].date_edited && (
+            <span className='edited-date'>
+              Last Edited:{' '}
+              {new Date(data[0].date_edited).toLocaleString()}
+            </span>
+          )}
+        </div>
+        <div className="by-container">
+          <span className='created-by'>By: {data[0].author}</span>
+        </div>
+        <div className="edit-link-container">
+          {data[0].user_id === currentUser.user.userId && (
+            <Link to={`/HomePage/Posts/EditPost/${data[0].id}`}>edit</Link>
+          )}
+        </div>
         <LikeButton id={id} type={'post_likes'} />
         <div className='editor-container'>
           <Editor

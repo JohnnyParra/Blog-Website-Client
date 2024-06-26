@@ -1,17 +1,20 @@
 // Libraries
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useInfiniteQuery } from 'react-query';
 
 // Api Services
 import { fetchPosts } from '../../ApiServices/TasksService';
 
+// Hooks
+import useDetectPageBottom from '../../hooks/useDetectPageBottom';
+
 // Components
 import PostCard from '../PostCard/PostCard';
 
+// Styling
 import './ContentHolder.css'
 
 export default React.memo(function ContentHolder(props) {
-  const scrollPositionRef = useRef(0);
 
   const {
     data: backendData,
@@ -29,25 +32,7 @@ export default React.memo(function ContentHolder(props) {
       refetchOnWindowFocus: false,
     }
   )
-
-  // Detects when user reaches bottom of the div
-  useEffect(() => {
-    const app = document.querySelector('.App');
-    function detectBottom() {
-      if (app) {
-        const isBottom = app.scrollTop + app.clientHeight >= app.scrollHeight - 10;
-        if (isBottom && !isFetching && !isFetchingNextPage && hasNextPage) {
-          scrollPositionRef.current = window.scrollY;
-          fetchNextPage();
-        }
-      }
-    }
-    app.addEventListener("scroll",detectBottom);
-
-    return () => {
-      app.removeEventListener("scroll",detectBottom);
-    }
-  },[isFetching, isFetchingNextPage, hasNextPage]);
+  useDetectPageBottom(isFetching, isFetchingNextPage, hasNextPage, fetchNextPage);
 
   if (isLoading) {return <p>Loading...</p>};
   if (isError) {return <p>An Error occurred</p>};

@@ -1,0 +1,5 @@
+.dropdown-container {
+  & span {
+    font-size: var(--fs-400);
+  }
+}

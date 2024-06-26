@@ -1,8 +1,8 @@
 // Libraries && Context
 import { useState, useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
-import { UserContext } from '../../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../Context/UserContext';
 
 
 // Api Services
@@ -15,6 +15,7 @@ import { Avatar, IconButton } from '@mui/material';
 
 // Components
 import Navbar from '../../Components/Navbar/Navbar';
+import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
 
 // Image Assets
 import eye from '../../Assets/eye.svg';
@@ -162,8 +163,8 @@ export default function Profile() {
                 src={previewImage}
                 sx={{
                   fontSize: 100,
-                  width: 200,
-                  height: 200,
+                  width: {xs: 150, sm: 200},
+                  height: {xs: 150, sm: 200},
                   m: 1,
                   bgcolor: '#ff3d00',
                 }}
@@ -180,64 +181,87 @@ export default function Profile() {
           ).toLocaleString()}
         </p>
         <div className='input-container'>
-          {responseMessage.state && (
-            <div className='profile-message'>
-              <p>{responseMessage.msg}</p>
+          <div className="input-canvas">
+            {responseMessage.state && (
+              <div className='profile-message'>
+                <p>{responseMessage.msg}</p>
+              </div>
+            )}
+            <div className='input-row'>
+              <div className="label">
+                <label htmlFor='username'>Username: </label>
+              </div>
+              <div className="input username">
+                <input
+                  type='text'
+                  id='username'
+                  name='name'
+                  value={input.name}
+                  onChange={(event) => inputChange(event)}
+                ></input>
+              </div>
             </div>
-          )}
-          <div className='username'>
-            <p>Username: </p>
-            <input
-              type='text'
-              name='name'
-              value={input.name}
-              onChange={(event) => inputChange(event)}
-            ></input>
-          </div>
-          <div className='email'>
-            <p>Email: </p>
-            <input
-              type='text'
-              name='email'
-              value={input.email}
-              onChange={(event) => inputChange(event)}
-            ></input>
-          </div>
-          {changes && (
-            <div className='password'>
-              <p>Password: </p>
-              <input
-                name='password'
-                value={input.password}
-                type={types}
-                onChange={(event) => inputChange(event)}
-              ></input>
-              <button
-                style={styles}
-                onClick={(event) => password(event)}
-              ></button>
+            <div className='input-row'>
+              <div className="label">
+                <label htmlFor="email">Email: </label>
+              </div>
+              <div className="input email">
+                <input
+                  type='text'
+                  id='email'
+                  name='email'
+                  value={input.email}
+                  onChange={(event) => inputChange(event)}
+                ></input>
+              </div>
             </div>
-          )}
-          {changes && (
-            <button
-              className='save-avatar-btn'
-              name='save'
-              onClick={(event) => handleClick(event)}
-              disabled={input.password == ''}
-            >
-              Save Changes
-            </button>
-          )}
+            {changes && (
+              <div className='input-row'>
+                <div className="label">
+                  <label htmlFor="password">Password: </label>
+                </div>
+                <div className="input password">
+                  <input
+                    name='password'
+                    id='password'
+                    value={input.password}
+                    type={types}
+                    onChange={(event) => inputChange(event)}
+                  ></input>
+                  <button
+                    style={styles}
+                    onClick={(event) => password(event)}
+                  ></button>
+                </div>
+              </div>
+            )}
+            {changes && (
+              <SquareButton 
+                className={""}
+                name={'save changes'}
+                title={'save changes'}
+                text={'Save Changes'}
+                color={'primary'}
+                isSelected={true}
+                onClick={(event) => handleClick(event)}
+                disabled={input.password == ''}
+                shape={'square'}
+              
+              />
+            )}
+          </div>
         </div>
         <div className="delete" onClick={() => popUp()}><span>Delete Account</span></div>
         {popup && (
-          <div className="popup-background">
-            <div className="popup">
-              <h1>Confirm Deletion of Account</h1>
-              <h4>You will Have 30 days to reactivate the account if this was a mistake</h4>
-              <div className="popup-btn-container">
-                <button className="popup-btn popup-cancel-btn" onClick={() => setPopup(false)}>Cancel</button>
-                <button className="popup-btn popup-delete-btn" onClick={() => deleteAccount()}>Delete</button>
+          <div className="overlay-delete-container">
+            <div className="page-overlay">
+            </div>
+            <div className="check-delete-container">
+              <span><b>Are you sure you want to delete your Account?</b></span>
+              <span>You will have 30 days to reactivate this account</span>
+              <div className="options">
+                <button className="cancel" onClick={() => setPopup(false)}>Cancel</button>
+                <button className="delete" onClick={() => deleteAccount()}>Delete</button>
               </div>
             </div>
           </div>

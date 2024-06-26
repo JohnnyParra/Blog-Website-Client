@@ -7,12 +7,14 @@
 .sign-up .left {
   background-image: url('../../Assets/table-background.jpg');
   background-size: cover;
+  display: flex;
   flex-grow: 1;
+  justify-content: flex-start;
 }
 
 .sign-up .left .logo {
-  color: rgb(255, 106, 0);
-  margin: 20px 10px;
+  color: var(--primary-color);
+  margin: 20px 10px !important;
 }
 
 .sign-up .right {
@@ -23,7 +25,7 @@
 }
 
 .sign-up .right .logo {
-  color: rgb(255, 106, 0);
+  color: var(--primary-color);
   display: none;
 }
 
@@ -38,7 +40,7 @@
   border-radius: 8px;
   box-shadow: 0px 5px 12px #7f7f8080;
   color: white;
-  font-size: 15px;
+  font-size: var(--fs-500);
   height: 40px;
   margin-left: 20px;
   width: 90px;
@@ -47,11 +49,6 @@
 .sign-up .log-in button:hover {
   background-color: #5d5d5d;
   cursor: pointer;
-}
-
-.sign-up .logo {
-  height: 48px;
-  width: 48px;
 }
 
 .sign-up .input-field-container {
@@ -83,12 +80,11 @@
   flex-direction: column;
   margin-bottom: 34px;
   padding: 30px 60px 30px 60px;
-  width: 380px;
 }
 
 .sign-up .input-field label {
   align-self: flex-start;
-  font-size: 12px;
+  font-size: var(--fs-300);
   letter-spacing: .3px;
 }
 
@@ -136,27 +132,31 @@
 
 .sign-up .input-field .password-input button {
   background-image: url('../assets/eye.svg');
-  background-position: 9px 7px;
+  background-position: center;
   background-repeat: no-repeat;
   border-radius: 0px 8px 8px 0px;
   height: 40px;
   width: 50px;
+
+  &:hover {
+    background-color: var(--secondary-color-hover-dark);
+    cursor: pointer;
+  }
 }
 
 .sign-up .input-field button {
-  background-color: #7f7f80;
+  background-color: var(--secondary-color);
   border: 0px;
   border-radius: 8px;
   box-shadow: 0px 5px 12px #7f7f8080;
   color: white;
-  font-size: 18px;
+  font-size: var(--fs-550);
   height: 50px;
   width: 100%;
 }
 
-.sign-up .input-field button:hover {
-  background-color: #5d5d5d;
-  cursor: pointer;
+.sign-up .input-field .btn-width {
+  width: 100%;
 }
 
 .sign-up .link {
@@ -164,10 +164,14 @@
 }
 
 .sign-up .Link {
-  color: grey;
+  color: var(--secondary-color);
+
+  &:hover {
+    color: var(--secondary-color-hover-dark);
+  }
 }
 
-@media screen and (max-width: 514px) {
+@media screen and (max-width: 600px) {
   .sign-up .right .logo {
     display: flex;
   }

@@ -1,0 +1,33 @@
+.comment-expander-container {
+  display: flex;
+  flex-direction: column;
+
+  & .text-container {
+    line-height: 20px;
+    text-align: left;
+
+    & .text {
+      font-size: var(--fs-400) !important;
+      margin: 4px 0px 0px 0px;
+      white-space: pre-wrap;
+    }
+  }
+  & .expand-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 4px;
+
+    & .expand-btn {
+      border: 1px solid transparent;
+      color: rgb(150, 150, 150);
+      cursor: pointer;
+      font-size: var(--fs-300);
+      font-weight: 400;
+      margin: 0;
+
+      &:hover {
+        border-bottom: 1px solid rgb(150, 150, 150);
+      }
+    }
+  }
+}

@@ -1,14 +1,41 @@
-.post-page .created-date {
-  font-size: 14px;
-  font-weight: 300;
-}
+.post-page {
+  & .App {
+    & .title-container {
+      display: flex;
+      justify-content: center;
+    }
+    & .description-container {
+      display: flex;
+      justify-content: center;
+    }
+    & .dates-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 5px 0px;
 
-.post-page .edited-date {
-  font-size: 11px;
-  font-weight: 300;
-}
-
-.post-page .created-by {
-  font-size: 14px;
-  font-weight: 300;
+      & span {
+        margin: 2px 0px;
+      }
+    }
+    & .by-container {
+      display: flex;
+      font-size: var(--fs-300);
+      justify-content: center;
+      margin: 5px 0px;
+    }
+    & .edit-link-container {
+      display: flex;
+      font-size: var(--fs-300);
+      justify-content: center;
+      margin: 5px 0px;
+    }
+    & .editor-container {
+      align-items: center;
+      display: flex;
+      font-size: var(--fs-550);
+      justify-content: center;
+    }
+  }
 }

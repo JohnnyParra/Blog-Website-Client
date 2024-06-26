@@ -18,6 +18,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+// Styling
+import './Dropdown.css'
+
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -88,7 +91,7 @@ export default function Dropdown() {
   };
 
   return (
-    <div>
+    <div className="dropdown-container">
       <Button
         id='demo-customized-button'
         aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -100,11 +103,11 @@ export default function Dropdown() {
       >
         <Avatar
           src={currentUser?.userInfo[0].avatar}
-          sx={{ m: 1, bgcolor: '#ff3d00' }}
+          sx={{ m: 1, bgcolor: '#ff3d00'}}
         >
           {currentUser?.userInfo[0].name[0]}
         </Avatar>
-        <p className='user'>{currentUser.userInfo[0]?.name}</p>
+        <span className='user'>{currentUser.userInfo[0]?.name}</span>
         {open ? (
           <KeyboardArrowUpIcon className='user-icon' />
         ) : (
@@ -123,6 +126,8 @@ export default function Dropdown() {
         <MenuItem
           className='menuItem'
           name='home'
+          title='home'
+          sx={{fontSize: "12px", minHeight: "30px"}}
           onClick={(event) => handleClose(event)}
           disableRipple
         >
@@ -132,6 +137,8 @@ export default function Dropdown() {
         <MenuItem
           className='menuItem'
           name='profile'
+          title='profile'
+          sx={{fontSize: "12px", minHeight: "30px"}}
           onClick={(event) => handleClose(event)}
           disableRipple
         >
@@ -141,6 +148,8 @@ export default function Dropdown() {
         <MenuItem
           className='menuItem'
           name='posts'
+          title='your posts'
+          sx={{fontSize: "12px", minHeight: "30px"}}
           onClick={(event) => handleClose(event)}
           disableRipple
         >
@@ -150,6 +159,8 @@ export default function Dropdown() {
         <MenuItem
           className='menuItem'
           name='likes'
+          title='your liked posts'
+          sx={{fontSize: "12px", minHeight: "30px"}}
           onClick={(event) => handleClose(event)}
           disableRipple
         >
@@ -160,6 +171,8 @@ export default function Dropdown() {
         <MenuItem
           className='menuItem'
           name='logout'
+          title='logout'
+          sx={{fontSize: "12px", minHeight: "30px"}}
           onClick={(event) => handleClose(event)}
           disableRipple
         >

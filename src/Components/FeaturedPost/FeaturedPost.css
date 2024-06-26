@@ -10,14 +10,14 @@
     width: 100%;
 
     & .image-container {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
       height: 100%;
+      position: relative;
       width: 100%;
 
       & .image-overlay {
@@ -33,19 +33,19 @@
         display: flex;
         flex: 1;
         flex-direction: column;
-        padding: 10px;
-        position: relative;
         height: 100%;
         max-width: 550px;
         overflow: hidden;
         overflow-wrap: anywhere;
+        padding: 10px;
+        position: relative;
         z-index: 2;
 
         & .title-description-container {
           display: flex;
+          flex: 1;
           flex-direction: column;
           justify-content: center;
-          flex: 1;
 
           & .title-container {
             display: flex;
@@ -53,8 +53,13 @@
   
             & .title {
               color: white;
-              font-size: 36px;
+              display: -webkit-box;
+              font-size: var(--fs-900);
+              line-clamp: 3;
               margin: 10px 0px;
+              overflow: hidden;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
             }
           }
           & .description-container {
@@ -63,7 +68,12 @@
   
             & .description {
               color: white;
+              display: -webkit-box;
+              line-clamp: 2;
               margin: 8px 0px;
+              overflow: hidden;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
             }
           }
         }
@@ -87,7 +97,7 @@
   .featured-post-container {
 
     & .featured-post {
-
+      height: 250px;
       & .image-container {
 
         & .image-overlay {
@@ -99,13 +109,12 @@
             & .title-container {
   
               & .title {
-                font-size: 28px;
               }
             }
             & .description-container {
   
               & .description {
-                font-size: 16px;
+                
               }
             }
           }
@@ -137,13 +146,13 @@
             & .title-container {
   
               & .title {
-                font-size: 24px;
+                font-size: var(--fs-700);
               }
             }
             & .description-container {
   
               & .description {
-                font-size: 14px;
+                font-size: var(--fs-400);
               }
             }
           }

@@ -15,7 +15,6 @@ import './LikeButton.css';
 export default function LikeButton(props) {
   const [likeButton, setLikeButton] = useState(false);
   const queryClient = useQueryClient();
-  // console.log(props.id)
 
   const { data, isLoading, isError } = useQuery(
     ['likes', props.id],
@@ -53,26 +52,30 @@ export default function LikeButton(props) {
   if (isError) return <p>Error Occurred</p>;
   const styles = { color: 'red' };
 
-  function addLikeClick() {
-    setLikeButton(true);
-    mutateAddLike({ id: props.id });
-  }
-
-  function removeLikeClick() {
-    setLikeButton(false);
-    mutateDeleteLike();
+  function handleClick() {
+    if (data.userLike[0].userLike > 0) {
+      setLikeButton(false);
+      mutateDeleteLike();
+    } else {
+      setLikeButton(true);
+      mutateAddLike({ id: props.id });
+    }
   }
 
   const likeBtn = likeButton ? (
-    <FavoriteIcon style={styles} onClick={removeLikeClick} />
+    <FavoriteIcon style={styles}/>
   ) : (
-    <FavoriteBorderIcon style={styles} onClick={addLikeClick} />
+    <FavoriteBorderIcon style={styles}/>
   );
 
   return (
-    <div className='like-btn'>
-      <span>{data.likes[0].Likes}</span>
-      {likeBtn}
+    <div className='like-btn-container'>
+      <div className="like-btn" onClick={handleClick}>
+        <span>{data.likes[0].Likes}</span>
+        <div className="btn">
+          {likeBtn}
+        </div>
+      </div>
     </div>
   );
 };

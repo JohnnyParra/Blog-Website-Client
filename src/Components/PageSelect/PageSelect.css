@@ -11,13 +11,13 @@
   display: flex;
   justify-content: center;
   margin-right: 5px;
-  min-width: 25px;
   max-height: 27px;
+  min-width: 25px;
   padding: 3px;
 }
 
 .page-button:hover {
-  background-color: rgb(255, 106, 0) !important;
+  background-color: var(--primary-color) !important;
   color: white !important;
   cursor: pointer;
 }

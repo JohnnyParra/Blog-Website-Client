@@ -81,17 +81,17 @@ export const deleteCommentLikeRequest = async (id) => {
   }
 }
 
-export const fetchComments = async (id) => {
+export const fetchComments = async (id, page) => {
   try {
-    return get(`${API_URL}/comments/${id}`);
+    return get(`${API_URL}/comments/${id}/${page}`);
   } catch (err) {
     return { data: [], error: err }
   }
 }
 
-export const fetchCommentReplies = async (id) => {
+export const fetchCommentReplies = async (id, page) => {
   try {
-    return get(`${API_URL}/comments/replies/${id}`);
+    return get(`${API_URL}/comments/replies/${id}/${page}`);
   } catch (err) {
     return { data: [], error: err }
   }
@@ -105,27 +105,41 @@ export const addCommentRequest = async (data) => {
   }
 }
 
+export const editCommentRequest = async (data) => {
+  try{
+    return put(`${API_URL}/comments/`, data);
+  } catch(err){
+    return { data: [], error: err }
+  }
+}
 
+export const deleteCommentRequest = async (id) => {
+  try{
+    return remove(`${API_URL}/comments/${id}`);
+  } catch(err){
+    return { data: [], error: err }
+  }
+}
 
-export const fetchUserPosts = async (published) => {
+export const fetchUserPosts = async (published, page) => {
   try {
-    return get(`${API_URL}/user/posts/${published}`);
+    return get(`${API_URL}/user/posts/${published}/${page}`);
   } catch (err) {
     return { data: [], error: err }
   }
 }
 
-export const fetchUserLikedPosts = async () => {
+export const fetchUserLikedPosts = async (page) => {
   try {
-    return get(`${API_URL}/user/posts/liked`);
+    return get(`${API_URL}/user/posts/liked/${page}`);
   } catch (err) {
     return { data: [], error: err }
   }
 }
 
-export const fetchSearch = async (search) => {
+export const fetchSearch = async (search, page) => {
   try {
-    return get(`${API_URL}/search/${search}`);
+    return get(`${API_URL}/search/${search}/${page}`);
   } catch (err) {
     return { data: [], error: err }
   }

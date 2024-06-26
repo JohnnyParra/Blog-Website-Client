@@ -29,18 +29,26 @@ main {
   display: flex;
   font-weight: 350;
   justify-content: space-between;
+  margin-bottom: 5px;
   min-height: 40px;
   overflow-x: auto;
   padding: 0px 15px 0px 15px;
+  scrollbar-width: thin;
   width: 100%;
 }
 
 .home-page .category-links a {
   color: black;
+  font-size: var(--fs-300);
   margin: 0px 10px 0px 10px;
+
+  &:hover {
+    color: var(--primary-color-hover) !important;
+  }
 }
 
 .home-page .select-option-container {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   margin: 20px 0px 20px 0px;
@@ -52,7 +60,7 @@ main {
 
   & span {
     cursor: pointer;
-    font-size: 12px;
+    font-size: var(--fs-300);
     margin: 10px;
   }
 }
@@ -60,5 +68,13 @@ main {
 @media only screen and (max-width: 1250px) {
   .App {
     border: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home-page .select-option-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px 10px 0px;
   }
 }

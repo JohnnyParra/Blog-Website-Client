@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+// Libraries
+import React  from "react";
 import { useNavigate } from 'react-router-dom';
 
+// Styling
 import './FeaturedPost.css';
 
 export default function FeaturedPost(props) {
@@ -23,10 +25,10 @@ export default function FeaturedPost(props) {
           <div className="image-overlay"></div>
           <div className="text-overlay">
             <div className="title-description-container">
-              <div className="title-container">
+              <div className="title-container" title={title}>
                 <h1 className="title">{title}</h1>
               </div>
-              <div className="description-container">
+              <div className="description-container" title={description}>
                 <h3 className="description">{description}</h3>
               </div>
             </div>
