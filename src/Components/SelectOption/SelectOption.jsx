@@ -23,6 +23,7 @@ export default function FieldSet(props) {
   useEffect(() => {
     if (isDropDown) {
       const handleKeyDown = (event) => {
+        event.preventDefault();
         if (event.key === 'ArrowDown') {
           setHighlightedIndex((prevIndex) => (prevIndex + 1) % props.options.length);
         } else if (event.key === 'ArrowUp') {
