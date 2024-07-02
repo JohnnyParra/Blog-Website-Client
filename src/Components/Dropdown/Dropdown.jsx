@@ -94,6 +94,15 @@ export default function Dropdown() {
     <div className="dropdown-container">
       <Button
         id='demo-customized-button'
+        sx={{
+          backgroundColor: 'transparent',
+          color: 'black',
+          fontFamily: "'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue','Helvetica', 'Arial', 'sans-serif'",
+          padding: '0',
+          '&:hover': {
+            backgroundColor: 'transparent',
+          }
+        }}
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}

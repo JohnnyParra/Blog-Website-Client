@@ -13,6 +13,9 @@
     animation: pulseLogo 1.5s infinite;
     outline: none;
   }
+  &:hover {
+    color: var(--primary-color-hover);
+  }
 }
 
 .header nav {
@@ -31,37 +34,8 @@
   justify-content: center;
 }
 
-.css-zddlty-MuiButtonBase-root-MuiButton-root {
-  background-color: transparent !important;
-  color: black !important;
-  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue',
-    'Helvetica', 'Arial', sans-serif !important;
-  padding: 0 !important;
-}
-
-#demo-customized-button {
-  align-items: center;
-  display: flex;
-  height: 44px;
-  justify-content: center;
-  max-width: 190px;
-}
-
-#demo-customized-button .user {
-  margin-left: 5px;
-  max-width: 130px;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .MuiInputBase-root {
   font-size: var(--fs-400) !important;
-}
-
-.menuItem {
-  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue',
-    'Helvetica', 'Arial', sans-serif !important;
 }
 
 @media screen and (max-width: 550px) {
@@ -72,11 +46,11 @@
 
 @keyframes pulseLogo {
   0%, 100% {
-    color: white;
     background-size: 0% 0%;
+    opacity: 0.4;
   }
   50% {
-    color: var(--primary-color); 
     background-size: 100% 100%;    
+    opacity: 1;
   }
 }

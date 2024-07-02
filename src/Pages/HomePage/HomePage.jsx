@@ -120,14 +120,14 @@ export default function Home(){
             page={searchParams.get('page')} 
           />
         </div>
-        <div className="scroll-to-top">
+        {/* <div className="scroll-to-top">
           <a 
             onClick={() => scrollToTop()} 
             aria-label='Scroll back to the top'
           >
             back to top
           </a>
-        </div>
+        </div> */}
       </div>
     </main>
   );

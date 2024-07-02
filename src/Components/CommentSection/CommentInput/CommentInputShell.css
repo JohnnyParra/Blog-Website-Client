@@ -87,7 +87,7 @@
 
 @keyframes pulseCommentBtn {
   0%, 100% {
-    background-color: var(--primary-color-pulse-light);
+    background-color: var(--primary-color-pulse);
     background-size: 0% 0%;
   }
   50% {
