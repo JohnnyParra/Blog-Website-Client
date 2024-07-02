@@ -26,7 +26,11 @@ export default React.memo(function PostCard(props) {
   return (
     <div className='post-card-container'>
       <Grid item xs={12} md={6}>
-        <CardActionArea component='a' onClick={handleClick}>
+        <CardActionArea 
+          component='a' 
+          onClick={handleClick}
+          aria-label={`Read more about ${title}`}
+        >
           <Card title={title} sx={{ display: 'flex' , maxHeight: "260px"}}>
             <CardContent sx={{ 
               flex: 1,  
@@ -52,7 +56,7 @@ export default React.memo(function PostCard(props) {
               <Typography variant='subtitle1' color='text.secondary'>
                 {date_published ? new Date(date_published).toLocaleString() : "Not Published"}
               </Typography>
-              <Typography noWrap title={description} sx={{marginBottom: {xs: "5px", sm: "8px"}}}variant='subtitle1' paragraph>
+              <Typography noWrap title={description} sx={{marginBottom: {xs: "5px", sm: "8px"}}} variant='subtitle1' paragraph>
                 {description}
               </Typography>
               <Typography variant='subtitle1' color='primary'>
@@ -63,7 +67,7 @@ export default React.memo(function PostCard(props) {
               component='img'
               sx={{ width: "25%", maxHeight: "100%" , display: { xs: 'none', sm: 'block' } }}
               image={image}
-              alt='image'
+              alt={title}
             />
           </Card>
         </CardActionArea>

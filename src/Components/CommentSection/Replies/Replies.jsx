@@ -37,6 +37,12 @@ export default function Replies(props) {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error Occurred</p>;
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      fetchNextPage();
+    }
+  }
+
   function refreshQuery() {
     queryClient.invalidateQueries(["replies"]);
   }
@@ -55,16 +61,21 @@ export default function Replies(props) {
     );
   });
 
-  return (
+  return props.isOpen ? (
     <div className="replies-container">
       {replyElements}
-      {isFetchingNextPage&& <div className="loading">Loading More Replies...</div>}
+      {isFetchingNextPage&& <div className="loading" role='alert' aria-live='polite'>Loading More Replies...</div>}
       {hasNextPage && (
         <div className="replies-btn-container">
           <div
             className="replies"
             title="Show more replies"
             onClick={() => fetchNextPage()}
+            onKeyDown={(event) => handleKeyDown(event)}
+            tabIndex='0'
+            role='button'
+            aria-label='Load more replies'
+            aria-controls='replies-container'
           >
             <span className="expand-icon">
               <SubdirectoryArrowRightIcon />
@@ -74,5 +85,7 @@ export default function Replies(props) {
         </div>
       )}
     </div>
+  ) : (
+    <></>
   )
 }

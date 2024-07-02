@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { UserProvider } from './Context/UserContext';
 
 // App component
@@ -19,6 +18,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <UserProvider>
       <App />
     </UserProvider>
-    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
   </QueryClientProvider>
 );

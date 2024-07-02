@@ -5,29 +5,42 @@
   & .text-container {
     line-height: 20px;
     text-align: left;
-
-    & .text {
-      font-size: var(--fs-400) !important;
-      margin: 4px 0px 0px 0px;
-      white-space: pre-wrap;
-    }
+  }
+  & .text {
+    font-size: var(--fs-400) !important;
+    margin: 4px 0px 0px 0px;
+    white-space: pre-wrap;
   }
   & .expand-btn-container {
     display: flex;
     justify-content: flex-start;
     margin-top: 4px;
+  }
+  & .expand-btn {
+    border: 1px solid transparent;
+    color: rgb(150, 150, 150);
+    cursor: pointer;
+    font-size: var(--fs-300);
+    font-weight: 400;
+    margin: 0;
 
-    & .expand-btn {
-      border: 1px solid transparent;
-      color: rgb(150, 150, 150);
-      cursor: pointer;
-      font-size: var(--fs-300);
-      font-weight: 400;
-      margin: 0;
-
-      &:hover {
-        border-bottom: 1px solid rgb(150, 150, 150);
-      }
+    &:hover {
+      border-bottom: 1px solid rgb(150, 150, 150);
     }
+    &:focus-visible {
+      animation: focusExpandBtn 2s infinite;
+      outline: none;
+    }
+  }
+}
+
+@keyframes focusExpandBtn {
+  0%, 100% {
+    border-bottom: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+  }
+  50% {
+    border-bottom: 1px solid transparent;
+    color: rgb(150, 150, 150);
   }
 }

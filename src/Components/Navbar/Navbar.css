@@ -8,6 +8,11 @@
 .header .title a {
   color: var(--primary-color);
   text-decoration: none;
+
+  &:focus-visible {
+    animation: pulseLogo 1.5s infinite;
+    outline: none;
+  }
 }
 
 .header nav {
@@ -62,5 +67,16 @@
 @media screen and (max-width: 550px) {
   #demo-customized-button .user {
     display: none;
+  }
+}
+
+@keyframes pulseLogo {
+  0%, 100% {
+    color: white;
+    background-size: 0% 0%;
+  }
+  50% {
+    color: var(--primary-color); 
+    background-size: 100% 100%;    
   }
 }

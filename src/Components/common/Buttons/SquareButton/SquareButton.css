@@ -19,7 +19,7 @@
     cursor: pointer;
   }
   &:not([disabled]):focus {
-    animation: pulseColor 1s infinite;
+    animation: pulseColor 1.5s infinite;
     outline: none;
   }
 }
@@ -60,7 +60,7 @@
     &:hover {
 
     }
-    &:focus {
+    &:focus-visible {
 
     }
   }

@@ -17,6 +17,7 @@ color: string, {"primary"}
 isSelected: boolean
 onClick: function
 icon: svg
+aria-label: string
 */
 
 export default React.memo(function SquareButton(props) {
@@ -32,15 +33,23 @@ export default React.memo(function SquareButton(props) {
     }
   }
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      props.onClick(event);
+    }
+  }
+
   return (
     <div
       className={`square-button ${customClass} ${colorClass} ${selectedClass} ${shapeClass} ${disabledClass}`} 
       onClick={(event) => checkDisabled(event)} 
+      onKeyDown={(event) => handleKeyDown(event)}
       disabled={props.disabled}
       name={props.name}
       title={props.name}
       tabIndex="0"
       role="button"
+      aria-label={props.ariaLabel}
     >
       {props.icon && <>{props.icon}</>}
       <span className={`text ${props.icon ? "icon-margin" : ""}`}>{props.text}</span>

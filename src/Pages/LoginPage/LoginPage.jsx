@@ -18,7 +18,6 @@ import eyeSlash from '../../Assets/eye-slash.svg';
 import './LoginPage.css';
 
 export default function Login() {
-  // initialize and states
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [responseMessage, setResponseMessage] = useState({
@@ -31,7 +30,6 @@ export default function Login() {
     password: '',
   });
 
-  // stores backend call that checks user authentication in refetch
   const { refetch, isRefetching } = useQuery(
     ['authentication', loginForm],
     () => authenticateUser(loginForm),
@@ -41,13 +39,11 @@ export default function Login() {
     }
   );
 
-  // handles Input changes
   const handleFormChange = (event) => {
     const { name, value } = event.target;
     setLoginForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
-  // calls authentication refetch on Login Click
   const handleLoginClick = async () => {
     // checks for missing inputs
     if (Object.values(loginForm).indexOf('') > -1) {
@@ -58,7 +54,7 @@ export default function Login() {
       });
       return;
     }
-    // refetch call
+    
     const loginResponse = await refetch();
 
     if (!loginResponse.isError && loginResponse.data.jwt) {
@@ -92,10 +88,14 @@ export default function Login() {
       <div className='right'>
         <h1 className='logo'>Blog</h1>
         <div className='input-field-container'>
-          <div className='input-field'>
+          <div className='input-field' role='form'>
             <h2>Login</h2>
             {responseMessage.state && (
-              <div className='login-response-message'>
+              <div 
+                className='login-response-message'
+                role='alert'
+                aria-live='assertive'
+              >
                 <p>{responseMessage.msg}</p>
               </div>
             )}
@@ -113,6 +113,8 @@ export default function Login() {
               type='email'
               placeholder='Enter your email'
               autoComplete='on'
+              aria-required='true'
+              aria-invalid={responseMessage.error === 'missing' && loginForm.email === ''}
             />
 
             <label htmlFor='password'>Password</label>
@@ -130,10 +132,13 @@ export default function Login() {
                 type={types}
                 placeholder='Enter Password'
                 autoComplete='on'
+                aria-required='true'
+                aria-invalid={responseMessage.error === 'missing' && loginForm.password === ''}
               />
               <button
                 style={styles}
                 onClick={(event) => password(event)}
+                aria-label={types === 'password' ? 'Show password' : 'Hide password'}
               ></button>
             </div>
             <SquareButton 
@@ -145,6 +150,7 @@ export default function Login() {
               isDisabled={false}
               onClick={() => handleLoginClick()}
               shape={"square"}
+              ariaLabel={"Log into website"}
             />
           </div>
           <p className='link'>

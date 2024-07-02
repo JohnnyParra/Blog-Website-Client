@@ -18,7 +18,6 @@ import eyeSlash from '../../Assets/eye-slash.svg';
 import './SignUp.css';
 
 export default function Login() {
-  // initialize, states, destructuring
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [responseMessage, setResponseMessage] = useState({
@@ -33,7 +32,6 @@ export default function Login() {
   });
   const { name, email, password } = registerForm;
 
-  // stores backend call that registers user in refetch
   const { refetch, isRefetching } = useQuery(
     ['register', registerForm],
     () => registerUser({ name, email, password }),
@@ -43,7 +41,6 @@ export default function Login() {
     }
   );
 
-  // handles Input changes
   const handleFormChange = (event) => {
     const { name, value } = event.target;
     setRegisterForm((prevForm) => ({ ...prevForm, [name]: value }));
@@ -69,9 +66,8 @@ export default function Login() {
       });
       return;
     }
-    // refetch call
+
     const registerResponse = await refetch();
-    console.log(registerResponse.data.jwt);
     if (!registerResponse.isError && registerResponse.data.jwt) {
       const token = registerResponse.data.jwt;
       setJwt(token);
@@ -86,7 +82,6 @@ export default function Login() {
     }
   };
 
-  // show password button styling
   function showPasswordBtn(event) {
     setShowPassword((prevPass) => !prevPass);
   }
@@ -103,10 +98,14 @@ export default function Login() {
       <div className='right'>
         <h1 className='logo'>Blog</h1>
         <div className='input-field-container'>
-          <div className='input-field'>
+          <div className='input-field' role='form'>
             <h2>Sign up</h2>
             {responseMessage.state && (
-              <div className='register-response-message'>
+              <div 
+                className='register-response-message'
+                role='alert'
+                aria-live='assertive'
+              >
                 <p>{responseMessage.msg}</p>
               </div>
             )}
@@ -121,6 +120,8 @@ export default function Login() {
               name='name'
               type='text'
               placeholder='Enter your name'
+              aria-required='true'
+              aria-invalid={responseMessage.error === 'missing' && name === ''}
             />
 
             <label htmlFor='email'>Email</label>
@@ -137,6 +138,12 @@ export default function Login() {
               name='email'
               type='email'
               placeholder='Enter your email'
+              aria-required='true'
+              aria-invalid={
+                responseMessage.error === 'error' 
+                || responseMessage.error === 'invalid' 
+                || (responseMessage.error === 'missing' && email === '')
+              }
             />
 
             <label htmlFor='password'>password</label>
@@ -151,10 +158,13 @@ export default function Login() {
                 name='password'
                 type={types}
                 placeholder='Enter Password'
+                aria-required='true'
+                aria-invalid={responseMessage.error === 'missing' && password === ''}
               />
               <button
                 style={styles}
                 onClick={(event) => showPasswordBtn(event)}
+                aria-label={types === 'password' ? 'Show password' : 'Hide password'}
               ></button>
             </div>
             <SquareButton 
@@ -164,8 +174,9 @@ export default function Login() {
               text={isRefetching ? 'Loading...' : 'Sign up'}
               isSelected={true}
               isDisabled={false}
-              onClick={() => handleLoginClick()}
+              onClick={() => handleRegisterClick()}
               shape={"square"}
+              ariaLabel={"Sign up for the website"}
             />
           </div>
           <p className='link'>

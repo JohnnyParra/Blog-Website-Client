@@ -24,6 +24,7 @@ export default function CommentInputShell(props) {
                   height: props.avatarSize, 
                   bgcolor: '#ff3d00' 
                 }}
+                alt='User avatar'
               />
             </div>
            )
@@ -39,12 +40,18 @@ export default function CommentInputShell(props) {
             maxLength={1000}
             rows="1" 
             placeholder="Add a comment..."
+            aria-label='Add a comment'
           >
           </textarea>
         </div>
         {props.commentClicked && (
           <div className="btns">
-            <button className="cancel" onClick={() => props.handleCancel()}>
+            <button 
+              className="cancel" 
+              onClick={() => props.handleCancel()}
+              label='cancel comment'
+              aria-label='Cancel Comment'
+            >
               Cancel
             </button>
             <button
@@ -56,6 +63,9 @@ export default function CommentInputShell(props) {
                   : { background: "rgb(255, 106, 0)", color: "white", cursor: "pointer" }
               }
               onClick={() => props.handleSubmit()}
+              label='submit comment'
+              aria-label='Submit comment'
+              aria-disabled={props.comment.trim() == "" ? 'true' : 'false'}
             >
               {props.submitButtonText}
             </button>

@@ -71,7 +71,7 @@ export default function CommentSection(props) {
         avatarSize={40}
       />
       {commentElements}
-      {isFetchingNextPage&& <div className="loading">Loading More Comments...</div>}
+      {isFetchingNextPage&& <div className="loading" role='status' aria-live='polite'>Loading More Comments...</div>}
     </div>
   );
 }

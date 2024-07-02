@@ -168,6 +168,7 @@ export default function Profile() {
                   m: 1,
                   bgcolor: '#ff3d00',
                 }}
+                alt="user's avatar"
               >
                 {currentUser.userInfo[0]?.name[0]}
               </Avatar>
@@ -181,9 +182,13 @@ export default function Profile() {
           ).toLocaleString()}
         </p>
         <div className='input-container'>
-          <div className="input-canvas">
+          <div className="input-canvas" role='form' aria-label="Users information">
             {responseMessage.state && (
-              <div className='profile-message'>
+              <div 
+                className='profile-message'
+                role='alert'
+                aria-live='polite'
+              >
                 <p>{responseMessage.msg}</p>
               </div>
             )}

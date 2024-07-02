@@ -19,9 +19,11 @@
 
 .sign-up .right {
   align-items: center;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  Padding: 20px 20px;
+  overflow-y: scroll;
+  Padding: 10px 20px;
 }
 
 .sign-up .right .logo {
@@ -57,7 +59,6 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
-  padding-bottom: 80px;
 }
 
 .sign-up .register-response-message {

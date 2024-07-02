@@ -10,6 +10,8 @@ import CommentReply from "../CommentInput/Variations/CommentReply";
 import CommentEdit from "../CommentInput/Variations/CommentEdit";
 import CommentLikeButton from "../CommentLikeButton/CommentLikeButton";
 import CommentExpander from "../CommentExpander/CommentExpander";
+import DropDownButton from "../../DropDownButton/DropDownButton";
+import AlertModal from "../../AlertModal/AlertModal";
 
 // Utilities
 import { timeSince } from "../../../Utils/ConvertDate";
@@ -18,16 +20,9 @@ import { timeSince } from "../../../Utils/ConvertDate";
 import { Avatar } from "@mui/material";
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import FlagIcon from '@mui/icons-material/Flag';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 
 // API Services
 import { deleteCommentRequest } from "../../../ApiServices/TasksService";
-
-// Hooks
-import useDetectClick from "../../../hooks/useDetectClick";
 
 // Styling
 import "./Comment.css";
@@ -38,7 +33,6 @@ export default function Comment(props) {
   const [reply, setReply] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [checkDelete, setCheckDelete] = useState(false);
-  const { ref, btnRef, isDropDown, setIsDropDown } = useDetectClick();
 
   const { mutate: mutateDeleteComment } = useMutation(
     (comment_id) => deleteCommentRequest(comment_id),
@@ -75,7 +69,27 @@ export default function Comment(props) {
 
   function deleteComment() {
     setCheckDelete(false);
-    mutateDeleteComment(props.comment.id)
+    mutateDeleteComment(props.comment.id);
+  }
+
+  function handleKeyDown(event, type) {
+    if (event.key === 'Enter') {
+      if (type === 'reply') {
+        handleReplyClick();
+      } else if (type === 'replies') {
+        handleRepliesClick();
+      }
+    }
+  }
+
+  function handleDropDownSelect(type) {
+    if (type === 'Report') {
+      console.log('report functionality coming soon');
+    } else if (type === 'Edit') {
+      editComment();
+    } else if (type === 'Delete') {
+      deleteCommentCheck();
+    }
   }
 
   return (
@@ -90,129 +104,110 @@ export default function Comment(props) {
               m: 1,
               bgcolor: "#ff3d00",
             }}
-          >{props.comment.name[0].toUpperCase()}</Avatar>
+            alt={`Avatar of ${props.comment.name}`}
+          >
+            {props.comment.name[0].toUpperCase()}
+          </Avatar>
           <div className="header-content-container">
             <div className="header">
-              <span className="name">{props.comment.name}</span>
-              <span className="date">
+              <span className="name" aria-label='name'>{props.comment.name}</span>
+              <span className="date" aria-label='date comment was left'>
                 {timeSince(new Date(props.comment.date_created))}
               </span>
-              {props.comment.date_updated 
-                && <span className="edited">(edited)</span>
-              }
+              {props.comment.date_updated && (
+                <span className="edited" aria-label='date edited'>
+                  (edited)
+                </span>
+              )}
             </div>
-            {isEditing 
-              ? (
-                <CommentEdit 
-                  key={nanoid()}
-                  id={props.id}
-                  parent_id={props.parent_id}
-                  comment={props.comment}
-                  refreshQuery={props.refreshQuery}
-                  handleReplySubmit={handleReplySubmit}
-                  avatarSize={30}
-                  setIsEditing={setIsEditing}
-                />
-              )
-              : <CommentExpander text={props.comment.text} />
-            }
+            <CommentEdit
+              key={nanoid()}
+              isOpen={isEditing}
+              id={props.id}
+              parent_id={props.parent_id}
+              comment={props.comment}
+              refreshQuery={props.refreshQuery}
+              handleReplySubmit={handleReplySubmit}
+              avatarSize={30}
+              setIsEditing={setIsEditing}
+            />
+            <CommentExpander 
+              isOpen={!isEditing} 
+              text={props.comment.text} 
+            />
             <div className="interaction">
               <span className="like" title="like">
                 <CommentLikeButton id={props.comment.id} />
               </span>
-              <span className="reply" title="reply" onClick={() => handleReplyClick()}>
+              <span
+                className="reply"
+                title="reply"
+                onClick={() => handleReplyClick()}
+                onKeyDown={(event) => handleKeyDown(event, 'reply')}
+                tabIndex='0'
+                role="button"
+                aria-label="reply to comment"
+              >
                 Reply
               </span>
             </div>
-            {reply && (
-              <CommentReply
-                key={nanoid()}
-                id={props.id}
-                parent_id={props.parent_id}
-                comment={props.comment}
-                refreshQuery={props.refreshQuery}
-                handleReplySubmit={handleReplySubmit}
-                avatarSize={30}
-              />
-            )}
+            <CommentReply
+              key={nanoid()}
+              isOpen={reply}
+              id={props.id}
+              parent_id={props.parent_id}
+              comment={props.comment}
+              refreshQuery={props.refreshQuery}
+              handleReplySubmit={handleReplySubmit}
+              avatarSize={30}
+            />
           </div>
-          <div className="more-container"> 
-            <div className="more" ref={btnRef}>
-              <MoreVertIcon fontSize="large"/>
-            </div>
-            <div className={`dropdown-content${isDropDown ? " show" : ""}`} ref={ref} >
-              {props.comment.user_id === currentUser.user.userId 
-                ? (
-                  <>
-                    <div className="link-container">
-                      <div className="link" onClick={() => editComment()}>
-                        <div className="icon">
-                          <EditIcon />
-                        </div>
-                        <div className="text">
-                          <span>Edit</span>
-                        </div>
-                      </div>
-                      <div className="link" onClick={() => deleteCommentCheck()}>
-                        <div className="icon">
-                          <DeleteIcon />
-                        </div>
-                        <div className="text">
-                          <span>Delete</span>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) 
-                : (
-                  <div className="link-container">
-                    <div className="link">
-                      <div className="icon">
-                        <FlagIcon fontSize="large"/>
-                      </div>
-                      <div className="text">
-                        <span>Report</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
+          <div className="more-container">
+            <DropDownButton 
+              isUser={props.comment.user_id === currentUser.user.userId}
+              commentId={props.comment.id}
+              handleClick={handleDropDownSelect}
+            />
           </div>
         </div>
       </div>
-      <div className="replies-container-2">
+      <div className="replies-content">
         {props.comment.child_count > 0 && (
           <div className="replies-btn-container">
             <div
               className="replies"
               title={showReplies ? "hide replies" : "replies"}
               onClick={() => handleRepliesClick()}
+              onKeyDown={(event) => handleKeyDown(event, 'replies')}
+              role="button"
+              tabIndex='0'
+              aria-expanded={showReplies}
+              aria-controls={`replies-${props.comment.id}`}
             >
               <span className="expand-icon">
                 {showReplies ? <ExpandLessIcon /> : <ExpandMoreSharpIcon />}
               </span>
-              <span>{showReplies ? "hide replies" : `${props.comment.child_count} replies`}</span>
+              <span>
+                {showReplies
+                  ? "hide replies"
+                  : `${props.comment.child_count} replies`}
+              </span>
             </div>
           </div>
         )}
-        {showReplies && <Replies id={props.id} comment_id={props.comment.id} />}
+        <Replies 
+          isOpen={showReplies}
+          id={props.id} 
+          comment_id={props.comment.id} 
+        />
       </div>
-      {checkDelete 
-        && (
-          <div className="overlay-delete-container">
-            <div className="page-overlay">
-            </div>
-            <div className="check-delete-container">
-              <span>Are you sure you want to delete your comment?</span>
-              <div className="options">
-                <button className="cancel" onClick={() => cancelDelete()}>Cancel</button>
-                <button className="delete" onClick={() => deleteComment()}>Delete</button>
-              </div>
-            </div>
-          </div>
-        )
-      }
+      <AlertModal 
+        cancel={cancelDelete}
+        delete={deleteComment}
+        isOpen={checkDelete}
+        setIsOpen={setCheckDelete}
+        label={"Are you sure you want to delete your comment?"}
+      />
     </div>
   );
 }

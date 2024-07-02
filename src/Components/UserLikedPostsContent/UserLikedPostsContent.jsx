@@ -45,7 +45,7 @@ export default function UserLikedPostsContent() {
   return (
     <div className='user-liked-posts-container'>
       {postElements}
-      {isFetchingNextPage&& <div className="loading">Loading More Post...</div>}
+      {isFetchingNextPage&& <div className="loading"  role='status' aria-live='polite'>Loading More Post...</div>}
     </div>
   )
 }

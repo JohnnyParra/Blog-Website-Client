@@ -1,0 +1,89 @@
+.overlay-delete-container {
+  & .page-overlay {
+    align-items: center;
+    background-color: black;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+  }
+  & .check-delete-container {
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-around;
+    left: 50%;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 2;
+    & span {
+      font-size: var(--fs-400);
+    }
+    & button {
+      background-color:  rgba(150, 150, 150, .3);
+      border: none;
+      border-radius: 25px;
+      box-shadow: 2px 2px 2px rgb(150, 150, 150);
+      cursor: pointer;
+      font-size: var(--fs-500);
+      height: 36px;
+      margin: 4px;
+      padding: 0px 16px;
+    }
+    & .delete {
+      background-color: red;
+      color: white;
+  
+      &:hover {
+        background-color: rgb(235, 0, 0);
+      }
+      &:focus-visible {
+        animation: pulseDeleteBtn 1.5s infinite;
+        outline: none;
+      }
+    }
+    & .cancel {
+
+      &:hover {
+        background-color: rgba(130, 130, 130, 0.3);
+      }
+      &:focus-visible {
+        animation: pulseBtn 1.5s infinite;
+        outline: none;
+      }
+    }
+  }
+}
+
+@keyframes pulseBtn {
+  0%, 100% {
+    background-color: white;
+    background-size: 0% 0%;
+  }
+  50% {
+    background-color: rgba(150, 150, 150, .3); 
+    background-size: 100% 100%;    
+  }
+}
+
+@keyframes pulseDeleteBtn {
+  0%, 100% {
+    background-color: rgb(200, 0, 0);
+    background-size: 0% 0%;
+  }
+  50% {
+    background-color: red; 
+    background-size: 100% 100%;    
+  }
+}

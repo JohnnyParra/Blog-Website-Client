@@ -34,7 +34,7 @@
             max-width: 300px;
             transition: 0.5s;
             transition-property: background;
-            &:focus {
+            &:focus-visible {
               background-size: 100% 1px;
               outline: none;
             }
@@ -46,7 +46,7 @@
             transition: 0.5s;
             transition-property: background;
             width: 100%;
-            &:focus {
+            &:focus-visible {
               background-size: 100% 1px;
               outline: none;
             }

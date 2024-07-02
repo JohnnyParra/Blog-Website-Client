@@ -62,6 +62,12 @@ export default function LikeButton(props) {
     }
   }
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      handleClick();
+    }
+  }
+
   const likeBtn = likeButton ? (
     <FavoriteIcon style={styles}/>
   ) : (
@@ -70,7 +76,16 @@ export default function LikeButton(props) {
 
   return (
     <div className='like-btn-container'>
-      <div className="like-btn" onClick={handleClick}>
+      <div 
+        className="like-btn"
+        onClick={handleClick}
+        onKeyDown={(event) => handleKeyDown(event)}
+        role='button'
+        title={likeButton ? 'Unlike' : 'Like'}
+        tabIndex='0'
+        aria-pressed={likeButton}
+        aria-label={likeButton ? 'Unlike' : 'Like'}
+      >
         <span>{data.likes[0].Likes}</span>
         <div className="btn">
           {likeBtn}

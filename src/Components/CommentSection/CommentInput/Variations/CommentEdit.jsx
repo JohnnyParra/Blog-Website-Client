@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useMutation } from "react-query";
-
-import { UserContext } from "../../../../Context/UserContext";
 
 import { editCommentRequest } from "../../../../ApiServices/TasksService";
 import useAutoResizeTextarea from "../../../../hooks/useAutoResizeTextarea";
@@ -9,7 +7,6 @@ import useAutoResizeTextarea from "../../../../hooks/useAutoResizeTextarea";
 import CommentInputShell from "../CommentInputShell";
 
 export default function CommentEdit(props) {
-  const { currentUser } = useContext(UserContext);
   const [comment, setComment] = useState(props.comment.text);
   const [commentClicked, setCommentClicked] = useState(false);
   const { ref: commentRef } = useAutoResizeTextarea(comment);
@@ -42,7 +39,7 @@ export default function CommentEdit(props) {
     setComment(props.comment.text);
   }
 
-  return (
+  return props.isOpen ? (
     <CommentInputShell 
       avatar={null}
       avatarSize={0}
@@ -55,5 +52,7 @@ export default function CommentEdit(props) {
       handleSubmit={handleSubmit}
       commentClicked={commentClicked}
     />
-  );
+  ) : (
+    <></>
+  )
 }

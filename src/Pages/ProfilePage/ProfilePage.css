@@ -52,7 +52,7 @@
   transition-property: background;
   width: 100%;
 
-  &:focus {
+  &:focus-visible {
     background-size: 100% 1px;
     outline: none;
   }

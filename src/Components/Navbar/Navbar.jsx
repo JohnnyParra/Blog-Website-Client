@@ -12,7 +12,7 @@ import './Navbar.css';
 export default React.memo(function Navbar(props) {
   return (
     <div className='header'>
-      <nav>
+      <nav aria-label='Main Navigation'>
         <h2 className="title"><Link to="/HomePage">Blog</Link></h2>
         <div className='right'>
           <SearchBar />

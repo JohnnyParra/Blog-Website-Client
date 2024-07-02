@@ -5,6 +5,7 @@
 
   & .like-btn {
     align-items: center;
+    border-radius: 25px;
     cursor: pointer;
     display: flex;
     height: 36px;
@@ -13,7 +14,10 @@
     
     &:hover {
       background-color:  rgba(150, 150, 150, .3);
-      border-radius: 25px;
+    }
+    &:focus-visible {
+      animation: pulseBtn 1s infinite;
+      outline: none;
     }
 
   }
@@ -21,7 +25,15 @@
     align-self: flex-end;
     margin-bottom: 8px;
   }
-  & .btn {
-    /* cursor: pointer; */
+}
+
+@keyframes pulseBtn {
+  0%, 100% {
+    background-color: white;
+    background-size: 0% 0%;
+  }
+  50% {
+    background-color: rgba(150, 150, 150, .3); 
+    background-size: 100% 100%;    
   }
 }

@@ -45,7 +45,7 @@ export default function UserPostsContent(props) {
   return (
     <div className='user-posts-container'>
       {postElements}
-      {isFetchingNextPage&& <div className="loading">Loading More Post...</div>}
+      {isFetchingNextPage&& <div className="loading"  role='status' aria-live='polite'>Loading More Posts...</div>}
     </div>
   )
 }

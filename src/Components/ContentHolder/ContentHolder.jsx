@@ -45,7 +45,7 @@ export default React.memo(function ContentHolder(props) {
   return (
     <div className='content-holder'>
       {postElements}
-      {isFetchingNextPage&& <div className="loading">Loading More Post...</div>}
+      {isFetchingNextPage&& <div className="loading" role='status' aria-live='polite'>Loading More Posts...</div>}
     </div>
   )
 });

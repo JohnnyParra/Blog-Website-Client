@@ -9,86 +9,102 @@
     height: 350px;
     width: 100%;
 
-    & .image-container {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      height: 100%;
-      position: relative;
-      width: 100%;
+    &:focus-visible {
+      outline: none;
 
       & .image-overlay {
-        background-color: rgba(35, 35, 35, 0.8);
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1;
+        animation: pulseFeatured 1.5s infinite;
+        outline: none;  
       }
-      & .text-overlay {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        height: 100%;
-        max-width: 550px;
-        overflow: hidden;
-        overflow-wrap: anywhere;
-        padding: 10px;
-        position: relative;
-        z-index: 2;
+    } 
+  } 
 
-        & .title-description-container {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          justify-content: center;
+  & .image-container {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
 
-          & .title-container {
-            display: flex;
-            justify-content: center;
-  
-            & .title {
-              color: white;
-              display: -webkit-box;
-              font-size: var(--fs-900);
-              line-clamp: 3;
-              margin: 10px 0px;
-              overflow: hidden;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
-            }
-          }
-          & .description-container {
-            display: flex;
-            justify-content: center;
-  
-            & .description {
-              color: white;
-              display: -webkit-box;
-              line-clamp: 2;
-              margin: 8px 0px;
-              overflow: hidden;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
-            }
-          }
-        }
-        
-        & .continue-container {
-          display: flex;
-          justify-content: center;
-          margin-top: auto;
-                   
-          & .continue {
-            color: white;
-            margin: 5px 0px;
-          }
-        }
-      }
+  & .image-overlay {
+    background-color: rgba(35, 35, 35, 0.8);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    &:hover {
+      background-color: rgba(35, 35, 35, 0.9);
+    }
+  }
+
+  & .text-overlay {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    max-width: 550px;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    padding: 10px;
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  & .title-description-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & .title-container {
+    display: flex;
+    justify-content: center;
+
+    & .title {
+      color: white;
+      display: -webkit-box;
+      font-size: var(--fs-900);
+      line-clamp: 3;
+      margin: 10px 0px;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  & .description-container {
+    display: flex;
+    justify-content: center;
+
+    & .description {
+      color: white;
+      display: -webkit-box;
+      line-clamp: 2;
+      margin: 8px 0px;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  & .continue-container {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+
+    & .continue {
+      color: white;
+      margin: 5px 0px;
     }
   }
 }
@@ -165,5 +181,17 @@
         }
       }
     }
+  }
+}
+
+
+@keyframes pulseFeatured {
+  0%, 100% {
+    background-color: rgba(35, 35, 35, 0.7);
+    background-size: 0% 0%;
+  }
+  50% {
+    background-color: rgba(35, 35, 35, 0.9); 
+    background-size: 100% 100%;    
   }
 }

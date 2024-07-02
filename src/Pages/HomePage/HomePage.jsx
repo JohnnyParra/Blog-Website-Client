@@ -62,15 +62,32 @@ export default function Home(){
   }
 
   const linkElements = categoryOptions.map((category, index) => {
-    return <a key={index} style={{color: searchParams.get('category') == category.value ? 'var(--primary-color)' : 'black'}} onClick={(event) => handleCategoryClick(event, category.value)}href='#'>{category.title}</a>
+    return (
+      <a 
+        key={index} 
+        className={`${searchParams.get('category') == category.value ? 'selected' : ''}`}
+        onClick={(event) => handleCategoryClick(event, category.value)}
+        href='#'
+        aria-current={searchParams.get('category') == category.value ? 'page' : 'false'}
+      >
+        {category.title}
+      </a>
+    )
   })
 
   return (
     <main className='home-page'>
       <div className = 'App'>
         <Navbar />
-        <div className='category-links'>
-          <a style={{color: searchParams.get('category') == 0 ? 'var(--primary-color)' : 'black'}} onClick={(event) => handleCategoryClick(event, 0)}href='#'>All</a>
+        <div className='category-links' role='navigation' aria-label='Category Links'>
+          <a 
+            className={`${searchParams.get('category') == 0 ? 'selected' : ''}`}
+            onClick={(event) => handleCategoryClick(event, 0)}
+            href='#'
+            aria-current={searchParams.get('category') == 0 ? 'page' : 'false'}
+          >
+            All
+          </a>
           {linkElements}
         </div>
         <FeaturedContentHolder category={searchParams.get('category')} />
@@ -86,14 +103,30 @@ export default function Home(){
             isSelected={true}
             onClick={() => navigate('Posts/CreatePost')} 
             icon={<CreateIcon />}
+            ariaLabel={'Create a Post'}
           />
-          <SelectOption key={searchParams.get('sort')} start={searchParams.get('sort')} options={sortOptions} selection='Sort' handleSelect={handleSelect}/>
+          <SelectOption 
+            key={searchParams.get('sort')} 
+            start={searchParams.get('sort')} 
+            options={sortOptions} 
+            selection='Sort' 
+            handleSelect={handleSelect}
+          />
         </div>
         <div className='post-card-container'>
-          <ContentHolder category={searchParams.get('category')} sort={searchParams.get('sort')} page={searchParams.get('page')} />
+          <ContentHolder 
+            category={searchParams.get('category')} 
+            sort={searchParams.get('sort')} 
+            page={searchParams.get('page')} 
+          />
         </div>
         <div className="scroll-to-top">
-          <span onClick={() => scrollToTop()}>back to top</span>
+          <a 
+            onClick={() => scrollToTop()} 
+            aria-label='Scroll back to the top'
+          >
+            back to top
+          </a>
         </div>
       </div>
     </main>

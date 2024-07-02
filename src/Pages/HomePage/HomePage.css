@@ -35,6 +35,15 @@ main {
   padding: 0px 15px 0px 15px;
   scrollbar-width: thin;
   width: 100%;
+
+  & .selected {
+    color: var(--primary-color);
+
+    &:focus-visible {
+      animation: focusCategorySelectedLink 1.5s infinite;
+      outline: none;
+    }
+  }
 }
 
 .home-page .category-links a {
@@ -44,6 +53,10 @@ main {
 
   &:hover {
     color: var(--primary-color-hover) !important;
+  }
+  &:focus-visible {
+    animation: focusCategoryLink 1.5s infinite;
+    outline: none;
   }
 }
 
@@ -58,7 +71,7 @@ main {
   display: flex;
   justify-content: center;
 
-  & span {
+  & a {
     cursor: pointer;
     font-size: var(--fs-300);
     margin: 10px;
@@ -76,5 +89,27 @@ main {
     display: flex;
     justify-content: space-between;
     margin: 10px 0px 10px 0px;
+  }
+}
+
+@keyframes focusCategoryLink {
+  0%, 100% {
+    color: var(--secondary-color);
+    text-decoration-color: var(--secondary-color);
+  }
+  50% {
+    color: rgb(150, 150, 150);
+    text-decoration-color: transparent;
+  }
+}
+
+@keyframes focusCategorySelectedLink {
+  0%, 100% {
+    color: var(--primary-color);
+    text-decoration-color: var(--primary-color);
+  }
+  50% {
+    color: rgb(150, 150, 150);
+    text-decoration-color: transparent;
   }
 }

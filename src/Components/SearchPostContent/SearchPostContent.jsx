@@ -44,8 +44,8 @@ export default React.memo(function SearchPostContent(props) {
 
   return (
     <div className='search-post-content-container'>
-      {postElements.length !== 0 ? postElements: "No Matching Results"}
-      {isFetchingNextPage&& <div className="loading">Loading More Post...</div>}
+      {postElements.length !== 0 ? postElements: <span role='alert'>"No matching results found"</span>}
+      {isFetchingNextPage&& <div className="loading"  role='status' aria-live='polite'>Loading More Posts...</div>}
     </div>
   )
 });

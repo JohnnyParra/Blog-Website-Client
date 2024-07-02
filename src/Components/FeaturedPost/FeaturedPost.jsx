@@ -15,11 +15,22 @@ export default function FeaturedPost(props) {
     navigate(`/HomePage/${id}`);
   }
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      navigate(`/HomePage/${id}`)
+    }
+  }
+
   return (
     <div className="featured-post-container">
       <div 
         className="featured-post"
         onClick={() => handleClick()}
+        onKeyDown={(event) => handleKeyDown(event)}
+        role='button'
+        title={title}
+        tabIndex='0'
+        aria-label={`Read more about ${title}`}
       >
         <div className="image-container" style={{backgroundImage: `url(${image})`}}>
           <div className="image-overlay"></div>

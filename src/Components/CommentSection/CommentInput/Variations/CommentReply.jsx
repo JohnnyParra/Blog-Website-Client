@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { useMutation } from "react-query";
 
 import { UserContext } from "../../../../Context/UserContext";
@@ -40,7 +40,7 @@ export default function CommentReply(props) {
     setComment(props.parent_id != null ? `@${props.comment.name}` : "");
   }
 
-  return (
+  return props.isOpen ? (
     <CommentInputShell 
       avatar={currentUser?.userInfo[0].avatar}
       avatarSize={props.avatarSize}
@@ -53,5 +53,7 @@ export default function CommentReply(props) {
       handleSubmit={handleSubmit}
       commentClicked={commentClicked}
     />
-  );
+  ) : (
+    <></>
+  )
 }

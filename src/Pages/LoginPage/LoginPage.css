@@ -19,9 +19,11 @@
 
 .login .right {
   align-items: center;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 20px 20px;
+  overflow-y: scroll;
+  padding: 10px 20px;
 }
 
 .login .right .logo {
@@ -57,7 +59,6 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
-  padding-bottom: 80px;
 }
 
 .login .login-response-message {

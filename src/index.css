@@ -16,6 +16,7 @@ html, body {
   --primary-color: rgb(255, 106, 0);
   --primary-color-hover: rgb(235, 98, 0);
   --primary-color-pulse-light: rgb(255, 165, 100);
+  --primary-color-light-selected: rgba(255, 106, 0, 0.2);
   --secondary-color: rgb(0, 150, 255);
   --secondary-color-hover: rgba(0, 150, 255, 0.1);
   --secondary-color-hover-dark: rgb(0, 137, 235);
