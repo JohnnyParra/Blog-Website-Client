@@ -103,6 +103,7 @@ export default function Dropdown() {
             backgroundColor: 'transparent',
           }
         }}
+        aria-label='Menu'
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
@@ -113,6 +114,7 @@ export default function Dropdown() {
         <Avatar
           src={currentUser?.userInfo[0].avatar}
           sx={{ m: 1, bgcolor: '#ff3d00'}}
+          alt="Users Avatar"
         >
           {currentUser?.userInfo[0].name[0]}
         </Avatar>

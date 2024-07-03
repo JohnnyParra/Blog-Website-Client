@@ -67,14 +67,14 @@ export default function FieldSet(props) {
 
   const optionElements = props.options.map((option, index) => (
     <div 
-      className={`option-container${option.value == sort ? " selected" : ""}${index === highlightedIndex ? " highlighted" : ""}`} 
       key={option.value} 
+      className={`option-container${option.value == sort ? " selected" : ""}${index === highlightedIndex ? " highlighted" : ""}`} 
+      onClick={(event) => handleChange(event)}
+      onMouseOver={() => handleMouseOver(index)}
       role="option" 
       aria-selected={option.value === sort}
       data-value={option.value} 
       data-title={option.title}
-      onClick={(event) => handleChange(event)}
-      onMouseOver={() => handleMouseOver(index)}
     >
       <div className="option">
         <span>{option.title}</span>
@@ -83,19 +83,48 @@ export default function FieldSet(props) {
   ));
 
   return (
-    <div className="select-container" role="form">
-      <div className="label" id="select-label" role="label">{props.selection}</div>
-      <div className="select" aria-labelledby="select-label" tabIndex="0" role="select" ref={btnRef} onKeyDown={(event) => handleKeyDown(event)}>
+    <form className="select-container">
+      <label 
+        id='select-label' 
+        className="label" 
+        htmlFor="select-input"
+      >
+        {props.selection}
+      </label>
+      <div 
+        ref={btnRef} 
+        id="select" 
+        className="select" 
+        onKeyDown={(event) => handleKeyDown(event)}
+        tabIndex="0" 
+        role="combobox"
+        aria-labelledby="select-label"
+        aria-expanded={isDropDown ? "true" : "false"}
+        aria-controls="dropdown-list"
+        aria-haspopup="listbox"
+      > 
+        <input 
+          id="select-input"
+          tabIndex="-1"
+          aria-hidden="true"
+          readOnly
+          hidden
+        />
         <div className="text">
           <span>{title}</span>
           {isDropDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </div>
-        <div className={`dropdown-content-container${isDropDown ? " show" : ""}`} ref={ref} >
+        <div 
+          ref={ref} 
+          id="dropdown-list"
+          className={`dropdown-content-container${isDropDown ? " show" : ""}`} 
+          role="listbox"
+        >
           <div className="dropdown-content">
             {optionElements}
           </div>
         </div>
       </div>
-    </div>
+    </form>
   )
 }

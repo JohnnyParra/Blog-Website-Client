@@ -14,18 +14,22 @@
   & .expand-btn-container {
     display: flex;
     justify-content: flex-start;
-    margin-top: 4px;
   }
   & .expand-btn {
+    align-items: center;
     border: 1px solid transparent;
-    color: rgb(150, 150, 150);
+    color: rgb(117, 117, 117);
     cursor: pointer;
-    font-size: var(--fs-300);
+    display: flex;
     font-weight: 400;
-    margin: 0;
+    height: 20px;
+    margin-top: 4px;
+    & span {
+      font-size: var(--fs-300);
+    }
 
     &:hover {
-      border-bottom: 1px solid rgb(150, 150, 150);
+      text-decoration: underline;
     }
     &:focus-visible {
       animation: focusExpandBtn 2s infinite;
@@ -36,11 +40,11 @@
 
 @keyframes focusExpandBtn {
   0%, 100% {
-    border-bottom: 1px solid var(--secondary-color);
+    text-decoration: underline;
     color: var(--secondary-color);
   }
   50% {
-    border-bottom: 1px solid transparent;
-    color: rgb(150, 150, 150);
+    text-decoration: underline transparent;
+    color: rgb(117, 117, 117);
   }
 }

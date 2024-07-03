@@ -13,14 +13,14 @@ html, body {
 
 #root {
   text-align: center;
-  --primary-color: rgb(255, 106, 0);
-  --primary-color-hover: rgb(235, 98, 0);
-  --primary-color-pulse: rgb(200, 83, 0);
-  --primary-color-light-selected: rgba(255, 106, 0, 0.2);
-  --secondary-color: rgb(0, 150, 255);
-  --secondary-color-hover: rgba(0, 150, 255, 0.1);
-  --secondary-color-hover-dark: rgb(0, 137, 235);
-  --secondary-color-selected: rgba(0, 150, 255, 0.2);
+  --primary-color: #d24504;
+  --primary-color-hover: #b63b03;
+  --primary-color-pulse: #9b3102;
+  --primary-color-light-selected: rgba(210, 69, 4, 0.2);
+  --secondary-color: #047CB4;
+  --secondary-color-hover: rgba(4, 124, 180, 0.1);
+  --secondary-color-hover-dark: #036b9c;
+  --secondary-color-selected: rgba(4, 124, 180, 0.2);
   --fs-100: 0.8rem;
   --fs-200: 1rem;
   --fs-300: 1.2rem;

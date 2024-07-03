@@ -46,7 +46,7 @@
       padding: 0px 16px;
 
       &:hover {
-        background-color: rgba(150, 150, 150, .3);
+        background-color: rgba(117, 117, 117, .3);
         cursor: pointer;
       }
       &:focus-visible {
@@ -55,7 +55,7 @@
       }
     }
     & .comment {
-      background-color:  rgba(150, 150, 150, .3);
+      background-color:  rgba(117, 117, 117, .3);
       border: none;
       border-radius: 25px;
       font-size: var(--fs-500);
@@ -80,7 +80,7 @@
     background-size: 0% 0%;
   }
   50% {
-    background-color: rgba(150, 150, 150, .3); 
+    background-color: rgba(117, 117, 117, .3); 
     background-size: 100% 100%;    
   }
 }

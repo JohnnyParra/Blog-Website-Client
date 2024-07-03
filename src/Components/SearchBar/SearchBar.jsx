@@ -65,6 +65,8 @@ export default function SearchBar() {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        id="search-input"
+        name="search"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
         onKeyDown={(event) => checkKeyPress(event)}

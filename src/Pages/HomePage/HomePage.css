@@ -98,7 +98,7 @@ main {
     text-decoration-color: var(--secondary-color);
   }
   50% {
-    color: rgb(150, 150, 150);
+    color: rgb(117, 117, 117);
     text-decoration-color: transparent;
   }
 }
@@ -109,7 +109,7 @@ main {
     text-decoration-color: var(--primary-color);
   }
   50% {
-    color: rgb(150, 150, 150);
+    color: rgb(117, 117, 117);
     text-decoration-color: transparent;
   }
 }

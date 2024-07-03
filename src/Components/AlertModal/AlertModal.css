@@ -31,10 +31,10 @@
       font-size: var(--fs-400);
     }
     & button {
-      background-color:  rgba(150, 150, 150, .3);
+      background-color:  rgba(117, 117, 117, .3);
       border: none;
       border-radius: 25px;
-      box-shadow: 2px 2px 2px rgb(150, 150, 150);
+      box-shadow: 2px 2px 2px rgb(117, 117, 117);
       cursor: pointer;
       font-size: var(--fs-500);
       height: 36px;
@@ -72,7 +72,7 @@
     background-size: 0% 0%;
   }
   50% {
-    background-color: rgba(150, 150, 150, .3); 
+    background-color: rgba(117, 117, 117, .3); 
     background-size: 100% 100%;    
   }
 }

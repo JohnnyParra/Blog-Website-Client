@@ -43,9 +43,9 @@ export default React.memo(function ContentHolder(props) {
   });
 
   return (
-    <div className='content-holder' role='feed'>
+    <section className='content-holder' role='feed'>
       {postElements}
       {isFetchingNextPage&& <div className="loading" role='status' aria-live='polite'>Loading More Posts...</div>}
-    </div>
+    </section>
   )
 });

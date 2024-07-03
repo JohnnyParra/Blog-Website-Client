@@ -24,7 +24,7 @@ export default React.memo(function PostCard(props) {
   };
 
   return (
-    <div className='post-card-container'>
+    <article className='post-card-container'>
       <Grid item xs={12} md={6}>
         <CardActionArea 
           component='a' 
@@ -59,7 +59,7 @@ export default React.memo(function PostCard(props) {
               <Typography noWrap title={description} sx={{marginBottom: {xs: "5px", sm: "8px"}}} variant='subtitle1' paragraph>
                 {description}
               </Typography>
-              <Typography variant='subtitle1' color='primary'>
+              <Typography variant='subtitle1' sx={{color: '#047CB4'}}>
                 Continue reading...
               </Typography>
             </CardContent>
@@ -72,9 +72,6 @@ export default React.memo(function PostCard(props) {
           </Card>
         </CardActionArea>
       </Grid>
-    </div>
+    </article>
   );
 });
-
-// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-// WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW

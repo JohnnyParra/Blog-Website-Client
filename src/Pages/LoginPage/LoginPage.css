@@ -62,10 +62,10 @@
 }
 
 .login .login-response-message {
-  background-color: rgb(214, 178, 1);
+  background-color: #d6b201;
   border-radius: 20px;
   box-sizing: border-box;
-  color: white;
+  color: black;
   margin-bottom: 10px;
   padding: 10px 20px 10px 20px;
   width: 100%;

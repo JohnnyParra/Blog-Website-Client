@@ -2,7 +2,7 @@
   align-items: center;
   background-color: var(--primary-color);
   border-radius: 5px;
-  box-shadow: 2px 2px 2px rgb(150, 150, 150);
+  box-shadow: 2px 2px 2px rgb(117, 117, 117);
   color: white;
   display: flex;
   font-size: var(--fs-400);
@@ -24,10 +24,10 @@
   }
 }
 .square-button-not-selected {
-  background-color: rgb(150, 150, 150);
+  background-color: rgb(117, 117, 117);
 }
 .square-button-disabled {
-  background-color: rgba(150, 150, 150, .3);
+  background-color: rgba(117, 117, 117, .3);
   color: black;
   pointer-events: none;
 }

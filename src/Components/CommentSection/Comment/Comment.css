@@ -26,14 +26,14 @@
       margin-right: 4px;
     }
     & .date {
-      color: rgb(150, 150, 150);
+      color: rgb(117, 117, 117);
       font-size: var(--fs-300);
       font-weight: 400;
       line-height: 1.125rem;
       margin-right: 4px;
     }
     & .edited {
-      color: rgb(150, 150, 150);
+      color: rgb(117, 117, 117);
       font-size: var(--fs-300);
       font-weight: 400;
       line-height: 1.125rem;
@@ -62,7 +62,7 @@
       padding: 0px 12px;
     
       &:hover {
-        background-color: rgba(150, 150, 150, .3);
+        background-color: rgba(117, 117, 117, .3);
         cursor: pointer;
       }
       &:focus-visible {
@@ -116,7 +116,7 @@
     background-size: 0% 0%;
   }
   50% {
-    background-color: rgba(150, 150, 150, .3); 
+    background-color: rgba(117, 117, 117, .3); 
     background-size: 100% 100%;    
   }
 }

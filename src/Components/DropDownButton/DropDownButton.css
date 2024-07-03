@@ -13,7 +13,7 @@
     width: 40px;
   
     &:active {
-      background-color: rgba(150, 150, 150, .3);
+      background-color: rgba(117, 117, 117, .3);
       border: 1px solid grey;
       transition: border 0s, background-color 0s;
     }

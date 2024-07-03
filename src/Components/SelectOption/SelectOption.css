@@ -5,7 +5,7 @@
 
   & .label {
     background-color: white;
-    color: rgb(150, 150, 150);
+    color: rgb(117, 117, 117);
     font-size: 0.9rem;
     font-weight: 100;
     left: 0;
@@ -16,22 +16,22 @@
     z-index: 1;
   }
   & .select {
-    border: 1px solid rgb(150, 150, 150);;
+    border: 1px solid rgb(117, 117, 117);
     border-radius: 5px;
     display: flex;
     flex: 1;
     font-size: var(--fs-400);
     &:hover {
-      border-color: black;
+      border-color: var(--secondary-color);
       cursor: pointer;
     }
-    &:focus-visible {
+    &:focus {
       border-color: var(--secondary-color);
       outline: 1px solid var(--secondary-color);
     }
     & .text {
       align-items: center;
-      color: rgb(150, 150, 150);
+      color: rgb(117, 117, 117);
       display: flex;
       flex: 1;
       height: 50px;

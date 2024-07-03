@@ -43,7 +43,7 @@ export default function CommentExpander(props) {
       </div>
       <div className="expand-btn-container" style={{display: overflow ? "flex" : "none"}}>
         {overflow && 
-          <span 
+          <div 
             className="expand-btn" 
             onClick={() => handleClick()}
             onKeyDown={(event) => handleKeyDown(event)}
@@ -53,8 +53,8 @@ export default function CommentExpander(props) {
             aria-controls='comment-text'
             aria-label={showMore ? "Show Less" : "Show More"}
           >
-            {showMore ? "Show Less" : "Show More"}
-          </span>
+            <span>{showMore ? "Show Less" : "Show More"}</span>
+          </div>
         }
       </div>
     </div>
