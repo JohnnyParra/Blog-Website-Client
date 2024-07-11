@@ -2,6 +2,7 @@
 import { useQuery } from 'react-query';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 //Components
 import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
@@ -82,6 +83,11 @@ export default function Login() {
 
   return (
     <div className='login'>
+      <Helmet>
+        <title>Log in | Project B</title>
+        <meta name='description' content='This is the log in page of our website.' />
+        <meta name='keywords' content='log in, sign in, page, website' />
+      </Helmet>
       <div className='left'>
         <h1 className='logo'>Blog</h1>
       </div>

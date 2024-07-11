@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
+import { Helmet } from 'react-helmet';
 
 // MUI Components && Icons
 import CreateIcon from '@mui/icons-material/Create';
@@ -75,8 +76,14 @@ export default function Home(){
     )
   })
 
+  const currentCategory = categoryOptions.find(category => category.value == searchParams.get('category'))?.title || 'Home Page';
   return (
     <main className='home-page'>
+      <Helmet>
+        <title>{currentCategory === 'Home Page' ? 'Home Page' : `${currentCategory} Posts`} | Project B</title>
+        <meta name='description' content={`This is the ${currentCategory === 'All' ? 'home' : currentCategory.toLowerCase()} page of our website.`} />
+        <meta name='keywords' content={`${currentCategory.toLowerCase()}, posts, blog`} />
+      </Helmet>
       <div className = 'App'>
         <Navbar />
         <div className='category-links' role='navigation' aria-label='Category Links'>

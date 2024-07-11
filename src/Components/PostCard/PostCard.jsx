@@ -37,6 +37,7 @@ export default React.memo(function PostCard(props) {
               width: "75%", 
               overflow: "hidden", 
               textOverflow: "ellipsis",
+              minHeight: {xs: '168px', sm: '260'}
               }}
             >
               <Typography 
@@ -67,6 +68,7 @@ export default React.memo(function PostCard(props) {
               component='img'
               sx={{ width: "25%", maxHeight: "100%" , display: { xs: 'none', sm: 'block' } }}
               image={image}
+              loading='lazy'
               alt={title}
             />
           </Card>

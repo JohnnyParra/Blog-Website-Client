@@ -8,6 +8,8 @@ import { fetchFeaturedPost } from '../../ApiServices/TasksService';
 // Components
 import FeaturedPost from '../FeaturedPost/FeaturedPost';
 
+import './FeaturedContentHolder.css';
+
 export default React.memo(function FeaturedContentHolder(props) {
 
   const { data: featuredData , isLoading: featuredLoading, isError: featuredError } = useQuery(
@@ -18,13 +20,11 @@ export default React.memo(function FeaturedContentHolder(props) {
     }
   );
 
-  if(featuredLoading) {return <p>Loading...</p>};
-  if(featuredError) {return <p>An Error occurred</p>};
-  const featuredPost = featuredData.post;
-
   return (
     <div className='featured-content-holder'>
-      <FeaturedPost post={featuredPost[0]}/>
+      {featuredLoading ? <p>Loading...</p>
+      : featuredError ? <p>An Error occurred</p>
+      : <FeaturedPost post={featuredData.post[0]} isLoading={featuredLoading} isError={featuredError}/>}
     </div>
   )
 });

@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import { useMutation, useQueryClient } from 'react-query';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
+import { Helmet } from 'react-helmet';
 
 // MUI Components && Icons
 import CardMedia from '@mui/material/CardMedia';
@@ -119,6 +120,11 @@ export default function CreatePost() {
 
   return (
     <main className='create-post'>
+      <Helmet>
+        <title>Create Post | Project B</title>
+        <meta name='description' content='This is the create post page of our website.' />
+        <meta name='keywords' content='create, post, page, website' />
+      </Helmet>
       <div className='App'>
         <Navbar />
         <form>

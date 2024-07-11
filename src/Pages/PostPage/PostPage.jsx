@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from 'draft-js';
 import { UserContext } from '../../Context/UserContext';
+import { Helmet } from 'react-helmet';
 
 // Api Services
 import { fetchPost } from '../../ApiServices/TasksService';
@@ -41,6 +42,11 @@ export default function Post() { /// something wrong with how the LikeButton com
   
   return (
     <main className='post-page'>
+      <Helmet>
+        <title>{data[0].title} | Project B</title>
+        <meta name='description' content={data[0].description} />
+        <meta name='keywords' content={`${data[0].author}, post, page, website`} />
+      </Helmet>
       <div className='App'>
         <Navbar />
         <div className="title-container">

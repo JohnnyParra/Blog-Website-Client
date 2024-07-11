@@ -179,6 +179,14 @@ export const deletePostRequest = async (id) => {
 }
 
 
+export const fetchAvatar = async () => {
+  try {
+    return get(`${API_URL}/profile/avatar`);
+  } catch (err) {
+    return { data: [], error: err }
+  }
+}
+
 export const updateAvatarRequest = async (newAvatar) => {
   try{
     return formPut(`${API_URL}/profile`, newAvatar);

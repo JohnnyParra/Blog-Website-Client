@@ -45,7 +45,7 @@ export default React.memo(function SquareButton(props) {
       onClick={(event) => checkDisabled(event)} 
       onKeyDown={(event) => handleKeyDown(event)}
       disabled={props.disabled}
-      name={props.name}
+      data-name={props.name}
       title={props.name}
       tabIndex="0"
       role="button"

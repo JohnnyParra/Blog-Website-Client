@@ -5,6 +5,8 @@ import { useMutation, useQueryClient } from 'react-query';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { UserContext } from '../../Context/UserContext';
+import { Helmet } from 'react-helmet';
+import Compressor from 'compressorjs';
 
 // MUI components && Icons
 import CardMedia from '@mui/material/CardMedia';
@@ -80,7 +82,7 @@ export default function EditPost() {
     setInput((prevInput) => ({ ...prevInput, category: value }));
   };
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
     let name = event.currentTarget.getAttribute('name');
     if (name === 'cancel') {
@@ -93,7 +95,24 @@ export default function EditPost() {
         return alert('Missing Inputs');
       }
       let formData = new FormData();
-      if (input.image != '') formData.append('image', input.image);
+      if (input.image != '') {
+        const compressedImage = await new Promise((resolve, reject) => {
+          new Compressor(input.image, {
+            quality: 0.7,
+            maxWidth: 1200,
+            maxHeight: 1200,
+            convertTypes: ['image/png', 'image/jpeg', 'image/*'],
+            mimeType: 'image/webp',
+            success(result) {
+              resolve(result);
+            },
+            error(err) {
+              reject(err);
+            }
+          })
+        })
+        formData.append('image', compressedImage, compressedImage.name);
+      }
       data[0].published == 1
         ? formData.append('type', 'publish')
         : formData.append('type', 'save');
@@ -112,7 +131,24 @@ export default function EditPost() {
         return alert('Missing Inputs');
       }
       let formData = new FormData();
-      if (input.image != '') formData.append('image', input.image);
+      if (input.image != '') {
+        const compressedImage = await new Promise((resolve, reject) => {
+          new Compressor(input.image, {
+            quality: 0.7,
+            maxWidth: 1200,
+            maxHeight: 1200,
+            convertTypes: ['image/png', 'image/jpeg', 'image/*'],
+            mimeType: 'image/webp',
+            success(result) {
+              resolve(result);
+            },
+            error(err) {
+              reject(err);
+            }
+          })
+        })
+        formData.append('image', compressedImage, compressedImage.name);
+      }
       formData.append('type', 'publish');
       formData.append('title', JSON.stringify(input.title));
       formData.append(
@@ -138,6 +174,11 @@ export default function EditPost() {
 
   return (
     <main className='edit-post'>
+      <Helmet>
+        <title>Edit Post | Project B</title>
+        <meta name='description' content='This is the edit posts page of our website.' />
+        <meta name='keywords' content='edit, posts, post, page, website' />
+      </Helmet>
       <div className='App'>
         <Navbar />
         <form>

@@ -3,11 +3,13 @@ import { useState, useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
+import { Helmet } from 'react-helmet';
+import Compressor from 'compressorjs';
 
 
 // Api Services
 import { updateAvatarRequest } from '../../ApiServices/TasksService';
-import { fetchUser } from '../../ApiServices/TasksService';
+import { fetchUser, fetchAvatar } from '../../ApiServices/TasksService';
 import { deleteAccountRequest } from '../../ApiServices/TasksService';
 
 // MUI Components
@@ -33,10 +35,10 @@ export default function Profile() {
     name: currentUser.userInfo[0].name,
     email: currentUser.userInfo[0].email,
     password: '',
-    avatar: currentUser.userInfo[0].avatar,
+    avatar: '',
   });
   const [previewImage, setPreviewImage] = useState(
-    currentUser?.userInfo[0].avatar
+    ''
   );
   const [showPassword, setShowPassword] = useState(false);
   const [changes, setChanges] = useState(false);
@@ -93,6 +95,17 @@ export default function Profile() {
     }
   );
 
+  const {isLoading: avatarLoading, isError: avatarError} = useQuery(
+    'avatar',
+    fetchAvatar,
+    {
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setPreviewImage(data.image[0].avatar)
+      }
+    }
+  )
+
   if (userLoading) return <p>Loading...</p>;
   if (userError) return <p>An Error occurred</p>;
 
@@ -124,11 +137,27 @@ export default function Profile() {
     setPopup(false);
   }
 
-  function handleClick(event) {
+  async function handleClick(event) {
     setInput((prevInput) => ({ ...prevInput, password: '' }));
-    if (event.target.name === 'save') {
+    if (event.currentTarget.getAttribute('data-name') === 'save') {
+      console.log('test');
       let formData = new FormData();
-      formData.append('avatar', input.avatar);
+      const compressedImage = await new Promise((resolve, reject) => {
+        new Compressor(input.avatar, {
+          quality: 0.7,
+          maxWidth: 500,
+          maxHeight: 500,
+          convertTypes: ['image/png', 'image/jpeg', 'image/*'],
+          mimeType: 'image/webp',
+          success(result) {
+            resolve(result);
+          },
+          error(err) {
+            reject(err);
+          }
+        })
+      })
+      formData.append('avatar', compressedImage, compressedImage.name);
       formData.append('name', input.name);
       formData.append('email', input.email);
       formData.append('password', input.password);
@@ -146,6 +175,11 @@ export default function Profile() {
 
   return (
     <main className='profile-page'>
+      <Helmet>
+        <title>Profile | Project B</title>
+        <meta name='description' content='This is the users profile page of our website.' />
+        <meta name='keywords' content='profile, user, page, website' />
+      </Helmet>
       <div className='App'>
         <Navbar />
         <div className='avatar'>
@@ -243,7 +277,7 @@ export default function Profile() {
             {changes && (
               <SquareButton 
                 className={""}
-                name={'save changes'}
+                name={'save'}
                 title={'save changes'}
                 text={'Save Changes'}
                 color={'primary'}

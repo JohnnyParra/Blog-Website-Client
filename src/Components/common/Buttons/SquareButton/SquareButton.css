@@ -18,7 +18,7 @@
     background-color: var(--primary-color-hover);
     cursor: pointer;
   }
-  &:not([disabled]):focus {
+  &:not([disabled]):focus-visible {
     animation: pulseColor 1.5s infinite;
     outline: none;
   }

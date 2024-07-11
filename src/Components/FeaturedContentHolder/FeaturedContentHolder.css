@@ -1,0 +1,9 @@
+.featured-content-holder {
+  min-height: 382px;
+}
+
+@media only screen and (max-width: 600px) {
+  .featured-content-holder {
+    min-height: 282px;
+  }
+}
