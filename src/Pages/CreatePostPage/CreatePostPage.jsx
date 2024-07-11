@@ -68,7 +68,7 @@ export default function CreatePost() {
 
   function submit(event) {
     event.preventDefault();
-    let name = event.currentTarget.getAttribute('name');
+    let name = event.currentTarget.getAttribute('data-ame');
     if (name === 'cancel') {
       navigate(`/HomePage`);
       return;

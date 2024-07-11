@@ -84,7 +84,7 @@ export default function EditPost() {
 
   async function submit(event) {
     event.preventDefault();
-    let name = event.currentTarget.getAttribute('name');
+    let name = event.currentTarget.getAttribute('data-name');
     if (name === 'cancel') {
       navigate(`/HomePage/Posts`);
       return;
