@@ -42,7 +42,7 @@ export default function CommentAdd(props) {
 
   return (
     <CommentInputShell 
-      avatar={currentUser?.userInfo[0].avatar_metadata.small}
+      avatar={currentUser?.userInfo[0].avatar}
       avatarSize={props.avatarSize}
       setComment={setComment}
       setCommentClicked={setCommentClicked}
