@@ -7,7 +7,7 @@ import './FeaturedPost.css';
 
 export default function FeaturedPost(props) {
   const { post } = props;
-  const { id, title, description, image, date_published } = post;
+  const { id, title, description, image, image_metadata, date_published } = post;
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ export default function FeaturedPost(props) {
         tabIndex='0'
         aria-label={`Read more about ${title}`}
       >
-        <div className="image-container" style={{backgroundImage: `url(${image})`}}>
+        <div className="image-container" style={{backgroundImage: `url(${image_metadata.featured})`}}>
           <div className="image-overlay"></div>
           <div className="text-overlay">
             <div className="title-description-container">

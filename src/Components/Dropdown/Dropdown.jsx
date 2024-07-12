@@ -112,7 +112,7 @@ export default function Dropdown() {
         onClick={handleClick}
       >
         <Avatar
-          src={currentUser?.userInfo[0].avatar}
+          src={currentUser?.userInfo[0].avatar_metadata.small}
           sx={{ m: 1, bgcolor: '#ff3d00'}}
           alt="Users Avatar"
         >

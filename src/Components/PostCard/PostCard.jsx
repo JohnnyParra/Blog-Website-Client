@@ -15,7 +15,7 @@ import './PostCard.css';
 
 export default React.memo(function PostCard(props) {
   const { post } = props;
-  const { id, title, description, date_published, image } = post;
+  const { id, title, description, date_published, image, image_metadata } = post;
 
   const navigate = useNavigate();
 
@@ -67,7 +67,7 @@ export default React.memo(function PostCard(props) {
             <CardMedia
               component='img'
               sx={{ width: "25%", maxHeight: "100%" , display: { xs: 'none', sm: 'block' } }}
-              image={image}
+              image={image_metadata.postCard}
               loading='lazy'
               alt={title}
             />
