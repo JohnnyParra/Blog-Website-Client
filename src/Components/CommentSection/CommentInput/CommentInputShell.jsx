@@ -8,7 +8,6 @@ import { Avatar } from "@mui/material";
 import "./CommentInputShell.css";
 
 export default function CommentInputShell(props) {
-  console.log('comment input shell: ', props.avatar);
   return (
     <React.Fragment>
       <div className="comment-input-container">

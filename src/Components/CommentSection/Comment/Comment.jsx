@@ -91,14 +91,13 @@ export default function Comment(props) {
       deleteCommentCheck();
     }
   }
-  console.log('comment: ', props.comment, props.comment.avatar_metadata, props.comment.avatar);
 
   return (
     <div className="comment-container">
       <div className="body-container">
         <div className="body">
           <Avatar
-            src={props.comment.avatar}
+            src={props.comment.avatar_metadata.small}
             sx={{
               width: props.size,
               height: props.size,

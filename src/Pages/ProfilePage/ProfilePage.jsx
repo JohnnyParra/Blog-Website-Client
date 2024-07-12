@@ -101,7 +101,7 @@ export default function Profile() {
     {
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
-        setPreviewImage(data.avatar)
+        setPreviewImage(data.image[0].avatar)
       }
     }
   )
@@ -140,7 +140,6 @@ export default function Profile() {
   async function handleClick(event) {
     setInput((prevInput) => ({ ...prevInput, password: '' }));
     if (event.currentTarget.getAttribute('data-name') === 'save') {
-      console.log('test');
       let formData = new FormData();
       const compressedImage = await new Promise((resolve, reject) => {
         new Compressor(input.avatar, {
