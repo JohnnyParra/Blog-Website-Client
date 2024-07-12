@@ -94,6 +94,7 @@ export default function Login() {
   return (
     <div className='sign-up'>
       <Helmet>
+        <link rel="preload" as="image" href="./src/Assets/table-background.webp" />
         <title>Sign up | Project B</title>
         <meta name='description' content='This is the sign up page of our website.' />
         <meta name='keywords' content='sign up, register, page, website' />

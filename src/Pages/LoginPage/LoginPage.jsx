@@ -84,6 +84,7 @@ export default function Login() {
   return (
     <div className='login'>
       <Helmet>
+        <link rel="preload" as="image" href="./src/Assets/table-background.webp" />
         <title>Log in | Project B</title>
         <meta name='description' content='This is the log in page of our website.' />
         <meta name='keywords' content='log in, sign in, page, website' />
