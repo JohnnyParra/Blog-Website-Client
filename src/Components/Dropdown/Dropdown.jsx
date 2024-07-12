@@ -90,6 +90,8 @@ export default function Dropdown() {
     }
   };
 
+  console.log('dropdown: ', currentUser?.userInfo[0], currentUser?.userInfo[0].avatar_metadata)
+
   return (
     <div className="dropdown-container">
       <Button

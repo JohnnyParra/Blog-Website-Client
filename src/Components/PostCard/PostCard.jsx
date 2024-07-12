@@ -23,6 +23,8 @@ export default React.memo(function PostCard(props) {
     navigate(`/HomePage/${id}`);
   };
 
+  console.log('postCard: ', image_metadata, image_metadata.postCard);
+
   return (
     <article className='post-card-container'>
       <Grid item xs={12} md={6}>

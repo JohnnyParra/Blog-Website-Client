@@ -8,6 +8,7 @@ import './FeaturedPost.css';
 export default function FeaturedPost(props) {
   const { post } = props;
   const { id, title, description, image, image_metadata, date_published } = post;
+  console.log('featured: ', image_metadata, post);
 
   const navigate = useNavigate();
 

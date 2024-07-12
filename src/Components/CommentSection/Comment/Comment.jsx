@@ -91,6 +91,7 @@ export default function Comment(props) {
       deleteCommentCheck();
     }
   }
+  console.log('comment: ', props.comment, props.comment.avatar_metadata, props.comment.avatar_metadata.small);
 
   return (
     <div className="comment-container">
