@@ -68,7 +68,7 @@ export default React.memo(function PostCard(props) {
             <CardMedia
               component='img'
               sx={{ width: "25%", maxHeight: "100%" , display: { xs: 'none', sm: 'block' } }}
-              image={image_metadata.postCard}
+              image={image_metadata?.postCard}
               loading='lazy'
               alt={title}
             />
