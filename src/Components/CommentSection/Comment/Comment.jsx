@@ -97,7 +97,7 @@ export default function Comment(props) {
       <div className="body-container">
         <div className="body">
           <Avatar
-            src={props.comment.avatar_metadata.small}
+            src={props.comment.avatar_metadata?.small}
             sx={{
               width: props.size,
               height: props.size,
