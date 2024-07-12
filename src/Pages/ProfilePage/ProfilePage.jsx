@@ -101,7 +101,7 @@ export default function Profile() {
     {
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
-        setPreviewImage(data.image_metadata[0].original)
+        setPreviewImage(data.avatar)
       }
     }
   )
