@@ -102,7 +102,7 @@ export default function Comment(props) {
               width: props.size,
               height: props.size,
               m: 1,
-              bgcolor: "#ff3d00",
+              bgcolor: "#047CB4",
             }}
             alt={`Avatar of ${props.comment.name}`}
           >

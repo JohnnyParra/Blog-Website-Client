@@ -21,7 +21,7 @@ export default function CommentInputShell(props) {
                   m: 1, 
                   width:props.avatarSize,
                   height: props.avatarSize, 
-                  bgcolor: '#ff3d00' 
+                  bgcolor: '#047CB4' 
                 }}
                 alt='User avatar'
               />

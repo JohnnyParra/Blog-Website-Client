@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Helmet } from 'react-helmet';
+import Compressor from 'compressorjs';
 
 // MUI Components && Icons
 import CardMedia from '@mui/material/CardMedia';
@@ -66,7 +67,7 @@ export default function CreatePost() {
     setInput((prevInput) => ({ ...prevInput, category: value }));
   }
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
     let name = event.currentTarget.getAttribute('data-ame');
     if (name === 'cancel') {
@@ -74,7 +75,24 @@ export default function CreatePost() {
       return;
     } else if (name === 'save') {
       let formData = new FormData();
-      if (input.image != '') formData.append('image', input.image);
+      if (input.image != '')  {
+        const compressedImage = await new Promise((resolve, reject) => {
+          new Compressor(input.image, {
+            quality: 0.8,
+            maxWidth: 1200,
+            maxHeight: 1200,
+            convertTypes: ['image/png', 'image/jpeg', 'image/*'],
+            mimeType: 'image/webp',
+            success(result) {
+              resolve(result);
+            },
+            error(err) {
+              reject(err);
+            }
+          })
+        })
+        formData.append('image', compressedImage, compressedImage.name);
+      };
       formData.append('type', 'save');
       formData.append('title', JSON.stringify(input.title));
       formData.append(
@@ -94,7 +112,22 @@ export default function CreatePost() {
         return alert('Missing Inputs');
       }
       let formData = new FormData();
-      formData.append('image', input.image);
+      const compressedImage = await new Promise((resolve, reject) => {
+        new Compressor(input.image, {
+          quality: 0.8,
+          maxWidth: 1200,
+          maxHeight: 1200,
+          convertTypes: ['image/png', 'image/jpeg', 'image/*'],
+          mimeType: 'image/webp',
+          success(result) {
+            resolve(result);
+          },
+          error(err) {
+            reject(err);
+          }
+        })
+      })
+      formData.append('image', compressedImage, compressedImage.name);
       formData.append('type', 'publish');
       formData.append('title', JSON.stringify(input.title));
       formData.append(

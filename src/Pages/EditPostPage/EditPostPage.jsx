@@ -98,7 +98,7 @@ export default function EditPost() {
       if (input.image != '') {
         const compressedImage = await new Promise((resolve, reject) => {
           new Compressor(input.image, {
-            quality: 0.7,
+            quality: 0.8,
             maxWidth: 1200,
             maxHeight: 1200,
             convertTypes: ['image/png', 'image/jpeg', 'image/*'],
@@ -134,7 +134,7 @@ export default function EditPost() {
       if (input.image != '') {
         const compressedImage = await new Promise((resolve, reject) => {
           new Compressor(input.image, {
-            quality: 0.7,
+            quality: 0.8,
             maxWidth: 1200,
             maxHeight: 1200,
             convertTypes: ['image/png', 'image/jpeg', 'image/*'],

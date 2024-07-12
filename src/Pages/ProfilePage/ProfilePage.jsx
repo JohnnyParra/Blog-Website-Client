@@ -199,7 +199,7 @@ export default function Profile() {
                   width: {xs: 150, sm: 200},
                   height: {xs: 150, sm: 200},
                   m: 1,
-                  bgcolor: '#ff3d00',
+                  bgcolor: '#047CB4',
                 }}
                 alt="user's avatar"
               >

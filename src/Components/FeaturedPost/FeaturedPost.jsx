@@ -32,7 +32,7 @@ export default function FeaturedPost(props) {
         tabIndex='0'
         aria-label={`Read more about ${title}`}
       >
-        <div className="image-container" style={{backgroundImage: `url(${image_metadata.featured})`}}>
+        <div className="image-container" style={{backgroundImage: `url(${image_metadata?.featured})`}}>
           <div className="image-overlay"></div>
           <div className="text-overlay">
             <div className="title-description-container">

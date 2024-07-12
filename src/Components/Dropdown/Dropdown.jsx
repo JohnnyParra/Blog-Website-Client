@@ -113,7 +113,7 @@ export default function Dropdown() {
       >
         <Avatar
           src={currentUser?.userInfo[0].avatar_metadata?.small}
-          sx={{ m: 1, bgcolor: '#ff3d00'}}
+          sx={{ m: 1, bgcolor: '#047CB4'}}
           alt="Users Avatar"
         >
           {currentUser?.userInfo[0].name[0]}
