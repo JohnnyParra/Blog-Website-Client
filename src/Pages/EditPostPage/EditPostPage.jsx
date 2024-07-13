@@ -47,14 +47,19 @@ export default function EditPost() {
   });
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState(data[0].image);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { mutate: mutateUpdatePosts } = useMutation(
     (newPost) => updatePostRequest(newPost),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
+        setIsLoading(false);
         navigate('/HomePage/Posts');
       },
+      onError: () => {
+        setIsLoading(false);
+      }
     }
   );
 
@@ -63,8 +68,12 @@ export default function EditPost() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
+        setIsLoading(false);
         navigate('/HomePage/Posts');
       },
+      onError: () => {
+        setIsLoading(false);
+      }
     }
   );
 
@@ -85,6 +94,7 @@ export default function EditPost() {
   async function submit(event) {
     event.preventDefault();
     let name = event.currentTarget.getAttribute('data-name');
+    setIsLoading(name);
     if (name === 'cancel') {
       navigate(`/HomePage/Posts`);
       return;
@@ -245,6 +255,7 @@ export default function EditPost() {
               text={"Cancel"}
               color={"primary"}
               isSelected={true}
+              isLoading={false}
               onClick={(event) => submit(event)} 
               icon={<ClearIcon />}
             />
@@ -253,20 +264,22 @@ export default function EditPost() {
                 className={""}
                 name={"delete"}
                 title={"delete"}
-                text={"Delete"}
+                text={isLoading === 'delete' ? "Deleting" : "Delete"}
                 color={"primary"}
                 isSelected={true}
+                isLoading={isLoading === 'delete'}
                 onClick={(event) => submit(event)} 
                 icon={<DeleteIcon />}
               />
             )}
             <SquareButton 
               className={""}
-              name={"save to drafts"}
+              name={"save"}
               title={"save to drafts"}
-              text={"Save to Drafts"}
+              text={isLoading === 'save' ? "Saving Draft" : "Save to Drafts"}
               color={"primary"}
               isSelected={true}
+              isLoading={isLoading === 'save'}
               onClick={(event) => submit(event)} 
               icon={<SaveIcon />}
             />
@@ -275,9 +288,10 @@ export default function EditPost() {
                 className={""}
                 name={"publish"}
                 title={"publish"}
-                text={"Publish"}
+                text={isLoading === 'publish' ? "Publishing" : "Publish"}
                 color={"primary"}
                 isSelected={true}
+                isLoading={isLoading === 'publish'}
                 onClick={(event) => submit(event)} 
                 icon={<PublishIcon />}
               />

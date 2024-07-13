@@ -42,6 +42,7 @@ export default function Profile() {
   );
   const [showPassword, setShowPassword] = useState(false);
   const [changes, setChanges] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState({
     state: false,
     error: '',
@@ -53,6 +54,7 @@ export default function Profile() {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries(['user']);
+        setIsLoading(false);
         setInput((prevInput) => ({ ...prevInput, avatar: '' }));
         console.log(data);
         if (!data) {
@@ -64,6 +66,7 @@ export default function Profile() {
         }
       },
       onError: (data) => {
+        setIsLoading(false);
         setResponseMessage({
           state: true,
           error: 'error',
@@ -138,6 +141,7 @@ export default function Profile() {
   }
 
   async function handleClick(event) {
+    setIsLoading(true);
     setInput((prevInput) => ({ ...prevInput, password: '' }));
     if (event.currentTarget.getAttribute('data-name') === 'save') {
       let formData = new FormData();
@@ -278,13 +282,13 @@ export default function Profile() {
                 className={""}
                 name={'save'}
                 title={'save changes'}
-                text={'Save Changes'}
+                text={isLoading ? "Saving Changes" : "Save Changes"}
                 color={'primary'}
                 isSelected={true}
+                isLoading={isLoading}
                 onClick={(event) => handleClick(event)}
                 disabled={input.password == ''}
                 shape={'square'}
-              
               />
             )}
           </div>

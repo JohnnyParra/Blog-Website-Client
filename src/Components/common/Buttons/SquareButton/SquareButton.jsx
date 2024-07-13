@@ -38,7 +38,6 @@ export default React.memo(function SquareButton(props) {
       props.onClick(event);
     }
   }
-
   return (
     <div
       className={`square-button ${customClass} ${colorClass} ${selectedClass} ${shapeClass} ${disabledClass}`} 
@@ -51,7 +50,15 @@ export default React.memo(function SquareButton(props) {
       role="button"
       aria-label={props.ariaLabel}
     >
-      {props.icon && <>{props.icon}</>}
+      {props.icon && !props.isLoading && <>{props.icon}</>}
+      {props.isLoading && (
+        <svg viewBox="0 0 800 800" height='15px' width='15px' xmlns="http://www.w3.org/2000/svg">
+          <circle className="spin" cx="400" cy="400" fill="none"
+            r="350" strokeWidth="100" stroke="#ffffff"
+            strokeDasharray="400 1400"
+            strokeLinecap="round" />
+        </svg>
+      )}
       <span className={`text ${props.icon ? "icon-margin" : ""}`}>{props.text}</span>
     </div>
   );

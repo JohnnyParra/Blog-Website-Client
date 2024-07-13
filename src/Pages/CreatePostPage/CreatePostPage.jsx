@@ -42,14 +42,19 @@ export default function CreatePost() {
   );
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { mutate: mutateAddPosts } = useMutation(
     (newPost) => addPostRequest(newPost),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
+        setIsLoading(false);
         navigate('/HomePage/Posts');
       },
+      onError: () => {
+        setIsLoading(false);
+      }
     }
   );
 
@@ -69,7 +74,8 @@ export default function CreatePost() {
 
   async function submit(event) {
     event.preventDefault();
-    let name = event.currentTarget.getAttribute('data-ame');
+    let name = event.currentTarget.getAttribute('data-name');
+    setIsLoading(name);
     if (name === 'cancel') {
       navigate(`/HomePage`);
       return;
@@ -226,16 +232,18 @@ export default function CreatePost() {
               text={"Cancel"}
               color={"primary"}
               isSelected={true}
+              isLoading={false}
               onClick={(event) => submit(event)} 
               icon={<ClearIcon />}
             />
             <SquareButton 
               className={""}
-              name={"save to drafts"}
+              name={"save"}
               title={"save to drafts"}
-              text={"Save to Drafts"}
+              text={isLoading === 'save' ? "Saving Draft" : "Save to Drafts"}
               color={"primary"}
               isSelected={true}
+              isLoading={isLoading === 'save'}
               onClick={(event) => submit(event)} 
               icon={<SaveIcon />}
             />
@@ -243,9 +251,10 @@ export default function CreatePost() {
               className={""}
               name={"publish"}
               title={"publish"}
-              text={"Publish"}
+              text={isLoading === 'publish' ? "Publishing" : "Publish"}
               color={"primary"}
               isSelected={true}
+              isLoading={isLoading === 'publish'}
               onClick={(event) => submit(event)} 
               icon={<PublishIcon />}
             />

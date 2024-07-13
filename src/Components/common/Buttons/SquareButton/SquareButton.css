@@ -68,3 +68,14 @@
   .square-button-not-selected {
   }
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  transform-origin: center;
+  animation: spin 1.2s ease-in-out infinite;
+}
