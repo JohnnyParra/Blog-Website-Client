@@ -141,7 +141,7 @@ export const fetchSearch = async (search, page) => {
   try {
     return get(`${API_URL}/search/${search}/${page}`);
   } catch (err) {
-    return { data: [], error: err }
+    throw err;
   }
 }
 

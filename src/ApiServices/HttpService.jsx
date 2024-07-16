@@ -10,9 +10,17 @@ export const get = async (url, headers) => {
       },
     });
 
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'An error occurred');
+      error.status = res.status;
+      error.data = errorData;
+      throw error;
+    }
+
     return res.json();
   } catch (err) {
-    return { auth: false };
+    throw err;
   }
 };
 

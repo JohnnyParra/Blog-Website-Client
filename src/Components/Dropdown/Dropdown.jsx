@@ -112,13 +112,13 @@ export default function Dropdown() {
         onClick={handleClick}
       >
         <Avatar
-          src={currentUser?.userInfo[0].avatar_metadata?.small}
+          src={currentUser?.userInfo.avatar_metadata?.small}
           sx={{ m: 1, bgcolor: '#047CB4'}}
           alt="Users Avatar"
         >
-          {currentUser?.userInfo[0].name[0]}
+          {currentUser?.userInfo.name[0]}
         </Avatar>
-        <span className='user'>{currentUser.userInfo[0]?.name}</span>
+        <span className='user'>{currentUser.userInfo?.name}</span>
         {open ? (
           <KeyboardArrowUpIcon className='user-icon' />
         ) : (

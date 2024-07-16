@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, { useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 
 // Api Services
@@ -15,6 +15,7 @@ import PostCard from '../PostCard/PostCard';
 import './SearchPostContent.css'
 
 export default React.memo(function SearchPostContent(props) {
+  const [errorMsg, setErrorMsg] = useState('');
 
   const {
     data: backendData,
@@ -30,12 +31,20 @@ export default React.memo(function SearchPostContent(props) {
     {
       getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.nextPage : undefined,
       refetchOnWindowFocus: false,
+      retry: false,
+      onError: (data) => {
+        if (data.status === 404) {
+          setErrorMsg("No matching results found");
+        } else {
+          setErrorMsg("An Error occurred")
+        }
+      }
     }
   )
   useDetectPageBottom(isFetching, isFetchingNextPage, hasNextPage, fetchNextPage);
 
-  if (isLoading) {return <p>Loading...</p>};
-  if (isError) {return <p>An Error occurred</p>};
+  if (isLoading) {return <span aria-busy="true" aria-live="polite">Loading...</span>};
+  if (isError) {return <span role='alert' aria-live="assertive">{errorMsg}</span>};
 
   const allPosts = backendData.pages.flatMap(page => page.posts);
   const postElements = allPosts.map(post => {
@@ -44,7 +53,7 @@ export default React.memo(function SearchPostContent(props) {
 
   return (
     <div className='search-post-content-container'>
-      {postElements.length !== 0 ? postElements: <span role='alert'>"No matching results found"</span>}
+      {postElements}
       {isFetchingNextPage&& <div className="loading"  role='status' aria-live='polite'>Loading More Posts...</div>}
     </div>
   )

@@ -32,8 +32,8 @@ export default function Profile() {
   const queryClient = useQueryClient();
   const [popup, setPopup] = useState(false);
   const [input, setInput] = useState({
-    name: currentUser.userInfo[0].name,
-    email: currentUser.userInfo[0].email,
+    name: currentUser.userInfo.name,
+    email: currentUser.userInfo.email,
     password: '',
     avatar: '',
   });
@@ -207,7 +207,7 @@ export default function Profile() {
                 }}
                 alt="user's avatar"
               >
-                {currentUser.userInfo[0]?.name[0]}
+                {currentUser.userInfo?.name[0]}
               </Avatar>
             </IconButton>
           </label>
@@ -215,7 +215,7 @@ export default function Profile() {
         <p>
           Member since:{' '}
           {new Date(
-            currentUser.userInfo[0].date_created
+            currentUser.userInfo.date_created
           ).toLocaleString()}
         </p>
         <div className='input-container'>
