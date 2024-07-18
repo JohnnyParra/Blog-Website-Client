@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, { useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 
 // Api Services
@@ -15,7 +15,7 @@ import PostCard from '../PostCard/PostCard';
 import './ContentHolder.css'
 
 export default React.memo(function ContentHolder(props) {
-
+  const [errorMsg, setErrorMsg] = useState('');
   const {
     data: backendData,
     fetchNextPage,
@@ -30,12 +30,27 @@ export default React.memo(function ContentHolder(props) {
     {
       getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.nextPage : undefined,
       refetchOnWindowFocus: false,
+      retry: 1,
+      onError: (data) => {
+        setErrorMsg("An error occurred")
+      }
     }
   )
   useDetectPageBottom(isFetching, isFetchingNextPage, hasNextPage, fetchNextPage);
 
-  if (isLoading) {return <p>Loading...</p>};
-  if (isError) {return <p>An Error occurred</p>};
+  if (isLoading) {
+    return(
+      <div className="content-holder">
+        <span className="status" role="status" aria-busy="true" aria-live="polite">Loading...</span>
+      </div>
+    )
+  } else if (isError) {
+    return (
+      <div className="content-holder">
+        <span className="status" role='alert' aria-live="assertive">{errorMsg}</span>
+      </div>
+    )
+  }
 
   const allPosts = backendData.pages.flatMap(page => page.posts);
   const postElements = allPosts.map(post => {

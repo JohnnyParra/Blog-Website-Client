@@ -43,6 +43,7 @@ export default function CreatePost() {
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const { mutate: mutateAddPosts } = useMutation(
     (newPost) => addPostRequest(newPost),
@@ -51,9 +52,11 @@ export default function CreatePost() {
         queryClient.invalidateQueries(['posts']);
         setIsLoading(false);
         navigate('/HomePage/Posts');
+        setError(null);
       },
       onError: () => {
         setIsLoading(false);
+        setError("Failed to create post. Please try again.")
       }
     }
   );
@@ -224,6 +227,15 @@ export default function CreatePost() {
               />
             )}
           </div>
+          {error && (
+            <div 
+              className='response-message'
+              role='alert'
+              aria-live='assertive'
+            >
+              <p>{error}</p>
+            </div>
+          )}
           <div className='btn-container'>
             <SquareButton 
               className={""}

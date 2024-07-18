@@ -25,6 +25,10 @@
     align-self: flex-end;
     margin-bottom: 8px;
   }
+  & .status {
+    justify-self: center;
+    align-self: center;
+  }
 }
 
 @keyframes pulseBtn {

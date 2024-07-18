@@ -48,6 +48,7 @@ export default function EditPost() {
   const [contentState, setContentState] = useState();
   const [previewImage, setPreviewImage] = useState(data[0].image);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const { mutate: mutateUpdatePosts } = useMutation(
     (newPost) => updatePostRequest(newPost),
@@ -56,9 +57,11 @@ export default function EditPost() {
         queryClient.invalidateQueries(['posts']);
         setIsLoading(false);
         navigate('/HomePage/Posts');
+        setError(null);
       },
       onError: () => {
         setIsLoading(false);
+        setError("Failed to update post. Please try again.");
       }
     }
   );
@@ -70,9 +73,11 @@ export default function EditPost() {
         queryClient.invalidateQueries(['posts']);
         setIsLoading(false);
         navigate('/HomePage/Posts');
+        setError(null);
       },
       onError: () => {
         setIsLoading(false);
+        setError("Failed to delete post. Please try again.")
       }
     }
   );
@@ -247,6 +252,15 @@ export default function EditPost() {
               alt='Preview of Image'
             />
           </div>
+          {error && (
+            <div 
+              className='response-message'
+              role='alert'
+              aria-live='assertive'
+            >
+              <p>{error}</p>
+            </div>
+          )}
           <div className='btn-container'>
             <SquareButton 
               className={""}

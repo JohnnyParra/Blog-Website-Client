@@ -43,8 +43,19 @@ export default React.memo(function SearchPostContent(props) {
   )
   useDetectPageBottom(isFetching, isFetchingNextPage, hasNextPage, fetchNextPage);
 
-  if (isLoading) {return <span aria-busy="true" aria-live="polite">Loading...</span>};
-  if (isError) {return <span role='alert' aria-live="assertive">{errorMsg}</span>};
+  if (isLoading) {
+    return(
+      <div className="user-posts-container">
+        <span className="status" role="status" aria-busy="true" aria-live="polite">Loading...</span>
+      </div>
+    )
+  } else if (isError) {
+    return (
+      <div className="user-posts-container">
+        <span className="status" role='alert' aria-live="assertive">{errorMsg}</span>
+      </div>
+    )
+  }
 
   const allPosts = backendData.pages.flatMap(page => page.posts);
   const postElements = allPosts.map(post => {

@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 import { useInfiniteQuery } from "react-query";
 
 // Components
@@ -15,7 +15,8 @@ import useDetectPageBottom from "../../hooks/useDetectPageBottom";
 import './UserLikedPostsContent.css';
 
 export default function UserLikedPostsContent() {
-  
+  const [errorMsg, setErrorMsg] = useState('');
+
   const {
     data: backendData,
     fetchNextPage,
@@ -30,12 +31,27 @@ export default function UserLikedPostsContent() {
     {
       getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.nextPage : undefined,
       refetchOnWindowFocus: false,
+      retry: 1,
+      onError: (data) => {
+        setErrorMsg("An error occurred");
+      }
     }
   )
   useDetectPageBottom(isFetching, isFetchingNextPage, hasNextPage, fetchNextPage);
 
-  if (isLoading) {return <p>Loading...</p>};
-  if (isError) {return <p>An Error occurred</p>};
+  if (isLoading) {
+    return(
+      <div className="user-posts-container">
+        <span className="status" role="status" aria-busy="true" aria-live="polite">Loading...</span>
+      </div>
+    )
+  } else if (isError) {
+    return (
+      <div className="user-posts-container">
+        <span className="status" role='alert' aria-live="assertive">{errorMsg}</span>
+      </div>
+    )
+  }
 
   const allPosts = backendData.pages.flatMap(page => page.posts);
   const postElements = allPosts.map(post => {

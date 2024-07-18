@@ -7,4 +7,9 @@
   & .loading {
     align-self: center;
   }
+
+  & .status {
+    justify-self: center;
+    align-self: center;
+  }
 }

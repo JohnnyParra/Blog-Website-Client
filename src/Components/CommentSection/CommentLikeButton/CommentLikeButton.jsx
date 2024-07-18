@@ -52,8 +52,19 @@ export default function CommentLikeButton(props) {
     }
   );
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error Occurred</p>;
+  if (isLoading) {
+    return(
+      <div className="user-posts-container">
+        <span className="status" role="status" aria-busy="true" aria-live="polite">Loading...</span>
+      </div>
+    )
+  } else if (isError) {
+    return (
+      <div className="user-posts-container">
+        <span className="status" role='alert' aria-live="assertive">Error</span>
+      </div>
+    )
+  }
   const styles = { color: "red" };
 
   function handleClick() {

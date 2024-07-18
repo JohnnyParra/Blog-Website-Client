@@ -20,12 +20,18 @@ export default function LikeButton(props) {
     ['likes', props.id],
     () => fetchLikes(props.id),
     {
+      retry: 1,
+    },
+    {
       onSuccess: (data) => {
         if (data.userLike[0].userLike > 0) {
           setLikeButton(true);
         } else {
           setLikeButton(false);
         }
+      },
+      onError: (data) => {
+
       },
     }
   );
@@ -48,8 +54,19 @@ export default function LikeButton(props) {
     }
   );
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error Occurred</p>;
+  if (isLoading) {
+    return(
+      <div className="user-posts-container">
+        <span className="status" role="status" aria-busy="true" aria-live="polite">Loading...</span>
+      </div>
+    )
+  } else if (isError) {
+    return (
+      <div className="user-posts-container">
+        <span className="status" role='alert' aria-live="assertive">Error</span>
+      </div>
+    )
+  }
   const styles = { color: 'red' };
 
   function handleClick() {
