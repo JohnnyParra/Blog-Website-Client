@@ -14,6 +14,7 @@ import { authenticateUser } from '../../ApiServices/AuthService';
 // Image Assets
 import eye from '../../Assets/eye.svg';
 import eyeSlash from '../../Assets/eye-slash.svg';
+import tableBackground from '../../Assets/table-background.webp';
 
 // Styling
 import './LoginPage.css';
@@ -84,12 +85,11 @@ export default function Login() {
   return (
     <div className='login'>
       <Helmet>
-        <link rel="preload" as="image" href="./src/Assets/table-background.webp" />
         <title>Log in | Project B</title>
         <meta name='description' content='This is the log in page of our website.' />
         <meta name='keywords' content='log in, sign in, page, website' />
       </Helmet>
-      <div className='left'>
+      <div className='left' style={{backgroundImage: `url("${tableBackground}")`}}>
         <h1 className='logo'>Blog</h1>
       </div>
       <div className='right'>
