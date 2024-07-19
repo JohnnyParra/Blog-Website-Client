@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useInfiniteQuery , useQueryClient } from "react-query";
 
 // Components
@@ -16,6 +16,7 @@ import "./Replies.css";
 
 export default function Replies(props) {
   const queryClient = useQueryClient();
+  const [hasFetched, setHasFetched] = useState(false);
 
   const {
     data,
@@ -31,11 +32,16 @@ export default function Replies(props) {
     {
       getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.nextPage : undefined,
       refetchOnWindowFocus: false,
+      enabled: props.isOpen || hasFetched,
+      onSuccess: (data) => {
+        setHasFetched(true);
+      }
     }
   )
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error Occurred</p>;
+  if (!props.isOpen || !hasFetched) return;
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
