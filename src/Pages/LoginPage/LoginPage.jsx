@@ -119,7 +119,7 @@ export default function Login() {
               name='email'
               type='email'
               placeholder='Enter your email'
-              autoComplete='on'
+              autoComplete='email'
               aria-required='true'
               aria-invalid={responseMessage.error === 'missing' && loginForm.email === ''}
             />

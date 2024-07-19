@@ -127,6 +127,7 @@ export default function Login() {
               }
               name='name'
               type='text'
+              autoComplete='username'
               placeholder='Enter your name'
               aria-required='true'
               aria-invalid={responseMessage.error === 'missing' && name === ''}
@@ -145,6 +146,7 @@ export default function Login() {
               }
               name='email'
               type='email'
+              autoComplete='email'
               placeholder='Enter your email'
               aria-required='true'
               aria-invalid={
@@ -165,6 +167,7 @@ export default function Login() {
                 }
                 name='password'
                 type={types}
+                autoComplete='new-password'
                 placeholder='Enter Password'
                 aria-required='true'
                 aria-invalid={responseMessage.error === 'missing' && password === ''}
