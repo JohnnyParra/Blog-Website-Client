@@ -12,7 +12,7 @@ import { setJwt } from '../../ApiServices/JwtService';
 import { registerUser } from '../../ApiServices/AuthService';
 
 // Image Assets
-import eye from '../../Assets/eye.svg';
+import eye from '../../Assets/eye.svg'
 import eyeSlash from '../../Assets/eye-slash.svg';
 
 // Styling
@@ -86,8 +86,9 @@ export default function Login() {
   function showPasswordBtn(event) {
     setShowPassword((prevPass) => !prevPass);
   }
+
   const styles = {
-    backgroundImage: showPassword ? `url(${eye})` : `url(${eyeSlash})`,
+    backgroundImage: `url("${showPassword ? eye : eyeSlash}")`
   };
   const types = showPassword ? 'text' : 'password';
 

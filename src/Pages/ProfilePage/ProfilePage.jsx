@@ -172,7 +172,7 @@ export default function Profile() {
     setShowPassword((prevPass) => !prevPass);
   }
   const styles = {
-    backgroundImage: showPassword ? `url(${eye})` : `url(${eyeSlash})`,
+    backgroundImage: `url("${showPassword ? eye : eyeSlash}")`,
   };
   const types = showPassword ? 'text' : 'password';
 

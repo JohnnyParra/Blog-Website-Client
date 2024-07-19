@@ -77,7 +77,7 @@ export default function Login() {
     setShowPassword((prevPass) => !prevPass);
   }
   const styles = {
-    backgroundImage: showPassword ? `url(${eye})` : `url(${eyeSlash})`,
+    backgroundImage: `url("${showPassword ? eye : eyeSlash}")`,
   };
   const types = showPassword ? 'text' : 'password';
 
