@@ -1,6 +1,7 @@
 html, body {
   background-color: white;
   font-size: 10px;
+  height: 100%;
   margin: 0;
   padding: 0;
   scrollbar-color: grey rgb(245, 245, 245);
