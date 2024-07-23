@@ -8,17 +8,17 @@ export default function useDetectPageBottom(isFetching, isFetchingNextPage, hasN
     const app = document.querySelector('.App');
     function detectBottom() {
       if (app) {
-        const isBottom = app.scrollTop + app.clientHeight >= app.scrollHeight - 10;
+        const isBottom = document.documentElement.scrollTop + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 10;
         if (isBottom && !isFetching && !isFetchingNextPage && hasNextPage) {
           scrollPositionRef.current = window.scrollY;
           fetchNextPage();
         }
       }
     }
-    app.addEventListener("scroll",detectBottom);
+    document.addEventListener("scroll",detectBottom);
 
     return () => {
-      app.removeEventListener("scroll",detectBottom);
+      document.removeEventListener("scroll",detectBottom);
     }
   },[isFetching, isFetchingNextPage, hasNextPage]);
 }
