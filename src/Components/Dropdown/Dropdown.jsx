@@ -77,16 +77,16 @@ export default function Dropdown() {
     const target = event.target.getAttribute('name');
 
     if (target === 'logout') {
-      navigate('/Login');
+      navigate('/login');
       logoutUser();
     } else if (target === 'profile') {
-      navigate('/HomePage/Profile');
+      navigate('/profile');
     } else if (target === 'posts') {
-      navigate('/HomePage/Posts');
+      navigate('/your-posts');
     } else if (target === 'likes') {
-      navigate('/HomePage/Likes');
+      navigate('/liked-posts');
     } else if (target === 'home') {
-      navigate('/Homepage');
+      navigate('/home');
     }
   };
 

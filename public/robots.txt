@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: */search/
+Disallow: */your-posts
+Disallow: */liked-posts
+Disallow: */profile
+
+# Sitemap: https://johnnymparra-blog.netlify.app/sitemap.txt

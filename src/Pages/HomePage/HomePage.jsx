@@ -80,7 +80,7 @@ export default function Home(){
   return (
     <main className='home-page'>
       <Helmet>
-        <title>{currentCategory === 'Home Page' ? 'Home Page' : `${currentCategory} Posts`} | Project B</title>
+        <title>{currentCategory === 'Home Page' ? 'Home' : `${currentCategory} Posts`} | Project B</title>
         <meta name='description' content={`This is the ${currentCategory === 'All' ? 'home' : currentCategory.toLowerCase()} page of our website.`} />
         <meta name='keywords' content={`${currentCategory.toLowerCase()}, posts, blog`} />
       </Helmet>
@@ -108,7 +108,7 @@ export default function Home(){
             shape={"square"}
             color={"primary"}
             isSelected={true}
-            onClick={() => navigate('Posts/CreatePost')} 
+            onClick={() => navigate('/create-post')} 
             icon={<CreateIcon />}
             ariaLabel={'Create a Post'}
           />

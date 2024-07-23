@@ -75,7 +75,7 @@ export default function Post() { /// something wrong with how the LikeButton com
         </div>
         <div className="edit-link-container">
           {data[0].user_id === currentUser.user.userId && (
-            <Link to={`/HomePage/Posts/EditPost/${data[0].id}`}>edit</Link>
+            <Link to={`/edit-post/${data[0].id}`}>edit</Link>
           )}
         </div>
         <LikeButton id={id} type={'post_likes'} />

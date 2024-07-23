@@ -13,13 +13,13 @@ export default function FeaturedPost(props) {
 
   function handleClick() {
     if (!props.isLoading && !props.isError) {
-      navigate(`/HomePage/${id}`);
+      navigate(`/post/${id}`);
     }
   }
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
-      navigate(`/HomePage/${id}`)
+      navigate(`/post/${id}`)
     }
   }
 

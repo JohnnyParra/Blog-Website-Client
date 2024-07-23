@@ -55,7 +55,7 @@ export default function SearchBar() {
 
   function checkKeyPress(event) {
     if (event.key === 'Enter' && search.trim() !== '') {
-      navigate(`/HomePage/Search/${search}`);
+      navigate(`/search/${search}`);
     }
   }
 

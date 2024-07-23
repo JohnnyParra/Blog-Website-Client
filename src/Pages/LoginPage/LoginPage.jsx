@@ -63,7 +63,7 @@ export default function Login() {
       const token = loginResponse.data.jwt;
       setJwt(token);
       const payload = JSON.parse(window.atob(token.split('.')[1]));
-      navigate('/HomePage');
+      navigate('/home');
     } else {
       setResponseMessage({
         state: true,

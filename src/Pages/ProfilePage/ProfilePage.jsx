@@ -80,7 +80,7 @@ export default function Profile() {
     () => deleteAccountRequest(),
     {
       onSuccess: () => {
-        navigate('/Login');
+        navigate('/login');
         logoutUser();
       },
     }

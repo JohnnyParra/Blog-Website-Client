@@ -51,7 +51,7 @@ export default function CreatePost() {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
         setIsLoading(false);
-        navigate('/HomePage/Posts');
+        navigate('/your-posts');
         setError(null);
       },
       onError: () => {
@@ -80,7 +80,7 @@ export default function CreatePost() {
     let name = event.currentTarget.getAttribute('data-name');
     setIsLoading(name);
     if (name === 'cancel') {
-      navigate(`/HomePage`);
+      navigate(`/home`);
       return;
     } else if (name === 'save') {
       let formData = new FormData();

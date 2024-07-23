@@ -20,7 +20,7 @@ export default React.memo(function PostCard(props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`/HomePage/${id}`);
+    navigate(`/post/${id}`);
   };
 
 

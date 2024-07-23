@@ -56,7 +56,7 @@ export default function EditPost() {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
         setIsLoading(false);
-        navigate('/HomePage/Posts');
+        navigate('/your-posts');
         setError(null);
       },
       onError: () => {
@@ -72,7 +72,7 @@ export default function EditPost() {
       onSuccess: () => {
         queryClient.invalidateQueries(['posts']);
         setIsLoading(false);
-        navigate('/HomePage/Posts');
+        navigate('/your-posts');
         setError(null);
       },
       onError: () => {
@@ -101,7 +101,7 @@ export default function EditPost() {
     let name = event.currentTarget.getAttribute('data-name');
     setIsLoading(name);
     if (name === 'cancel') {
-      navigate(`/HomePage/Posts`);
+      navigate(`/your-posts`);
       return;
     } else if (name === 'delete') {
       mutateDeletePosts(data[0].id);

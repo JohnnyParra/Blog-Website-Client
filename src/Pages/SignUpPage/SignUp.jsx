@@ -74,7 +74,7 @@ export default function Login() {
       const token = registerResponse.data.jwt;
       setJwt(token);
       const payload = JSON.parse(window.atob(token.split('.')[1]));
-      navigate('/HomePage');
+      navigate('/home');
     } else {
       setResponseMessage({
         state: true,
@@ -192,7 +192,7 @@ export default function Login() {
           </div>
           <p className='link'>
             Already have an account?{' '}
-            <Link className='Link' to='/Login'>
+            <Link className='Link' to='/login'>
               Log in
             </Link>
           </p>

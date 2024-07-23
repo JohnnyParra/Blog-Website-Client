@@ -14,6 +14,7 @@ import Post from './Pages/PostPage/PostPage';
 import Posts from './Pages/PostsPage/PostsPage';
 import Profile from './Pages/ProfilePage/ProfilePage';
 import PrivateRoutes from './Utils/PrivateRoutes';
+import NotFound from './Pages/NotFound/NotFound';
 
 //Styling
 import './index.css';
@@ -23,17 +24,18 @@ export default function App() {
     <Router>
       <Routes>
         <Route path='/' element={<SignUp />} />
-        <Route path='/Login' element={<Login />} />
+        <Route path='/login' element={<Login />} />
         <Route element={<PrivateRoutes />}>
-          <Route path='/HomePage' element={<Home />} />
-          <Route path='/HomePage/Search/:search' element={<Search />} />
-          <Route path='/HomePage/:id' element={<Post />} />
-          <Route path='HomePage/Profile' element={<Profile />} />
-          <Route path='HomePage/Posts' element={<Posts />} />
-          <Route path='HomePage/Posts/CreatePost' element={<CreatePost />} />
-          <Route path='HomePage/Posts/EditPost/:id' element={<EditPost />} />
-          <Route path='HomePage/Likes' element={<Likes />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/search/:search' element={<Search />} />
+          <Route path='/post/:id' element={<Post />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/your-posts' element={<Posts />} />
+          <Route path='/create-post' element={<CreatePost />} />
+          <Route path='/edit-post/:id' element={<EditPost />} />
+          <Route path='/liked-posts' element={<Likes />} />
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
   );
