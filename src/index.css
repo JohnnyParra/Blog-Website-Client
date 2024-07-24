@@ -1,4 +1,8 @@
 html, body {
+  background-image: url('./Assets/blog-background.webp');
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
   background-color: white;
   font-size: 10px;
   height: 100%;
