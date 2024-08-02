@@ -30,7 +30,7 @@ export default function detectClick() {
         if (event.key === 'Enter') {
           if (!isDropDown) {
             setIsDropDown(true);
-          } else {
+          } else {            
             handleEnterKey(highlightIndex);
           }
         } else if (isDropDown) {
@@ -39,7 +39,7 @@ export default function detectClick() {
             setHighlightIndex((prevIndex) => (prevIndex - 1 + options) % options);
           } else if (event.key === 'ArrowDown') {
             setHighlightIndex((prevIndex) => (prevIndex + 1) % options);
-          } else if (event.key === 'Escape') {
+          } else if (event.key === 'Escape' || event.key === 'Backspace') {
             setIsDropDown(false);
           }
         }

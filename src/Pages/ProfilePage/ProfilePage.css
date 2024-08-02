@@ -96,7 +96,7 @@
 
 .profile-page .delete span{
   color: #b50404;
-  font-size: var(--fs-300);
+  font-size: var(--fs-400);
 }
 
 .profile-page .delete span:hover {
@@ -104,135 +104,7 @@
   cursor: pointer;
 }
 
-.profile-page .popup-background {
-  align-items: center;
-  background-color: rgb(0, 0, 0, 0.8);
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  z-index: 1;
-}
 
-.profile-page .popup {
-  background: rgb(237, 237, 237);
-  border: 1px solid black;
-  border-radius: 15px;
-  box-shadow: 2px 2px 10px black;
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  justify-content: space-around;
-  padding: 5px;
-  width: 300px;
-}
-
-.profile-page .popup-btn-container {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-}
-
-.profile-page .popup h1 {
-  font-size: var(--fs-550);
-}
-
-.profile-page .popup h4 {
-  font-size: var(--fs-400);
-  font-weight: 500;
-}
-
-.profile-page .popup-btn {
-  border-radius: 5px;
-  font-size: var(--fs-600);
-  padding: 5px;
-}
-
-.profile-page .popup-cancel-btn {
-  background: linear-gradient(grey, white, white);
-  color: black;
-  width: 100px;
-}
-
-.profile-page .popup-cancel-btn:hover {
-  background: linear-gradient(white, grey, grey);
-  color: black;
-  cursor: pointer;
-}
-
-.profile-page .popup-delete-btn {
-  background: linear-gradient(rgb(212, 25, 25), rgb(158, 50, 50));
-  color: white;
-  width: 100px;
-}
-
-.profile-page .popup-delete-btn:hover {
-  background: linear-gradient(rgb(158, 50, 50), rgb(212, 25, 25));
-  color: white;
-  cursor: pointer;
-}
-
-.overlay-delete-container {
-
-  & .page-overlay {
-    align-items: center;
-    background-color: black;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    left: 0;
-    opacity: 0.4;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    z-index: 1;
-  }
-  & .check-delete-container {
-    align-items: center;
-    background-color: white;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    height: 175px;
-    justify-content: space-between;
-    left: 50%;
-    max-width: 300px;
-    padding: 20px;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    & span {
-      font-size: var(--fs-400);
-    }
-    & button {
-      background-color:  rgba(117, 117, 117, .3);
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: var(--fs-500);
-      height: 36px;
-      margin: 4px;
-      padding: 0px 16px;
-    }
-    & .delete {
-      background-color: red;
-      color: white;
-
-      &:hover {
-        background-color: rgb(235, 0, 0);
-      }
-    }
-    & .cancel {
-      &:hover {
-        background-color: rgba(130, 130, 130, 0.3);
-      }
-    }
-  }
-}
 
 @media only screen and (max-width: 600px) {
   .profile-page .input-container .input-row {
@@ -253,9 +125,4 @@
     height: 30px;
   }
 
-  .profile-page .check-delete-container {
-    height: 175px;
-    padding: 20px 10px;
-    width: 200px;
-  }
 }

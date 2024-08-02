@@ -33,7 +33,11 @@ export default function UserPostsContent(props) {
       refetchOnWindowFocus: false,
       retry: 1,
       onError: (data) => {
-        setErrorMsg("An error occurred");
+        if (data.status === 404) {
+          setErrorMsg("No Posts Found")
+        } else {
+          setErrorMsg("An error occurred");
+        }
       }
     }
   )

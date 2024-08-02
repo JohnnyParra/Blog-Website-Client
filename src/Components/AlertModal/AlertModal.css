@@ -1,13 +1,20 @@
 .overlay-delete-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100v2;
+  height: 100vh;
+  z-index: 1000;
+
   & .page-overlay {
     align-items: center;
     background-color: black;
     display: flex;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     left: 0;
     opacity: 0.4;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100vw;
     z-index: 1;
@@ -22,7 +29,7 @@
     justify-content: space-around;
     left: 50%;
     padding: 20px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
@@ -64,6 +71,11 @@
       }
     }
   }
+}
+
+body:has(.requires-no-scroll) {
+  height: 100%;
+  overflow: hidden;
 }
 
 @keyframes pulseBtn {

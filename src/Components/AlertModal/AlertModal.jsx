@@ -8,7 +8,7 @@ export default function AlertModal(props) {
   const { modalRef } = useTrapFocus(props.isOpen, props.setIsOpen);
 
   return props.isOpen ? (
-    <div className="overlay-delete-container" ref={modalRef}>
+    <div className="overlay-delete-container requires-no-scroll" ref={modalRef}>
       <div className="page-overlay"></div>
       <div
         className="check-delete-container"

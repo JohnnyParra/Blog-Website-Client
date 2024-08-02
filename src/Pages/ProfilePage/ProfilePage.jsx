@@ -18,6 +18,7 @@ import { Avatar, IconButton } from '@mui/material';
 // Components
 import Navbar from '../../Components/Navbar/Navbar';
 import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
+import AlertModal from '../../Components/AlertModal/AlertModal';
 
 // Image Assets
 import eye from '../../Assets/eye.svg';
@@ -56,7 +57,6 @@ export default function Profile() {
         queryClient.invalidateQueries(['user']);
         setIsLoading(false);
         setInput((prevInput) => ({ ...prevInput, avatar: '' }));
-        console.log(data);
         if (!data) {
           setResponseMessage({
             state: true,
@@ -293,21 +293,14 @@ export default function Profile() {
             )}
           </div>
         </div>
-        <div className="delete" onClick={() => popUp()}><span>Delete Account</span></div>
-        {popup && (
-          <div className="overlay-delete-container">
-            <div className="page-overlay">
-            </div>
-            <div className="check-delete-container">
-              <span><b>Are you sure you want to delete your Account?</b></span>
-              <span>You will have 30 days to reactivate this account</span>
-              <div className="options">
-                <button className="cancel" onClick={() => setPopup(false)}>Cancel</button>
-                <button className="delete" onClick={() => deleteAccount()}>Delete</button>
-              </div>
-            </div>
-          </div>
-        )}
+        <div className="delete" tabIndex={0} onKeyDown={(event) => {if (event.key='Enter') setPopup(true)}} onClick={() => popUp()}><span>Delete Account</span></div>
+        <AlertModal 
+          cancel={() => setPopup(false)}
+          delete={() => deleteAccount()}
+          isOpen={popup}
+          setIsOpen={setPopup}
+          label={"Are you sure you want to delete your Profile?"}
+        />
       </div>
     </main>
   );

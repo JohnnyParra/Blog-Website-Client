@@ -1,20 +1,21 @@
 // Libraries
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
 // Pages
-import SignUp from './Pages/SignUpPage/SignUp';
-import Login from './Pages/LoginPage/LoginPage';
-import Home from './Pages/HomePage/HomePage';
-import Search from './Pages/SearchPage/SearchPage'
-import CreatePost from './Pages/CreatePostPage/CreatePostPage';
-import EditPost from './Pages/EditPostPage/EditPostPage';
-import Likes from './Pages/LikesPage/LikesPage';
-import Post from './Pages/PostPage/PostPage';
-import Posts from './Pages/PostsPage/PostsPage';
-import Profile from './Pages/ProfilePage/ProfilePage';
+const SignUp = lazy(() => import('./Pages/SignUpPage/SignUp'));
+const Login = lazy(() => import('./Pages/LoginPage/LoginPage'));
+const Home = lazy(() => import('./Pages/HomePage/HomePage'));
+const Search = lazy(() => import('./Pages/SearchPage/SearchPage'));
+const CreatePost = lazy(() => import('./Pages/CreatePostPage/CreatePostPage'));
+const EditPost = lazy(() => import('./Pages/EditPostPage/EditPostPage'));
+const Likes = lazy(() => import('./Pages/LikesPage/LikesPage'));
+const Post = lazy(() => import( './Pages/PostPage/PostPage'));
+const Posts = lazy(() => import('./Pages/PostsPage/PostsPage'));
+const Profile = lazy(() => import('./Pages/ProfilePage/ProfilePage'));
+const NotFound = lazy(() => import('./Pages/NotFound/NotFound'));
 import PrivateRoutes from './Utils/PrivateRoutes';
-import NotFound from './Pages/NotFound/NotFound';
+
 
 //Styling
 import './index.css';
@@ -23,19 +24,19 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Suspense><SignUp /></Suspense>} />
+        <Route path='/login' element={<Suspense><Login /></Suspense>} />
         <Route element={<PrivateRoutes />}>
-          <Route path='/home' element={<Home />} />
-          <Route path='/search/:search' element={<Search />} />
-          <Route path='/post/:id' element={<Post />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/your-posts' element={<Posts />} />
-          <Route path='/create-post' element={<CreatePost />} />
-          <Route path='/edit-post/:id' element={<EditPost />} />
-          <Route path='/liked-posts' element={<Likes />} />
+          <Route path='/home' element={<Suspense><Home /></Suspense>} />
+          <Route path='/search/:search' element={<Suspense><Search /></Suspense>} />
+          <Route path='/post/:id' element={<Suspense><Post /></Suspense>} />
+          <Route path='/profile' element={<Suspense><Profile /></Suspense>} />
+          <Route path='/your-posts' element={<Suspense><Posts /></Suspense>} />
+          <Route path='/create-post' element={<Suspense><CreatePost /></Suspense>} />
+          <Route path='/edit-post/:id' element={<Suspense><EditPost /></Suspense>} />
+          <Route path='/liked-posts' element={<Suspense><Likes /></Suspense>} />
         </Route>
-        <Route path='*' element={<NotFound />} />
+        <Route path='*' element={<Suspense><NotFound /></Suspense>} />
       </Routes>
     </Router>
   );

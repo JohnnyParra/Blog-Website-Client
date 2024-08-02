@@ -37,9 +37,21 @@ export const post = async (url, body, headers) => {
       body: JSON.stringify(body),
     });
 
+    if (res.status == 201 || res.status == 204) {
+      return;
+    }
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'An error occurred');
+      error.status = res.status;
+      error.data = errorData;
+      throw error;
+    }
+
     return res.json();
   } catch (err) {
-    return { auth: false };
+    throw err;
   }
 };
 
@@ -55,9 +67,21 @@ export const formPost = async (url, body, headers) => {
       body: body,
     });
 
+    if (res.status == 201) {
+      return;
+    }
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'An error occurred');
+      error.status = res.status;
+      error.data = errorData;
+      throw error;
+    }
+
     return res.json();
   } catch (err) {
-    return { auth: false };
+    throw err;
   }
 };
 
@@ -72,6 +96,18 @@ export const put = async (url, body, headers) => {
       },
       body: JSON.stringify(body),
     });
+
+    if (res.status == 204) {
+      return;
+    }
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'An error occurred');
+      error.status = res.status;
+      error.data = errorData;
+      throw error;
+    }
 
     return res.json();
   } catch (err) {
@@ -90,9 +126,21 @@ export const formPut = async (url, body, headers) => {
       body: body,
     });
 
+    if (res.status == 204) {
+      return;
+    }
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'An error occurred');
+      error.status = res.status;
+      error.data = errorData;
+      throw error;
+    }
+
     return res.json();
   } catch (err) {
-    return { err };
+    throw err;
   }
 };
 
@@ -106,8 +154,20 @@ export const remove = async (url, headers) => {
       },
     });
 
+    if (res.status == 204) {
+      return;
+    }
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      const error = new Error(errorData.message || 'An error occurred');
+      error.status = res.status;
+      error.data = errorData;
+      throw error;
+    }
+
     return res.json();
   } catch (err) {
-    return err;
+    throw err;
   }
 };
