@@ -37,6 +37,7 @@
     & span {
       color: black;
       font-size: var(--fs-400);
+      text-align: center;
     }
     & button {
       background-color:  rgba(117, 117, 117, .3);
