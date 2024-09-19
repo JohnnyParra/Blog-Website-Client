@@ -1,9 +1,13 @@
 // Libraries
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 // Api Services
 import { addLikeRequest, fetchLikes, deleteLikeRequest } from '../../ApiServices/TasksService';
+import { getJwt } from '../../ApiServices/JwtService';
+
+import NotLoggedIn from '../Modal/NotLoggedIn/NotLoggedIn'
 
 // MUI Icons
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -13,7 +17,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import './LikeButton.css';
 
 export default function LikeButton(props) {
+  const navigate = useNavigate();
   const [likeButton, setLikeButton] = useState(false);
+  const [askLogin, setAskLogin] = useState(false);
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useQuery(
@@ -21,19 +27,16 @@ export default function LikeButton(props) {
     () => fetchLikes(props.id),
     {
       retry: 1,
-    },
-    {
       onSuccess: (data) => {
-        if (data.userLike[0].userLike > 0) {
+        if (data.userLike > 0) {
           setLikeButton(true);
         } else {
           setLikeButton(false);
         }
       },
       onError: (data) => {
-
       },
-    }
+    },
   );
 
   const { mutate: mutateAddLike } = useMutation(
@@ -41,6 +44,7 @@ export default function LikeButton(props) {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['likes']);
+        setLikeButton(true);
       },
     }
   );
@@ -50,6 +54,7 @@ export default function LikeButton(props) {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['likes']);
+        setLikeButton(false);
       },
     }
   );
@@ -70,11 +75,13 @@ export default function LikeButton(props) {
   const styles = { color: 'red' };
 
   function handleClick() {
-    if (data.userLike[0].userLike > 0) {
-      setLikeButton(false);
+    if (getJwt() == null) {
+      setAskLogin(true);
+      return;
+    }
+    if (data.userLike > 0) {
       mutateDeleteLike();
     } else {
-      setLikeButton(true);
       mutateAddLike({ id: props.id });
     }
   }
@@ -108,6 +115,13 @@ export default function LikeButton(props) {
           {likeBtn}
         </div>
       </div>
+      <NotLoggedIn 
+      cancel={() => setAskLogin(false)}
+      delete={() => navigate('/login')}
+      isOpen={askLogin}
+      setIsOpen={setAskLogin}
+      label={"You need to be logged in to like a post"}
+      />
     </div>
   );
 };

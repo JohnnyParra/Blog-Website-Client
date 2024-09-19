@@ -16,7 +16,7 @@ export default function Search() {
   return (
     <main className="search-posts">
       <Helmet>
-        <title>{`${search} search results | Project B`}</title>
+        <title>{`${search} search results | Fire Talks`}</title>
         <meta name='description' content={`This is our page displaying the search results of ${search}`} />
         <meta name='keywords' content={`${search}, search, lookup, find, page, website`} />
       </Helmet>

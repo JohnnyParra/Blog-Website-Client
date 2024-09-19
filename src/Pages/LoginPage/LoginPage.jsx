@@ -63,7 +63,7 @@ export default function Login() {
       const token = loginResponse.data.jwt;
       setJwt(token);
       const payload = JSON.parse(window.atob(token.split('.')[1]));
-      navigate('/home');
+      navigate('/');
     } else {
       setResponseMessage({
         state: true,
@@ -85,15 +85,15 @@ export default function Login() {
   return (
     <div className='login'>
       <Helmet>
-        <title>Log in | Project B</title>
+        <title>Log in | Fire Talks</title>
         <meta name='description' content='This is the log in page of our website.' />
         <meta name='keywords' content='log in, sign in, page, website' />
       </Helmet>
       <div className='left' style={{backgroundImage: `url("${tableBackground}")`}}>
-        <h1 className='logo'>Blog</h1>
+        <h1 className='logo'>Fire Talks</h1>
       </div>
       <div className='right'>
-        <h1 className='logo'>Blog</h1>
+        <h1 className='logo'>Fire Talks</h1>
         <div className='input-field-container'>
           <div className='input-field' role='form'>
             <h2>Login</h2>
@@ -162,7 +162,7 @@ export default function Login() {
           </div>
           <p className='link'>
             Don't have an account?{' '}
-            <Link className='Link' to='/'>
+            <Link className='Link' to='/signup'>
               Sign up
             </Link>
           </p>

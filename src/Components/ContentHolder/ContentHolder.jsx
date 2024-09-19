@@ -26,7 +26,7 @@ export default React.memo(function ContentHolder(props) {
     isFetchingNextPage,
   } = useInfiniteQuery(
     ['infinitePosts', props.category, props.sort],
-    ({pageParam = 1}) => fetchPosts(props.category, props.sort, pageParam),
+    ({pageParam = 1}) => fetchPosts(props.category || 0, props.sort || 1, pageParam || 1),
     {
       getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.nextPage : undefined,
       refetchOnWindowFocus: false,

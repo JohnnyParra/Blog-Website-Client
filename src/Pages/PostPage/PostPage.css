@@ -1,5 +1,6 @@
 .post-page {
   & .App {
+    background-color: white;
     & .title-container {
       display: flex;
       justify-content: center;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import useTrapFocus from "../../hooks/useTrapFocus";
+import useTrapFocus from "../../../hooks/useTrapFocus";
 
 import './AlertModal.css';
 

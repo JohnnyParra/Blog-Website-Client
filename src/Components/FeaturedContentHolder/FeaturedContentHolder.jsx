@@ -14,7 +14,7 @@ export default React.memo(function FeaturedContentHolder(props) {
 
   const { data: featuredData , isLoading: featuredLoading, isError: featuredError } = useQuery(
     ['posts', props.category], 
-    () => fetchFeaturedPost(props.category),
+    () => fetchFeaturedPost(props.category || 0),
     {
       refetchOnWindowFocus: false,
       retry: 1,

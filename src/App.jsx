@@ -24,12 +24,12 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Suspense><SignUp /></Suspense>} />
+        <Route path='/' element={<Suspense><Home /></Suspense>} />
+        <Route path='/signup' element={<Suspense><SignUp /></Suspense>} />
         <Route path='/login' element={<Suspense><Login /></Suspense>} />
+        <Route path='/search/:search' element={<Suspense><Search /></Suspense>} />
+        <Route path='/post/:id' element={<Suspense><Post /></Suspense>} />
         <Route element={<PrivateRoutes />}>
-          <Route path='/home' element={<Suspense><Home /></Suspense>} />
-          <Route path='/search/:search' element={<Suspense><Search /></Suspense>} />
-          <Route path='/post/:id' element={<Suspense><Post /></Suspense>} />
           <Route path='/profile' element={<Suspense><Profile /></Suspense>} />
           <Route path='/your-posts' element={<Suspense><Posts /></Suspense>} />
           <Route path='/create-post' element={<Suspense><CreatePost /></Suspense>} />

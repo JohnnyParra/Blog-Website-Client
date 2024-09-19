@@ -74,7 +74,7 @@ export default function Login() {
       const token = registerResponse.data.jwt;
       setJwt(token);
       const payload = JSON.parse(window.atob(token.split('.')[1]));
-      navigate('/home');
+      navigate('/');
     } else {
       setResponseMessage({
         state: true,
@@ -96,15 +96,15 @@ export default function Login() {
   return (
     <div className='sign-up'>
       <Helmet>
-        <title>Sign up | Project B</title>
+        <title>Sign up | Fire Talks</title>
         <meta name='description' content='This is the sign up page of our website.' />
         <meta name='keywords' content='sign up, register, page, website' />
       </Helmet>
       <div className='left' style={{backgroundImage: `url("${tableBackground}")`}}>
-        <h1 className='logo'>Blog</h1>
+        <h1 className='logo'>Fire Talks</h1>
       </div>
       <div className='right'>
-        <h1 className='logo'>Blog</h1>
+        <h1 className='logo'>Fire Talks</h1>
         <div className='input-field-container'>
           <div className='input-field' role='form'>
             <h2>Sign up</h2>

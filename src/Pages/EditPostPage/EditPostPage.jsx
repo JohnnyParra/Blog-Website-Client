@@ -190,7 +190,7 @@ export default function EditPost() {
   return (
     <main className='edit-post'>
       <Helmet>
-        <title>Edit Post | Project B</title>
+        <title>Edit Post | Fire Talks</title>
         <meta name='description' content='This is the edit posts page of our website.' />
         <meta name='keywords' content='edit, posts, post, page, website' />
       </Helmet>

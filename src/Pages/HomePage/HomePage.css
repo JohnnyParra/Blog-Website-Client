@@ -5,21 +5,6 @@ main {
   width: 100%;
 }
 
-.App {
-  border: 1px solid black;
-  border-bottom: none;
-  background-color: white;
-  border-top: none;
-  display: flex;
-  flex-direction: column;
-  font-family: 'SF Pro Text', 'Myriad Set Pro', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  letter-spacing: -.01em;
-  min-height: 100vh;
-  max-width: 1250px;
-  padding: 0px 20px 0px 20px;
-  width: 100%;
-}
-
 .home-page .category-links {
   align-items: center;
   display: flex;
@@ -71,12 +56,6 @@ main {
     cursor: pointer;
     font-size: var(--fs-300);
     margin: 10px;
-  }
-}
-
-@media only screen and (max-width: 1250px) {
-  .App {
-    border: none;
   }
 }
 

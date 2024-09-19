@@ -1,8 +1,12 @@
 // Libraries & Context
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { nanoid } from "nanoid";
 import { UserContext } from "../../../Context/UserContext";
+
+// API Services
+import { getJwt } from "../../../ApiServices/JwtService";
 
 // Components
 import Replies from "../Replies/Replies";
@@ -11,7 +15,8 @@ import CommentEdit from "../CommentInput/Variations/CommentEdit";
 import CommentLikeButton from "../CommentLikeButton/CommentLikeButton";
 import CommentExpander from "../CommentExpander/CommentExpander";
 import DropDownButton from "../../DropDownButton/DropDownButton";
-import AlertModal from "../../AlertModal/AlertModal";
+import AlertModal from "../../Modal/AlertModal/AlertModal";
+import NotLoggedIn from "../../Modal/NotLoggedIn/NotLoggedIn";
 
 // Utilities
 import { timeSince } from "../../../Utils/ConvertDate";
@@ -28,7 +33,9 @@ import { deleteCommentRequest } from "../../../ApiServices/TasksService";
 import "./Comment.css";
 
 export default function Comment(props) {
+  const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
+  const [askLogin, setAskLogin] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
   const [reply, setReply] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -44,6 +51,10 @@ export default function Comment(props) {
   );
 
   function handleReplyClick() {
+    if (getJwt() == null) {
+      setAskLogin(true);
+      return;
+    }
     setReply(true);
   }
 
@@ -164,7 +175,7 @@ export default function Comment(props) {
           </div>
           <div className="more-container">
             <DropDownButton 
-              isUser={props.comment.user_id === currentUser.user.userId}
+              isUser={props.comment.user_id === currentUser?.user?.userId}
               commentId={props.comment.id}
               handleClick={handleDropDownSelect}
             />
@@ -207,6 +218,13 @@ export default function Comment(props) {
         isOpen={checkDelete}
         setIsOpen={setCheckDelete}
         label={"Are you sure you want to delete your comment?"}
+      />
+      <NotLoggedIn 
+      cancel={() => setAskLogin(false)}
+      delete={() => navigate('/login')}
+      isOpen={askLogin}
+      setIsOpen={setAskLogin}
+      label={"You need to be logged in to reply to a comment"}
       />
     </div>
   );

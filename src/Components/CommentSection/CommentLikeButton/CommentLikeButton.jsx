@@ -1,6 +1,10 @@
 // Libraries
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
+
+// Components
+import NotLoggedIn from "../../Modal/NotLoggedIn/NotLoggedIn";
 
 // Api Services
 import {
@@ -8,6 +12,7 @@ import {
   fetchCommentLikes,
   deleteCommentLikeRequest,
 } from "../../../ApiServices/TasksService";
+import { getJwt } from "../../../ApiServices/JwtService";
 
 // MUI Components && Icons
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -17,7 +22,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./CommentLikeButton.css";
 
 export default function CommentLikeButton(props) {
+  const navigate = useNavigate();
   const [likeButton, setLikeButton] = useState(false);
+  const [askLogin, setAskLogin] = useState(false);
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useQuery(
@@ -25,7 +32,7 @@ export default function CommentLikeButton(props) {
     () => fetchCommentLikes(props.id),
     {
       onSuccess: (data) => {
-        if (data.userLike[0].userLike > 0) {
+        if (data.userLike > 0) {
           setLikeButton(true);
         } else {
           setLikeButton(false);
@@ -39,6 +46,7 @@ export default function CommentLikeButton(props) {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["likes"]);
+        setLikeButton(true);
       },
     }
   );
@@ -48,6 +56,7 @@ export default function CommentLikeButton(props) {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["likes"]);
+        setLikeButton(false);
       },
     }
   );
@@ -68,11 +77,13 @@ export default function CommentLikeButton(props) {
   const styles = { color: "red" };
 
   function handleClick() {
-    if (data.userLike[0].userLike > 0) {
-      setLikeButton(false);
+    if (getJwt() == null) {
+      setAskLogin(true);
+      return;
+    }
+    if (data.userLike > 0) {
       mutateDeleteLike();
     } else {
-      setLikeButton(true);
       mutateAddLike();
     }
   }
@@ -106,6 +117,13 @@ export default function CommentLikeButton(props) {
           {likeBtn}
         </div>
       </div>
+      <NotLoggedIn 
+      cancel={() => setAskLogin(false)}
+      delete={() => navigate('/login')}
+      isOpen={askLogin}
+      setIsOpen={setAskLogin}
+      label={"You need to be logged in to like a comment"}
+      />
     </div>
   );
 }

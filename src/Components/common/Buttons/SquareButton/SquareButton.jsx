@@ -1,6 +1,12 @@
 // Libraries
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+// API Services
+import { getJwt } from '../../../../ApiServices/JwtService';
+
+// Components
+import NotLoggedIn from "../../../Modal/NotLoggedIn/NotLoggedIn";
 // Styling
 import './SquareButton.css';
 
@@ -21,6 +27,8 @@ aria-label: string
 */
 
 export default React.memo(function SquareButton(props) {
+  const navigate = useNavigate();
+  const [askLogin, setAskLogin] = useState(false);
   const customClass = props.className ? props.className : '';
   const selectedClass = props.isSelected ? '' : 'square-button-not-selected';
   const disabledClass = props.disabled ? 'square-button-disabled' : '';
@@ -29,16 +37,21 @@ export default React.memo(function SquareButton(props) {
 
   function checkDisabled(event) {
     if (!props.disabled) {
+      if (props.authRequired && getJwt() == null) {
+        setAskLogin(true);
+        return;
+      }
       props.onClick(event);
     }
   }
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
-      props.onClick(event);
+      props.checkDisabled(event);
     }
   }
   return (
+    <React.Fragment>
     <div
       className={`square-button ${customClass} ${colorClass} ${selectedClass} ${shapeClass} ${disabledClass}`} 
       onClick={(event) => checkDisabled(event)} 
@@ -61,5 +74,13 @@ export default React.memo(function SquareButton(props) {
       )}
       <span className={`text ${props.icon ? "icon-margin" : ""}`}>{props.text}</span>
     </div>
+    <NotLoggedIn 
+      cancel={() => setAskLogin(false)}
+      delete={() => navigate('/login')}
+      isOpen={askLogin}
+      setIsOpen={setAskLogin}
+      label={`You need to be logged in to ${[props.title]}`}
+      />
+    </React.Fragment>
   );
 });

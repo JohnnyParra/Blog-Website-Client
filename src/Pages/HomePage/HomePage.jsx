@@ -1,5 +1,5 @@
 // Libraries && Context
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
@@ -40,7 +40,7 @@ export default function Home(){
       }
     }
   );
-
+  
   if(!(sortOptions.some(el => el.value == searchParams.get('sort')))) {console.log('invalid param')};
   if(userLoading) {return <p>Loading...</p>};
 
@@ -80,9 +80,9 @@ export default function Home(){
   return (
     <main className='home-page'>
       <Helmet>
-        <title>{currentCategory === 'Home Page' ? 'Home' : `${currentCategory} Posts`} | Project B</title>
+        <title>{currentCategory === 'Home Page' ? 'Home' : `${currentCategory}`} | Fire Talks</title>
         <meta name='description' content={`This is the ${currentCategory === 'All' ? 'home' : currentCategory.toLowerCase()} page of our website.`} />
-        <meta name='keywords' content={`${currentCategory.toLowerCase()}, posts, blog`} />
+        <meta name='keywords' content={`${currentCategory.toLowerCase()}, posts, blog, fire talks`} />
       </Helmet>
       <div className = 'App'>
         <Navbar />
@@ -105,6 +105,7 @@ export default function Home(){
             title={"create a post"}
             text={"Create A Post"}
             disabled={false}
+            authRequired={true}
             shape={"square"}
             color={"primary"}
             isSelected={true}

@@ -32,7 +32,7 @@ export default function Posts() {
   return (
     <main className='posts-page'>
       <Helmet>
-        <title>{`${btnSelected} ${btnSelected === 'Drafts' ? '' : 'Posts'}`} | Project B</title>
+        <title>{`${btnSelected} ${btnSelected === 'Drafts' ? '' : 'Posts'}`} | Fire Talks</title>
         <meta name='description' content='This is the users posts page of our website.' />
         <meta name='keywords' content='user posts, page, website' />
       </Helmet>

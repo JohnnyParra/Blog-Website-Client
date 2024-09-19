@@ -1,0 +1,102 @@
+.overlay-delete-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100v2;
+  height: 100vh;
+  z-index: 1000;
+
+  & .page-overlay {
+    align-items: center;
+    background-color: black;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+  }
+  & .check-delete-container {
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-around;
+    left: 50%;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 2;
+    & span {
+      color: black;
+      font-size: var(--fs-400);
+    }
+    & button {
+      background-color:  rgba(117, 117, 117, .3);
+      border: none;
+      border-radius: 25px;
+      box-shadow: 2px 2px 2px rgb(117, 117, 117);
+      cursor: pointer;
+      font-size: var(--fs-500);
+      height: 36px;
+      margin: 4px;
+      padding: 0px 16px;
+    }
+    & .delete {
+      background-color: red;
+      color: white;
+  
+      &:hover {
+        background-color: rgb(235, 0, 0);
+      }
+      &:focus-visible {
+        animation: pulseDeleteBtn 1.5s infinite;
+        outline: none;
+      }
+    }
+    & .cancel {
+
+      &:hover {
+        background-color: rgba(130, 130, 130, 0.3);
+      }
+      &:focus-visible {
+        animation: pulseBtn 1.5s infinite;
+        outline: none;
+      }
+    }
+  }
+}
+
+body:has(.requires-no-scroll) {
+  height: 100%;
+  overflow: hidden;
+}
+
+@keyframes pulseBtn {
+  0%, 100% {
+    background-color: white;
+    background-size: 0% 0%;
+  }
+  50% {
+    background-color: rgba(117, 117, 117, .3); 
+    background-size: 100% 100%;    
+  }
+}
+
+@keyframes pulseDeleteBtn {
+  0%, 100% {
+    background-color: rgb(200, 0, 0);
+    background-size: 0% 0%;
+  }
+  50% {
+    background-color: red; 
+    background-size: 100% 100%;    
+  }
+}

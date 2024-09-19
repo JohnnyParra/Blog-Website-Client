@@ -80,7 +80,7 @@ export default function CreatePost() {
     let name = event.currentTarget.getAttribute('data-name');
     setIsLoading(name);
     if (name === 'cancel') {
-      navigate(`/home`);
+      navigate(`/`);
       return;
     } else if (name === 'save') {
       let formData = new FormData();
@@ -163,7 +163,7 @@ export default function CreatePost() {
   return (
     <main className='create-post'>
       <Helmet>
-        <title>Create Post | Project B</title>
+        <title>Create Post | Fire Talks</title>
         <meta name='description' content='This is the create post page of our website.' />
         <meta name='keywords' content='create, post, page, website' />
       </Helmet>

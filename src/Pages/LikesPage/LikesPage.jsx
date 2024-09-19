@@ -12,7 +12,7 @@ export default function Posts() {
   return (
     <main className='liked-posts'>
       <Helmet>
-        <title>Likes | Project B</title>
+        <title>Likes | Fire Talks</title>
         <meta name='description' content='This is the user liked posts page of our website.' />
         <meta name='keywords' content='liked, liked posts, page, website' />
       </Helmet>

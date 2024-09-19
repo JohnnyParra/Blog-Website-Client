@@ -18,7 +18,7 @@ import { Avatar, IconButton } from '@mui/material';
 // Components
 import Navbar from '../../Components/Navbar/Navbar';
 import SquareButton from '../../Components/common/Buttons/SquareButton/SquareButton';
-import AlertModal from '../../Components/AlertModal/AlertModal';
+import AlertModal from '../../Components/Modal/AlertModal/AlertModal';
 
 // Image Assets
 import eye from '../../Assets/eye.svg';
@@ -179,7 +179,7 @@ export default function Profile() {
   return (
     <main className='profile-page'>
       <Helmet>
-        <title>Profile | Project B</title>
+        <title>Profile | Fire Talks</title>
         <meta name='description' content='This is the users profile page of our website.' />
         <meta name='keywords' content='profile, user, page, website' />
       </Helmet>

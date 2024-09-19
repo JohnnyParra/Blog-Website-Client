@@ -1,5 +1,12 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+//API Services
+import { getJwt } from "../../../ApiServices/JwtService";
+
+// Components
+import NotLoggedIn from "../../Modal/NotLoggedIn/NotLoggedIn";
 
 // MUI Components && Icons
 import { Avatar } from "@mui/material";
@@ -8,6 +15,16 @@ import { Avatar } from "@mui/material";
 import "./CommentInputShell.css";
 
 export default function CommentInputShell(props) {
+  const navigate = useNavigate();
+  const [askLogin, setAskLogin] = useState(false);
+  function handleFocus() {
+    if (getJwt() == null) {
+      setAskLogin(true);
+      return;
+    }
+    props.setCommentClicked(true)
+  }
+
   return (
     <React.Fragment>
       <div className="comment-input-container">
@@ -35,7 +52,7 @@ export default function CommentInputShell(props) {
             value={props.comment}
             ref={props.commentRef}
             onChange={(event) => props.setComment(event.target.value)}
-            onFocus={() => props.setCommentClicked(true)}
+            onFocus={() => handleFocus()}
             maxLength={1000}
             rows="1" 
             placeholder="Add a comment..."
@@ -71,6 +88,13 @@ export default function CommentInputShell(props) {
           </div>
         )}
       </div>
+      <NotLoggedIn 
+      cancel={() => setAskLogin(false)}
+      delete={() => navigate('/login')}
+      isOpen={askLogin}
+      setIsOpen={setAskLogin}
+      label={"You need to be logged in to add a comment"}
+      />
     </React.Fragment>
   );
 }

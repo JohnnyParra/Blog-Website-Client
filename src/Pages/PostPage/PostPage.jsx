@@ -43,7 +43,7 @@ export default function Post() { /// something wrong with how the LikeButton com
   return (
     <main className='post-page'>
       <Helmet>
-        <title>{data[0].title} | Project B</title>
+        <title>{data[0].title} | Fire Talks</title>
         <meta name='description' content={data[0].description} />
         <meta name='keywords' content={`${data[0].author}, post, page, website`} />
       </Helmet>
@@ -74,7 +74,7 @@ export default function Post() { /// something wrong with how the LikeButton com
           <span className='created-by'>By: {data[0].author}</span>
         </div>
         <div className="edit-link-container">
-          {data[0].user_id === currentUser.user.userId && (
+          {data[0].user_id === currentUser?.user?.userId && (
             <Link to={`/edit-post/${data[0].id}`}>edit</Link>
           )}
         </div>

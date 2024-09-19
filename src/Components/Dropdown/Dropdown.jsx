@@ -1,10 +1,14 @@
 // Libraries
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// API Services
+import { getJwt } from '../../ApiServices/JwtService';
 
 // MUI Components && Icons
 import { styled, alpha } from '@mui/material/styles';
 import { UserContext } from '../../Context/UserContext';
+import NotLoggedIn from "../Modal/NotLoggedIn/NotLoggedIn";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -66,6 +70,7 @@ const StyledMenu = styled((props) => (
 
 export default function Dropdown() {
   const navigate = useNavigate();
+  const [askLogin, setAskLogin] = useState(false);
   const { currentUser, logoutUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -75,6 +80,15 @@ export default function Dropdown() {
   const handleClose = (event) => {
     setAnchorEl(null);
     const target = event.target.getAttribute('name');
+    if (target === 'home') {
+      navigate('/');
+      return;
+    } else if(target === 'login') {
+      navigate('/login')
+    } else if (getJwt() == null && target != null) {
+      setAskLogin(true);
+      return;
+    }
 
     if (target === 'logout') {
       navigate('/login');
@@ -86,11 +100,12 @@ export default function Dropdown() {
     } else if (target === 'likes') {
       navigate('/liked-posts');
     } else if (target === 'home') {
-      navigate('/home');
+      navigate('/');
     }
   };
 
   return (
+    <React.Fragment>
     <div className="dropdown-container">
       <Button
         id='demo-customized-button'
@@ -112,11 +127,11 @@ export default function Dropdown() {
         onClick={handleClick}
       >
         <Avatar
-          src={currentUser?.userInfo.avatar_metadata?.small}
+          src={currentUser?.userInfo?.avatar_metadata?.small}
           sx={{ m: 1, bgcolor: '#047CB4'}}
           alt="Users Avatar"
         >
-          {currentUser?.userInfo.name[0]}
+          {currentUser?.userInfo?.name[0]}
         </Avatar>
         <span className='user'>{currentUser.userInfo?.name}</span>
         {open ? (
@@ -181,16 +196,24 @@ export default function Dropdown() {
         <Divider sx={{ my: 0.5 }} />
         <MenuItem
           className='menuItem'
-          name='logout'
-          title='logout'
+          name={getJwt() == null ? 'login' : 'logout'}
+          title={getJwt() == null ? 'login' : 'logout'}
           sx={{fontSize: "12px", minHeight: "30px"}}
           onClick={(event) => handleClose(event)}
           disableRipple
         >
           <LogoutIcon />
-          Log Out
+          {getJwt() === null ? 'Log In' : 'Log Out'}
         </MenuItem>
       </StyledMenu>
     </div>
+    <NotLoggedIn 
+      cancel={() => setAskLogin(false)}
+      delete={() => navigate('/login')}
+      isOpen={askLogin}
+      setIsOpen={setAskLogin}
+      label={"You need to be logged in"}
+      />
+    </React.Fragment>
   );
 };
