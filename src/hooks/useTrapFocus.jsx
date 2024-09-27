@@ -9,6 +9,7 @@ export default function useTrapFocus(isOpen, setIsOpen) {
       const focusableElements = modalElement.querySelectorAll('button');
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
+      lastElement.focus();
     
       function handleTabKeyPress(event) {
         if (event.key === 'Tab') {

@@ -4,7 +4,7 @@ import useTrapFocus from "../../../hooks/useTrapFocus";
 
 import './NotLoggedIn.css';
 
-export default function AlertModal(props) {
+export default function NotLoggedIn(props) {
   const { modalRef } = useTrapFocus(props.isOpen, props.setIsOpen);
 
   return props.isOpen ? (
