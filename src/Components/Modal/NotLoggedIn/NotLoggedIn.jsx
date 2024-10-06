@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import useTrapFocus from "../../../hooks/useTrapFocus";
 
 import './NotLoggedIn.css';
 
 export default function NotLoggedIn(props) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { modalRef } = useTrapFocus(props.isOpen, props.setIsOpen);
 
   return props.isOpen ? (
@@ -33,7 +36,7 @@ export default function NotLoggedIn(props) {
           </button>
           <button
             className="delete"
-            onClick={() => props.delete()}
+            onClick={() => navigate(`/login/?redirectTo=${location.pathname}`)}
             aria-label="Login"
           >
             Login

@@ -20,6 +20,7 @@ import tableBackground from '../../Assets/table-background.webp';
 import './SignUp.css';
 
 export default function Login() {
+  const searchParams = new URLSearchParams(window.location.search);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [responseMessage, setResponseMessage] = useState({
@@ -74,7 +75,9 @@ export default function Login() {
       const token = registerResponse.data.jwt;
       setJwt(token);
       const payload = JSON.parse(window.atob(token.split('.')[1]));
-      navigate('/');
+      let redirectPath = searchParams.get('redirectTo');
+      let location = redirectPath != null ? redirectPath : '/';
+      navigate(location);
     } else {
       setResponseMessage({
         state: true,
@@ -192,7 +195,7 @@ export default function Login() {
           </div>
           <p className='link'>
             Already have an account?{' '}
-            <Link className='Link' to='/login'>
+            <Link className='Link' to={`/login/?redirectTo=${searchParams.get('redirectTo')}`}>
               Log in
             </Link>
           </p>

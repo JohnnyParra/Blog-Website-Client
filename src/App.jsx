@@ -1,6 +1,10 @@
 // Libraries
-import React, { lazy, Suspense } from 'react';
+import React, { useContext, lazy, Suspense } from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { UserContext } from './Context/UserContext';
+import { useQuery } from 'react-query';
+import { getJwt } from './ApiServices/JwtService';
+import { fetchUser } from './ApiServices/TasksService';
 
 // Pages
 const SignUp = lazy(() => import('./Pages/SignUpPage/SignUp'));
@@ -21,6 +25,22 @@ import PrivateRoutes from './Utils/PrivateRoutes';
 import './index.css';
 
 export default function App() {
+  const token = getJwt();
+  const { currentUser, loginUser } = useContext(UserContext);
+
+  const { } = useQuery(
+    ['user', token], 
+    fetchUser,
+    {
+      refetchOnWindowFocus: false,
+      enabled: token !== null && Object.keys(currentUser).length === 0,
+      retry: false,
+      onSuccess: (data) => {
+        loginUser(data);
+      }
+    }
+  );
+
   return (
     <Router>
       <Routes>

@@ -28,15 +28,19 @@ import './HomePage.css';
 export default function Home(){
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams({ sort: 1, category: 0, page: 1 });
-  const { loginUser } = useContext(UserContext);
+  const { currentUser, loginUser } = useContext(UserContext);
 
   const { isLoading: userLoading } = useQuery(
     'user', 
     fetchUser,
     {
       refetchOnWindowFocus: false,
+      enabled: Object.keys(currentUser).length === 0,
       onSuccess: (data) => {
         loginUser(data);
+      },
+      onError: (data) => {
+        console.log('test');
       }
     }
   );
